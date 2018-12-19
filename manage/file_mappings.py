@@ -14,7 +14,8 @@ file_locations: List[Tuple[str, str]] = [
     ("scripts/refresh_polybar.sh", "~/.local/bin/refresh_polybar.sh"),
     ("scripts/disable_mouse_accel.sh", "~/.local/bin/disable_mouse_accel.sh"),
     ("scripts/smallest_resolution_width.py", "~/.local/bin/smallest_resolution_width.py"),
-    (".bash_aliases", "~/.bash_aliases")
+    (".bash_aliases", "~/.bash_aliases"),
+    (".config/neofetch/config.conf", "~/.config/neofetch/config.conf")
 ]
 
 
