@@ -13,7 +13,8 @@ file_locations: List[Tuple[str, str]] = [
     ("scripts/polybar_wrapper.sh", "~/.local/bin/polybar_wrapper.sh"),
     ("scripts/refresh_polybar.sh", "~/.local/bin/refresh_polybar.sh"),
     ("scripts/disable_mouse_accel.sh", "~/.local/bin/disable_mouse_accel.sh"),
-    ("scripts/smallest_resolution_width.py", "~/.local/bin/smallest_resolution_width.py")
+    ("scripts/smallest_resolution_width.py", "~/.local/bin/smallest_resolution_width.py"),
+    (".bash_aliases", "~/.bash_aliases")
 ]
 
 
