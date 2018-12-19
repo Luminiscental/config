@@ -1,13 +1,13 @@
 source $VIMRUNTIME/vimrc_example.vim
 
-" Plugin settings
+" Plugin settings "
 let g:vimtex_view_method='mupdf'
 let g:hybrid_termcolors=256
 let g:hybrid_termtrans=1
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 
-" Plugins
+" Plugins "
 if empty(glob('~/.vim/autoload/plug.vim'))
     silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
@@ -21,7 +21,6 @@ Plug 'Valloric/YouCompleteMe'
 
 call plug#end()
 
-" Let plugins load "
 filetype plugin indent on 
 
 " Workflow "
