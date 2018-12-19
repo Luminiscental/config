@@ -16,7 +16,8 @@ file_locations: List[Tuple[str, str]] = [
     ("scripts/smallest_resolution_width.py", "~/.local/bin/smallest_resolution_width.py"),
     (".bash_aliases", "~/.bash_aliases"),
     (".config/neofetch/config.conf", "~/.config/neofetch/config.conf"),
-    (".xinitrc", "~/.xinitrc")
+    (".xinitrc", "~/.xinitrc"),
+    (".Xresources", "~/.Xresources")
 ]
 
 
