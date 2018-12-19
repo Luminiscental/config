@@ -17,7 +17,8 @@ file_locations: List[Tuple[str, str]] = [
     (".bash_aliases", "~/.bash_aliases"),
     (".config/neofetch/config.conf", "~/.config/neofetch/config.conf"),
     (".xinitrc", "~/.xinitrc"),
-    (".Xresources", "~/.Xresources")
+    (".Xresources", "~/.Xresources"),
+    (".config/KShare/settings.ini", "~/.config/KShare/settings.ini")
 ]
 
 
