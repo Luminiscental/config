@@ -15,7 +15,8 @@ file_locations: List[Tuple[str, str]] = [
     ("scripts/disable_mouse_accel.sh", "~/.local/bin/disable_mouse_accel.sh"),
     ("scripts/smallest_resolution_width.py", "~/.local/bin/smallest_resolution_width.py"),
     (".bash_aliases", "~/.bash_aliases"),
-    (".config/neofetch/config.conf", "~/.config/neofetch/config.conf")
+    (".config/neofetch/config.conf", "~/.config/neofetch/config.conf"),
+    (".xinitrc", "~/.xinitrc")
 ]
 
 
