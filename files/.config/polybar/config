@@ -51,6 +51,9 @@ module-margin-right = 0
 
 font-0 = "SauceCodePro Nerd Font:size=9;2"
 font-1 = "SauceCodePro Nerd Font:size=12;2"
+font-2 = "fontawesome:pixelsize=10"
+font-3 = "unifont:pixelsize=10"
+font-4 = "Siji:pizelsize=10"
 
 modules-left = i3 xwindow
 modules-center = date 
@@ -122,15 +125,42 @@ label-padding = 10
 label-foreground = ${colors.my_color4}
 ;label-foreground = ${colors.my_color7}
 
-[module/musicinfo]
-type = custom/script
+;; - Using playerctl: - ;;
 
-exec = ~/.config/polybar/music.sh
-interval = 5
-format = <label>
-label = %output:0:30:...%
-format-padding = 10
-format-foreground = ${colors.my_color2}
+;[module/musicinfo]
+;type = custom/script
+
+;exec = ~/.config/polybar/music.sh
+;interval = 5
+;format = <label>
+;label = %output:0:30:...%
+
+;format-padding = 10
+;format-foreground = ${colors.my_color2}
+
+;; - end - ;;
+
+;; - Using mpd: - ;;
+
+[module/musicinfo]
+type=internal/mpd
+
+host = 127.0.0.1
+port = 6600
+
+interval = 2
+
+format-online = <label-song>
+label-song = %artist% - %title%
+label-offline = No song currently playing
+
+format-online-padding = 10
+format-offline-padding = 10
+
+format-online-foreground = ${colors.my_color2}
+format-offline-foreground = ${colors.my_color2}
+
+;; - end - ;;
 
 [module/powermenu]
 type = custom/menu

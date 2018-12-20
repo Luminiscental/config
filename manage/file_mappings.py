@@ -3,22 +3,27 @@ from typing import List, Tuple
 
 file_locations: List[Tuple[str, str]] = [
     (".zshrc", "~/.zshrc"),
-    (".config/termite/config", "~/.config/termite/config"),
     (".vimrc", "~/.vimrc"),
+    (".xinitrc", "~/.xinitrc"),
+    (".Xresources", "~/.Xresources"),
+    (".profile", "~/.profile"),
+    (".config/termite/config", "~/.config/termite/config"),
+    (".config/cava/config", "~/.config/cava/config"),
     (".config/i3/config", "~/.config/i3/config"),
     (".config/polybar/config", "~/.config/polybar/config"),
     (".config/polybar/music.sh", "~/.config/polybar/music.sh"),
-    (".config/compton.conf", "~/.config/compton.conf"),
     (".config/redshift/redshift.conf", "~/.config/redshift/redshift.conf"),
+    (".config/neofetch/config.conf", "~/.config/neofetch/config.conf"),
+    (".config/KShare/settings.ini", "~/.config/KShare/settings.ini"),
+    (".config/mpd/mpd.conf", "~/.config/mpd/mpd.conf"),
+    (".config/ncmpcpp/config", "~/.config/ncmpcpp/config"),
+    (".config/compton.conf", "~/.config/compton.conf"),
+    (".vim/colors/twilight256.vim", "~/.vim/colors/twilight256.vim"),
+    (".vim/autoload/plug.vim", "~/.vim/autoload/plug.vim"),
     ("scripts/polybar_wrapper.sh", "~/.local/bin/polybar_wrapper.sh"),
     ("scripts/refresh_polybar.sh", "~/.local/bin/refresh_polybar.sh"),
     ("scripts/disable_mouse_accel.sh", "~/.local/bin/disable_mouse_accel.sh"),
     ("scripts/smallest_resolution_width.py", "~/.local/bin/smallest_resolution_width.py"),
-    (".bash_aliases", "~/.bash_aliases"),
-    (".config/neofetch/config.conf", "~/.config/neofetch/config.conf"),
-    (".xinitrc", "~/.xinitrc"),
-    (".Xresources", "~/.Xresources"),
-    (".config/KShare/settings.ini", "~/.config/KShare/settings.ini")
 ]
 
 

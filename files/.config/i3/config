@@ -155,14 +155,19 @@ bindsym $mod+Ctrl+mod1+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec --no-startup-id "i3-nagbar -t warning -m 'Do you want to exit i3?' -b 'Yes, exit i3' 'i3-msg exit'"
 
-# Audio controls
+# Audio controls ($mod+Alt for audio)
 bindsym $mod+mod1+bracketright exec --no-startup-id amixer set Master 1%+ #increase sound volume
 bindsym $mod+mod1+bracketleft exec --no-startup-id amixer set Master 1%- #decrease sound volume
 
-bindsym $mod+mod1+p exec playerctl play
-bindsym $mod+mod1+u exec playerctl pause
-bindsym $mod+mod1+n exec playerctl next
-bindsym $mod+mod1+m exec playerctl previous
+# # Using playerctl:
+# bindsym $mod+mod1+p exec playerctl play
+# bindsym $mod+mod1+u exec playerctl pause
+# bindsym $mod+mod1+n exec playerctl next
+# bindsym $mod+mod1+m exec playerctl previous
+
+# Using mpc:
+bindsym $mod+mod1+p exec mpc toggle
+bindsym $mod+mod1+n exec mpc next
 
 # Lock screen
 bindsym $mod+p exec --no-startup-id betterlockscreen -l dimblur
@@ -221,6 +226,7 @@ exec --no-startup-id polybar_wrapper.sh
 exec --no-startup-id uim-toolbar-gtk3-systray
 exec --no-startup-id pasystray
 exec --no-startup-id redshift-gtk
+exec --no-startup-id mpd
 
 exec --no-startup-id betterlockscreen -u ~/wallpapers/
 exec --no-startup-id betterlockscreen -w

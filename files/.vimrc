@@ -1,7 +1,6 @@
 source $VIMRUNTIME/vimrc_example.vim
 
 " Plugin settings "
-let g:vimtex_view_method='mupdf'
 let g:hybrid_termcolors=256
 let g:hybrid_termtrans=1
 let g:ycm_confirm_extra_conf = 0
@@ -16,7 +15,6 @@ endif
 call plug#begin('~/.vim/plugged')
 
 Plug 'tpope/vim-sensible'
-Plug 'lervag/vimtex'
 Plug 'Valloric/YouCompleteMe'
 
 call plug#end()
