@@ -168,6 +168,7 @@ bindsym $mod+mod1+bracketleft exec --no-startup-id amixer set Master 1%- #decrea
 # Using mpc:
 bindsym $mod+mod1+p exec mpc toggle
 bindsym $mod+mod1+n exec mpc next
+bindsym $mod+mod1+s exec mpc stop
 
 # Lock screen
 bindsym $mod+p exec --no-startup-id betterlockscreen -l dimblur

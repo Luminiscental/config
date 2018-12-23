@@ -9,7 +9,7 @@ let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 " Plugins "
 if empty(glob('~/.vim/autoload/plug.vim'))
     silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+    autocmd VimEnter * PlugInstall --sync | source ~/.vimrc
 endif
 
 call plug#begin('~/.vim/plugged')
@@ -23,10 +23,19 @@ filetype plugin indent on
 
 " Workflow "
 nnoremap - dd
-noremap <F1> :VimtexCompile<CR>
+
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+nnoremap <F1>  :YcmCompleter FixIt<CR>  
 noremap <F8> :tabp<CR>
 noremap <F9> :tabn<CR>
+
 set hidden
+set splitbelow
+set splitright
 
 " Colours "
 syntax on
