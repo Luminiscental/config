@@ -228,11 +228,12 @@ exec --no-startup-id uim-toolbar-gtk3-systray
 exec --no-startup-id pasystray
 exec --no-startup-id redshift-gtk
 exec --no-startup-id mpd
+exec --no-startup-id mpd_discord_richpresence --no-idle --use-multiple-apps
 
 exec --no-startup-id betterlockscreen -u ~/wallpapers/
 exec --no-startup-id betterlockscreen -w
 
-exec disable_mouse_accel.sh
+exec --no-startup-id disable_mouse_accel.sh
 
 # Fixes for i3
 for_window [title="IntelliJ IDEA Help"] floating enable, border normal 0

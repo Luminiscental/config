@@ -16,6 +16,7 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'tpope/vim-sensible'
 Plug 'Valloric/YouCompleteMe'
+Plug 'airblade/vim-gitgutter'
 
 call plug#end()
 
@@ -36,6 +37,7 @@ noremap <F9> :tabn<CR>
 set hidden
 set splitbelow
 set splitright
+set updatetime=100
 
 " Colours "
 syntax on
