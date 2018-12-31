@@ -26,7 +26,7 @@ endif
 let g:colors_name="twilight256"
 
 if has("gui_running") || &t_Co == 88 || &t_Co == 256
-    " functions {{{
+    " functions 
     " returns an approximate grey index for the given grey level
     fun <SID>grey_number(x)
         if &t_Co == 88
@@ -233,12 +233,12 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
             exec "hi " . a:group . " gui=" . a:attr . " cterm=" . a:attr
         endif
     endfun
-    " }}}
+    " 
 
-    call <SID>X("Normal", "ffffff", "", "")
+    call <SID>X("Normal", "ffffff", "", "none")
 
     " highlight groups
-    "call <SID>X("Cursor", "708090", "f0e68c", "")
+    call <SID>X("Cursor", "708090", "f0e68c", "")
     "CursorIM
     "Directory
     "DiffAdd
@@ -246,45 +246,53 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
     "DiffDelete
     "DiffText
     "ErrorMsg
-    "call <SID>X("VertSplit", "c2bfa5", "7f7f7f", "reverse")
-    "call <SID>X("Folded", "ffd700", "4d4d4d", "")
-    "call <SID>X("FoldColumn", "d2b48c", "4d4d4d", "")
-    "call <SID>X("IncSearch", "708090", "f0e68c", "")
-    call <SID>X("LineNr", "CCCCCC", "", "")
-    "call <SID>X("ModeMsg", "D4D4D4", "", "")
-    "call <SID>X("MoreMsg", "2e8b57", "", "")
-    "call <SID>X("NonText", "addbe7", "000000", "bold")
-    "call <SID>X("Question", "00ff7f", "", "")
-    "call <SID>X("Search", "f5deb3", "cd853f", "")
-    "call <SID>X("SpecialKey", "9acd32", "", "")
-    "call <SID>X("StatusLine", "c2bfa5", "000000", "reverse")
-    "call <SID>X("StatusLineNC", "c2bfa5", "7f7f7f", "reverse")
-    "call <SID>X("Title", "cd5c5c", "", "")
-    call <SID>X("Visual", "D3D3D3", "3E3E3E", "reverse")
+    call <SID>X("VertSplit", "c2bfa5", "7f7f7f", "reverse")
+    call <SID>X("Folded", "ffd700", "4d4d4d", "")
+    call <SID>X("FoldColumn", "d2b48c", "4d4d4d", "")
+    call <SID>X("IncSearch", "708090", "f0e68c", "")
+    call <SID>X("LineNr", "564438", "", "")
+    call <SID>X("ModeMsg", "d4d4d4", "", "")
+    call <SID>X("MoreMsg", "2e8b57", "", "")
+    call <SID>X("NonText", "addbe7", "", "bold")
+    call <SID>X("Question", "00ff7f", "", "")
+    call <SID>X("Search", "f5deb3", "cd853f", "")
+    call <SID>X("SpecialKey", "9acd32", "", "")
+    call <SID>X("StatusLine", "c2bfa5", "000000", "reverse")
+    call <SID>X("StatusLineNC", "c2bfa5", "7f7f7f", "reverse")
+    call <SID>X("Title", "cd5c5c", "", "")
+    call <SID>X("Visual", "d3d3d3", "3e3e3e", "reverse")
     "VisualNOS
-    "call <SID>X("WarningMsg", "fa8072", "", "")
+    call <SID>X("WarningMsg", "fa8072", "", "")
     "WildMenu
     "Menu
+    call <SID>X("Pmenu", "ead49b", "666666", "")
     "Scrollbar
     "Tooltip
 
     " syntax highlighting groups
-    call <SID>X("Comment", "828282", "", "")
-    call <SID>X("Constant", "CF6A4C", "", "")
-    call <SID>X("Identifier", "7587A6", "", "none")
-    call <SID>X("Function", "9B703F", "", "")
-    call <SID>X("Define", "CDA869", "", "none")
-    call <SID>X("Statement", "CDA869", "", "")
-    call <SID>X("String", "8F9D6A", "", "")
-    call <SID>X("PreProc", "AFC4DB", "", "")
-    call <SID>X("Type", "F9EE98", "", "")
-    call <SID>X("Special", "DAEFA3", "", "")
+    call <SID>X("Comment", "666666", "", "")
+    call <SID>X("Constant", "af545b", "", "")
+    call <SID>X("Identifier", "f8b279", "", "none")
+    call <SID>X("Function", "c9a554", "", "")
+    call <SID>X("Define", "936d43", "", "none")
+    call <SID>X("Statement", "b36d43", "", "")
+    call <SID>X("String", "78824b", "", "")
+    call <SID>X("PreProc", "af545b", "", "")
+    call <SID>X("Type", "9d6a47", "", "")
+    call <SID>X("Special", "eae49b", "", "")
+    call <SID>X("Member", "bad46b", "", "")
+    call <SID>X("Variable", "ead49b", "", "")
+    call <SID>X("Namespace", "9d6a47", "", "")
+    call <SID>X("EnumConstant", "af545b", "", "")
+    call <SID>X("MatchParen", "333333", "ead49b", "")
     "Underlined
     call <SID>X("Ignore", "666666", "", "")
     "Error
-    call <SID>X("Todo", "ff4500", "eeee00", "")
+    exec "hi clear Todo"
+    call <SID>X("Todo", "ffcc44", "", "bold")
+    call <SID>X("myNote", "a3e99b", "", "bold")
 
-    " delete functions {{{
+    " delete functions 
     delf <SID>X
     delf <SID>rgb
     delf <SID>color
@@ -294,7 +302,7 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
     delf <SID>grey_color
     delf <SID>grey_level
     delf <SID>grey_number
-    " }}}
+    " 
 endif
 
 " vim: set fdl=0 fdm=marker:

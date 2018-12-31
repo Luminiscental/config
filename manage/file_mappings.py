@@ -11,21 +11,19 @@ file_locations: List[Tuple[str, str]] = [
     (".config/cava/config", "~/.config/cava/config"),
     (".config/i3/config", "~/.config/i3/config"),
     (".config/polybar/config", "~/.config/polybar/config"),
-    (".config/polybar/music.sh", "~/.config/polybar/music.sh"),
     (".config/redshift/redshift.conf", "~/.config/redshift/redshift.conf"),
     (".config/neofetch/config.conf", "~/.config/neofetch/config.conf"),
     (".config/KShare/settings.ini", "~/.config/KShare/settings.ini"),
     (".config/mpd/mpd.conf", "~/.config/mpd/mpd.conf"),
-    (".config/ncmpcpp/config", "~/.config/ncmpcpp/config"),
     (".config/compton.conf", "~/.config/compton.conf"),
-    (".vim/colors/twilight256.vim", "~/.vim/colors/twilight256.vim"),
+    (".vim/colors/autumn256.vim", "~/.vim/colors/autumn256.vim"),
     (".vim/autoload/plug.vim", "~/.vim/autoload/plug.vim"),
+    (".vim/after/syntax/c.vim", "~/.vim/after/syntax/c.vim"),
     ("scripts/polybar_wrapper.sh", "~/.local/bin/polybar_wrapper.sh"),
     ("scripts/refresh_polybar.sh", "~/.local/bin/refresh_polybar.sh"),
     ("scripts/disable_mouse_accel.sh", "~/.local/bin/disable_mouse_accel.sh"),
     ("scripts/smallest_resolution_width.py", "~/.local/bin/smallest_resolution_width.py"),
 ]
-
 
 def get_normalized_locations():
     for repo_location, location in file_locations:
@@ -34,11 +32,9 @@ def get_normalized_locations():
             __normalize_location(location)
         )
 
-
 def __normalize_repo_location(repo_location):
     repo_location = os.path.join("files", repo_location)
     return repo_location
-
 
 def __normalize_location(location):
     location = os.path.expanduser(location)

@@ -125,23 +125,6 @@ label-padding = 10
 label-foreground = ${colors.my_color4}
 ;label-foreground = ${colors.my_color7}
 
-;; - Using playerctl: - ;;
-
-;[module/musicinfo]
-;type = custom/script
-
-;exec = ~/.config/polybar/music.sh
-;interval = 5
-;format = <label>
-;label = %output:0:30:...%
-
-;format-padding = 10
-;format-foreground = ${colors.my_color2}
-
-;; - end - ;;
-
-;; - Using mpd: - ;;
-
 [module/musicinfo]
 type=internal/mpd
 
@@ -156,8 +139,6 @@ label-song = %artist% - %title%
 format-online-padding = 10
 
 format-online-foreground = ${colors.my_color2}
-
-;; - end - ;;
 
 [module/powermenu]
 type = custom/menu
