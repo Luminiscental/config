@@ -1,18 +1,7 @@
-" twilight256 color scheme file
-" Maintainer: Neal Milstein - neal dot milstein at gmail dot com
-" Last Change: 2011 Feb 1
+
+" -- autumn256.vim
 "
-" This theme copies the colors from the TextMate theme Twilight.
-"
-" The theme is designed to be used on a black background. I only tested it
-" using a 256-color terminal; I do not think it will work on much else (gvim,
-" 8-color terminal, etc.).
-"
-" The functions in this theme that convert hex color codes to the nearest
-" xterm-256 color number are from the theme desert2 (desert256), developed by Henry So, Jr. 
-"
-" The colors of this theme are based on the TextMate Twilight theme
-" – www.macromates.com
+" Mostly stolen functions / layout with tweaked colours
 
 set background=dark
 if version > 580
@@ -23,7 +12,7 @@ if version > 580
         syntax reset
     endif
 endif
-let g:colors_name="twilight256"
+let g:colors_name="autumn256"
 
 if has("gui_running") || &t_Co == 88 || &t_Co == 256
     " functions 
