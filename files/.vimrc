@@ -26,7 +26,6 @@ call plug#begin('~/.vim/plugged')
 Plug 'Valloric/YouCompleteMe'
 Plug 'airblade/vim-gitgutter'
 Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
-" Plug 'bfrg/vim-cpp-modern'
 Plug 'sheerun/vim-polyglot'
 Plug 'Yggdroot/indentLine'
 Plug 'jeaye/color_coded'

@@ -273,7 +273,7 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
     call <SID>X("Variable", "ead49b", "", "")
     call <SID>X("Namespace", "9d6a47", "", "")
     call <SID>X("EnumConstant", "af545b", "", "")
-    call <SID>X("MatchParen", "333333", "ead49b", "")
+    call <SID>X("MatchParen", "333333", "d4ea9b", "")
     "Underlined
     call <SID>X("Ignore", "666666", "", "")
     "Error

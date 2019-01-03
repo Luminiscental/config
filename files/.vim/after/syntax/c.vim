@@ -1,2 +1,2 @@
 
-syn keyword myNote containedin=cCommentL contained NOTE
+syn keyword myNote containedin=cCommentL,cComment contained NOTE
