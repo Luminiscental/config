@@ -19,6 +19,7 @@ file_locations: List[Tuple[str, str]] = [
     (".vim/colors/autumn256.vim", "~/.vim/colors/autumn256.vim"),
     (".vim/autoload/plug.vim", "~/.vim/autoload/plug.vim"),
     (".vim/after/syntax/c.vim", "~/.vim/after/syntax/c.vim"),
+    (".conkyrc", "~/.conkyrc"),
     ("scripts/polybar_wrapper.sh", "~/.local/bin/polybar_wrapper.sh"),
     ("scripts/refresh_polybar.sh", "~/.local/bin/refresh_polybar.sh"),
     ("scripts/disable_mouse_accel.sh", "~/.local/bin/disable_mouse_accel.sh"),

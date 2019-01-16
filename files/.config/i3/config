@@ -150,7 +150,7 @@ bindsym $mod+Ctrl+mod1+r restart
 bindsym $mod+Shift+e exec --no-startup-id "i3-nagbar -t warning -m 'Do you want to exit i3?' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # Discord launch keybind
-bindsym $mod+d exec --no-startup-id discord; exec --no-startup-id mpd_discord_richpresence --no-idle --use-multiple-apps
+bindsym $mod+d exec --no-startup-id discord
 
 # Audio controls ($mod+Alt for audio)
 bindsym $mod+mod1+bracketright exec --no-startup-id amixer set Master 1%+ #increase sound volume
@@ -185,10 +185,10 @@ mode "resize" {
     # Pressing right will grow the window’s width.
     # Pressing up will shrink the window’s height.
     # Pressing down will grow the window’s height.
-    bindsym Left resize shrink width 10 px or 5 ppt
-    bindsym Down resize grow height 10 px or 5 ppt
-    bindsym Up resize shrink height 10 px or 5 ppt
-    bindsym Right resize grow width 10 px or 5 ppt
+    bindsym $left resize shrink width 10 px or 5 ppt
+    bindsym $down resize shrink height 10 px or 5 ppt
+    bindsym $up resize grow height 10 px or 5 ppt
+    bindsym $right resize grow width 10 px or 5 ppt
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
@@ -214,6 +214,7 @@ bar {
 
 # Workspace assignments
 
+assign [class="code-oss"] 1
 assign [class="discord"] 2
 assign [class="Firefox"] 3
 assign [class="Audacious"] 4
@@ -226,13 +227,16 @@ exec --no-startup-id pasystray
 exec --no-startup-id redshift-gtk
 exec --no-startup-id mpd
 
-exec --no-startup-id betterlockscreen -u ~/wallpapers/
+exec --no-startup-id betterlockscreen -u ~/wallpapers/sunny_forest.png
 exec --no-startup-id betterlockscreen -w
+
+exec --no-startup-id conky -dq
 
 exec --no-startup-id disable_mouse_accel.sh
 
 # Fixes for i3
 for_window [title="IntelliJ IDEA Help"] floating enable, border normal 0
 for_window [class="KShare"] floating enable, border normal 0
+for_window [class="Conky"] floating enable, border none
 no_focus [window_role="popup"]
 no_focus [class="MuPDF"]
