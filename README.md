@@ -1,6 +1,7 @@
 # Dotfiles
 
 A repo to store various config files I use, lots of unoriginal content, mostly as a back-up / convenience thing.
+Scripts are stolen from [here](https://github.com/I-Al-Istannen/Dotfiles)
 
 ## Config stored here
 
