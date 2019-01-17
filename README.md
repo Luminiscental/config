@@ -17,5 +17,6 @@ Scripts are stolen from [here](https://github.com/I-Al-Istannen/Dotfiles)
 * KShare - config file
 * mpd / ncmpcpp - config files (with fifo for visualization)
 * neofetch - config file
+* conky - config file (two modules)
 
 Many dependencies not included
