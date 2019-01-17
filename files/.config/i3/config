@@ -150,7 +150,7 @@ bindsym $mod+Ctrl+mod1+r restart
 bindsym $mod+Shift+e exec --no-startup-id "i3-nagbar -t warning -m 'Do you want to exit i3?' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # Discord launch keybind
-bindsym $mod+d exec --no-startup-id discord
+bindsym $mod+d exec --no-startup-id discord-canary
 
 # Audio controls ($mod+Alt for audio)
 bindsym $mod+mod1+bracketright exec --no-startup-id amixer set Master 1%+ #increase sound volume
@@ -230,7 +230,8 @@ exec --no-startup-id mpd
 exec --no-startup-id betterlockscreen -u ~/wallpapers/sunny_forest.png
 exec --no-startup-id betterlockscreen -w
 
-exec --no-startup-id conky -dq
+exec --no-startup-id conky -dq -c ~/conky/system.conf
+exec --no-startup-id conky -dq -c ~/conky/todo.conf
 
 exec --no-startup-id disable_mouse_accel.sh
 

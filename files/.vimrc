@@ -40,6 +40,15 @@ filetype plugin indent on
 
 " Workflow "
 nnoremap - dd
+nnoremap <leader>t :retab<CR>
+
+nmap <leader>sp :call <SID>SynStack()<CR>
+function! <SID>SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
 
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
@@ -57,14 +66,6 @@ set hidden
 set splitbelow
 set splitright
 set updatetime=100
-
-nmap <leader>sp :call <SID>SynStack()<CR>
-function! <SID>SynStack()
-  if !exists("*synstack")
-    return
-  endif
-  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-endfunc
 
 " Colours "
 syntax enable
