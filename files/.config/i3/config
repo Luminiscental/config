@@ -217,7 +217,7 @@ bar {
 assign [class="code-oss"] 1
 assign [class="discord"] 2
 assign [class="Firefox"] 3
-assign [class="Audacious"] 4
+assign [class="krita"] 4
 
 exec --no-startup-id kshare --background
 exec --no-startup-id compton -cCfb
