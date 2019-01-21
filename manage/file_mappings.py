@@ -17,6 +17,7 @@ file_locations: List[Tuple[str, str]] = [
     (".config/mpd/mpd.conf", "~/.config/mpd/mpd.conf"),
     (".config/compton.conf", "~/.config/compton.conf"),
     (".config/dunst/dunstrc", "~/.config/dunst/dunstrc"),
+    (".todo/config", "~/.todo/config"),
     (".vim/colors/autumn256.vim", "~/.vim/colors/autumn256.vim"),
     (".vim/autoload/plug.vim", "~/.vim/autoload/plug.vim"),
     (".vim/after/syntax/c.vim", "~/.vim/after/syntax/c.vim"),
