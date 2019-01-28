@@ -41,6 +41,7 @@ filetype plugin indent on
 " Workflow "
 nnoremap - dd
 nnoremap <leader>t :retab<CR>
+"nnoremap <leader>h i#define val const auto<CR>#define var auto<CR><Esc>
 
 nmap <leader>sp :call <SID>SynStack()<CR>
 function! <SID>SynStack()
