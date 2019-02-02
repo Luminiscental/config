@@ -12,8 +12,10 @@ set completeopt-=preview
 let g:ycm_min_num_of_chars_for_completion=1
 let g:ycm_cache_omnifunc=0
 let g:ycm_seed_identifiers_with_syntax=1
-let g:indentLine_char = '│'
+"let g:indentLine_char = '│'
 let ayucolor="mirage"
+let g:Tex_ViewRule_pdf = 'xdg-open'
+let g:Tex_DefaultTargetFormat = 'pdf'
 
 " Plugins "
 if empty(glob('~/.vim/autoload/plug.vim'))
@@ -27,12 +29,13 @@ Plug 'Valloric/YouCompleteMe'
 Plug 'airblade/vim-gitgutter'
 Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
 Plug 'sheerun/vim-polyglot'
-Plug 'Yggdroot/indentLine'
+"Plug 'Yggdroot/indentLine'
 Plug 'jeaye/color_coded'
 Plug 'flazz/vim-colorschemes'
 Plug 'ap/vim-css-color'
 Plug 'KKPMW/sacredforest-vim'
 Plug 'ayu-theme/ayu-vim'
+Plug 'vim-latex/vim-latex'
 
 call plug#end()
 
