@@ -36,6 +36,7 @@ Plug 'ap/vim-css-color'
 Plug 'KKPMW/sacredforest-vim'
 Plug 'ayu-theme/ayu-vim'
 Plug 'vim-latex/vim-latex'
+Plug 'scrooloose/nerdtree'
 
 call plug#end()
 
@@ -45,6 +46,7 @@ filetype plugin indent on
 nnoremap - dd
 nnoremap <leader>t :retab<CR>
 "nnoremap <leader>h i#define val const auto<CR>#define var auto<CR><Esc>
+map <leader>f :NERDTreeToggle<CR>
 
 nmap <leader>sp :call <SID>SynStack()<CR>
 function! <SID>SynStack()
