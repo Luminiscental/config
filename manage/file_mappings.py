@@ -27,6 +27,12 @@ file_locations: List[Tuple[str, str]] = [
     ("scripts/refresh_polybar.sh", "~/.local/bin/refresh_polybar.sh"),
     ("scripts/disable_mouse_accel.sh", "~/.local/bin/disable_mouse_accel.sh"),
     ("scripts/smallest_resolution_width.py", "~/.local/bin/smallest_resolution_width.py"),
+    ("scripts/new-tex", "~/.local/bin/new-tex"),
+    ("scripts/todo", "~/.local/bin/todo"),
+    ("scripts/display-colors", "~/.local/bin/display-colors"),
+    ("scripts/i3-get-window-criteria", "~/.local/bin/i3-get-window-criteria"),
+    ("scripts/test-dunst", "~/.local/bin/test-dunst"),
+    ("scripts/refresh-dunst", "~/.local/bin/refresh-dunst"),
 ]
 
 def get_normalized_locations():

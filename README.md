@@ -18,5 +18,7 @@ Scripts are stolen from [here](https://github.com/I-Al-Istannen/Dotfiles)
 * mpd / ncmpcpp - config files (with fifo for visualization)
 * neofetch - config file
 * conky - config file (two modules)
+* dunst - dunstrc and test script
+* Various utility scripts
 
 Many dependencies not included

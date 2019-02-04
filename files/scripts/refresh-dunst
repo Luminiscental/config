@@ -1,0 +1,3 @@
+
+pkill dunst
+dunst -config ~/.config/dunst/dunstrc & disown

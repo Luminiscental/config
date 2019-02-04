@@ -215,6 +215,7 @@ bar {
 # Workspace assignments
 
 assign [class="code-oss"] 1
+assign [class="jetbrains-idea-ce"] 1
 assign [class="discord"] 2
 assign [class="Firefox"] 3
 assign [class="krita"] 4

@@ -1,0 +1,22 @@
+#!/bin/sh
+
+if [ $# -gt 0 ]; then
+    echo "\documentclass[a4paper]{article}
+
+\usepackage{amsmath}
+\usepackage{siunitx}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{titlesec}
+
+\addtolength{\jot}{1em}
+\titlespacing*{\section}
+{0pt}{5.5ex plus 1ex minus .2ex}{4.3ex plus .2ex}
+\titlespacing*{\subsection}
+{0pt}{5.5ex plus 1ex minus .2ex}{4.3ex plus .2ex}
+
+\begin{document}
+\end{document}" > $1
+else
+    echo "Please specify a file to create"
+fi
