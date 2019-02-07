@@ -1,4 +1,3 @@
-source $VIMRUNTIME/vimrc_example.vim
 
 " Plugin settings "
 let g:hybrid_termcolors=256
@@ -12,35 +11,56 @@ set completeopt-=preview
 let g:ycm_min_num_of_chars_for_completion=1
 let g:ycm_cache_omnifunc=0
 let g:ycm_seed_identifiers_with_syntax=1
-"let g:indentLine_char = '│'
-let ayucolor="mirage"
 let g:Tex_ViewRule_pdf = 'xdg-open'
 let g:Tex_DefaultTargetFormat = 'pdf'
+let g:dein#install_process_timeout = 240
+let g:chromatica#enable_at_startup = 1
 
-" Plugins "
-if empty(glob('~/.vim/autoload/plug.vim'))
-    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    autocmd VimEnter * PlugInstall --sync | source ~/.vimrc
+"dein Scripts-----------------------------
+if &compatible
+  set nocompatible               " Be iMproved
 endif
 
-call plug#begin('~/.vim/plugged')
+" Required:
+set runtimepath+=~/.vim/bundles/repos/github.com/Shougo/dein.vim
 
-Plug 'Valloric/YouCompleteMe'
-Plug 'airblade/vim-gitgutter'
-Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
-Plug 'sheerun/vim-polyglot'
-"Plug 'Yggdroot/indentLine'
-Plug 'jeaye/color_coded'
-Plug 'flazz/vim-colorschemes'
-Plug 'ap/vim-css-color'
-Plug 'KKPMW/sacredforest-vim'
-Plug 'ayu-theme/ayu-vim'
-Plug 'vim-latex/vim-latex'
-Plug 'scrooloose/nerdtree'
+" Required:
+if dein#load_state('~/.vim/bundles')
+    call dein#begin('~/.vim/bundles')
 
-call plug#end()
+    " Let dein manage dein
+    " Required:
+    call dein#add('~/.vim/bundles/repos/github.com/Shougo/dein.vim')
 
-filetype plugin indent on 
+    " Add or remove your plugins here like this:
+    "call dein#add('Shougo/neosnippet.vim')
+    "call dein#add('Shougo/neosnippet-snippets')
+    call dein#add('vim-latex/vim-latex')
+    call dein#add('airblade/vim-gitgutter')
+    call dein#add('scrooloose/nerdtree')
+    if has('nvim')
+        call dein#add('arakashic/chromatica.nvim')
+    else
+        call dein#add('jeaye/color_coded', {'merged': 0})
+    endif
+    call dein#add('Valloric/YouCompleteMe', {'build': 'python3 install.py --clang-completer --java-completer --rust-completer'})
+    call dein#add('rdnetto/YCM-Generator')
+
+    " Required:
+    call dein#end()
+    call dein#save_state()
+endif
+
+" Required:
+filetype plugin indent on
+syntax enable
+
+" If you want to install not installed plugins on startup.
+if dein#check_install()
+    call dein#install()
+endif
+
+"End dein Scripts-------------------------
 
 " Workflow "
 nnoremap - dd
@@ -50,10 +70,10 @@ map <leader>f :NERDTreeToggle<CR>
 
 nmap <leader>sp :call <SID>SynStack()<CR>
 function! <SID>SynStack()
-  if !exists("*synstack")
-    return
-  endif
-  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+    if !exists("*synstack")
+        return
+    endif
+    echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
 
 nnoremap <C-J> <C-W><C-J>
@@ -61,9 +81,7 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
-noremap <F1> :YcmCompleter FixIt<CR>  
-noremap <F2> :YcmGenerateConfig<CR>:YcmGenerateConfig --format=cc<CR>
-noremap <F3> :PlugInstall<CR>
+noremap <F1> :YcmCompleter FixIt<CR>
 noremap <F4> :noh<CR>
 noremap <F8>  :tabp<CR>
 noremap <F9>  :tabn<CR>
@@ -76,7 +94,9 @@ set updatetime=100
 " Colours "
 syntax enable
 
-set term=xterm
+if !has('nvim')
+    set term=xterm
+endif
 set t_Co=256
 set background=dark
 set termguicolors

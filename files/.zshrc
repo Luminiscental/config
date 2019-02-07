@@ -96,3 +96,5 @@ source /usr/share/zsh-theme-powerlevel9k/powerlevel9k.zsh-theme
 
 # Hacky solution for weird issue I had
 export LC_ALL=en_GB.UTF-8
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
