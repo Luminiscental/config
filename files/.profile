@@ -8,5 +8,5 @@ PATH="$HOME/.cargo/bin:$PATH"
 [[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx
 
 # MPD daemon start
-[ ! -s ~/.config/mpd/pid ] && mpd
+[[ ! -s ~/.config/mpd/pid ]] && mpd
 

@@ -181,10 +181,6 @@ mode "resize" {
 
     # These bindings trigger as soon as you enter the resize mode
 
-    # Pressing left will shrink the window’s width.
-    # Pressing right will grow the window’s width.
-    # Pressing up will shrink the window’s height.
-    # Pressing down will grow the window’s height.
     bindsym $left resize shrink width 10 px or 5 ppt
     bindsym $down resize shrink height 10 px or 5 ppt
     bindsym $up resize grow height 10 px or 5 ppt
@@ -223,9 +219,7 @@ assign [class="krita"] 4
 exec --no-startup-id kshare --background
 exec --no-startup-id compton -cCfb
 exec --no-startup-id polybar_wrapper.sh
-exec --no-startup-id uim-toolbar-gtk3-systray
-exec --no-startup-id pasystray
-exec --no-startup-id redshift-gtk
+exec --no-startup-id redshift
 exec --no-startup-id mpd ~/.config/mpd/mpd.conf
 
 exec --no-startup-id betterlockscreen -u ~/wallpapers/sunny_forest.png

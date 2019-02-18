@@ -35,10 +35,9 @@ fi
 export PATH="~/.local/bin:$PATH"
 
 export GTK_THEME=Numix:dark
-
-export GTK_IM_MODULE='uim'
-export QT_IM_MODULE='uim'
-uim-xim &
-export XMODIFIERS='@im=uim'
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS="@im=fcitx"
+fcitx -d -r
 
 exec i3 --shmlog-size=26214400

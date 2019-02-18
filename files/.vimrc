@@ -81,8 +81,15 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
+"Implement ycm autofix by pressing F1
 noremap <F1> :YcmCompleter FixIt<CR>
-noremap <F4> :noh<CR>
+
+"Remove search highlighting by pressing F4
+noremap <F2> :noh<CR>
+
+"Remove all trailing whitespace by pressing F5
+nnoremap <F3> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
+
 noremap <F8>  :tabp<CR>
 noremap <F9>  :tabn<CR>
 
