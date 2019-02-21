@@ -113,6 +113,10 @@ set matchpairs+=<:>
 "colorscheme solarized
 colorscheme autumn256
 
+"Highlight in red when lines go over 79 characters
+highlight ColorColumn ctermbg=red
+call matchadd('ColorColumn', '\%80v', 100)     
+
 " Encoding "
 set encoding=utf-8
 
