@@ -11,10 +11,16 @@ set completeopt-=preview
 let g:ycm_min_num_of_chars_for_completion=1
 let g:ycm_cache_omnifunc=0
 let g:ycm_seed_identifiers_with_syntax=1
+
 let g:Tex_ViewRule_pdf = 'xdg-open'
 let g:Tex_DefaultTargetFormat = 'pdf'
+
 let g:dein#install_process_timeout = 240
+let g:deoplete#enable_at_startup = 1
 let g:chromatica#enable_at_startup = 1
+let g:python_highlight_all = 1
+
+let g:UltiSnipsExpandTrigger="<c-j>"
 
 "dein Scripts-----------------------------
 if &compatible
@@ -38,13 +44,16 @@ if dein#load_state('~/.vim/bundles')
     call dein#add('vim-latex/vim-latex')
     call dein#add('airblade/vim-gitgutter')
     call dein#add('scrooloose/nerdtree')
-    if has('nvim')
-        call dein#add('arakashic/chromatica.nvim')
-    else
-        call dein#add('jeaye/color_coded', {'merged': 0})
-    endif
+    call dein#add('tpope/vim-surround')
+    call dein#add('vim-python/python-syntax')
+
+    call dein#add('jeaye/color_coded', {'merged': 0})
+
     call dein#add('Valloric/YouCompleteMe', {'build': 'python3 install.py --clang-completer --java-completer --rust-completer'})
     call dein#add('rdnetto/YCM-Generator')
+
+    call dein#add('SirVer/ultisnips')
+    call dein#add('honza/vim-snippets')
 
     " Required:
     call dein#end()
@@ -107,7 +116,8 @@ endif
 set t_Co=256
 set background=dark
 set termguicolors
-set number
+set number                     " Show current line number
+set relativenumber             " Show relative line numbers
 set matchpairs+=<:>
 
 "colorscheme solarized
