@@ -21,6 +21,7 @@ file_locations: List[Tuple[str, str]] = [
     (".vim/colors/autumn256.vim", "~/.vim/colors/autumn256.vim"),
     (".vim/autoload/plug.vim", "~/.vim/autoload/plug.vim"),
     (".vim/after/syntax/c.vim", "~/.vim/after/syntax/c.vim"),
+    (".vim/syntax/clr.vim", "~/.vim/syntax/clr.vim"),
     ("conky/system.conf", "~/conky/system.conf"),
     ("conky/todo.conf", "~/conky/todo.conf"),
     ("scripts/polybar_wrapper.sh", "~/.local/bin/polybar_wrapper.sh"),

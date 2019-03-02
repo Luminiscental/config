@@ -222,7 +222,7 @@ exec --no-startup-id polybar_wrapper.sh
 exec --no-startup-id redshift
 exec --no-startup-id mpd ~/.config/mpd/mpd.conf
 
-exec --no-startup-id betterlockscreen -u ~/wallpapers/sunny_forest.png
+exec --no-startup-id betterlockscreen -u ~/wallpapers/
 exec --no-startup-id betterlockscreen -w
 
 exec --no-startup-id conky -dq -c ~/conky/system.conf

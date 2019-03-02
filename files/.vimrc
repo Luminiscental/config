@@ -46,6 +46,7 @@ if dein#load_state('~/.vim/bundles')
     call dein#add('scrooloose/nerdtree')
     call dein#add('tpope/vim-surround')
     call dein#add('vim-python/python-syntax')
+    call dein#add('ctrlpvim/ctrlp.vim')
 
     call dein#add('jeaye/color_coded', {'merged': 0})
 
