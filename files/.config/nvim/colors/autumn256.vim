@@ -229,7 +229,6 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
     " highlight groups
     call <SID>X("Cursor", "708090", "f0e68c", "")
     "CursorIM
-    "Directory
     "DiffAdd
     "DiffChange
     "DiffDelete
@@ -280,6 +279,11 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
     call <SID>X("pythonFunction", "bad46b", "", "")
     call <SID>X("pythonImport", "564438", "", "")
     call <SID>X("pythonNone", "c9a554", "", "")
+
+    "NERDTree
+    call <SID>X("NERDTreeOpenable", "9d6a47", "", "")
+    call <SID>X("NERDTreeClosable", "c9a554", "", "")
+    call <SID>X("Directory", "bad46b", "", "")
 
     " chromatica 
     call <SID>X("chromaticaMacroInstantiation", "af545b", "", "")
