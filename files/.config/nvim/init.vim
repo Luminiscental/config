@@ -89,6 +89,12 @@ set relativenumber             " Show relative line numbers
 
 colorscheme autumn256
 
+hi clear YcmErrorSection
+hi YcmErrorSection guibg=#af545b ctermbg=red
+
+hi clear YcmWarningSection
+hi YcmWarningSection guibg=#c9a554 ctermbg=yellow
+
 highlight ColorColumn ctermbg=red
 call matchadd('ColorColumn', '\%89v', 100)     
 set guicursor=

@@ -271,7 +271,7 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
     call <SID>X("Special", "ead49b", "", "")
     call <SID>X("Member", "bad46b", "", "")
     call <SID>X("Variable", "ead49b", "", "")
-    call <SID>X("Namespace", "9d6a47", "", "")
+    call <SID>X("Namespace", "cd6a47", "", "")
     call <SID>X("EnumConstant", "af545b", "", "")
 
     " python
@@ -289,6 +289,7 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
     call <SID>X("chromaticaMacroInstantiation", "af545b", "", "")
     call <SID>X("chromaticaLinkage", "564438", "", "")
     call <SID>X("chromaticaCast", "af545b", "", "")
+    call <SID>X("OperatorOverload", "4e672b", "", "")
     call <SID>X("AutoType", "cb5f36", "", "")
 
     call <SID>X("MatchParen", "333333", "d4ea9b", "")
