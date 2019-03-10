@@ -276,9 +276,10 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
 
     " python
     call <SID>X("pythonClassVar", "cb5f36", "", "")
-    call <SID>X("pythonFunction", "bad46b", "", "")
+    call <SID>X("pythonFunction", "c9a554", "", "")
+    call <SID>X("pythonBuiltinFunc", "bad46b", "", "")
     call <SID>X("pythonImport", "564438", "", "")
-    call <SID>X("pythonNone", "c9a554", "", "")
+    call <SID>X("pythonBuiltinType", "bad46b", "", "")
 
     "NERDTree
     call <SID>X("NERDTreeOpenable", "9d6a47", "", "")
