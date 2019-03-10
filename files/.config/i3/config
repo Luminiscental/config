@@ -1,6 +1,6 @@
 
 # No window titles
-for_window [class="^.*"] border pixel 2
+for_window [class="^.*"] border pixel 0
 
 # Gaps
 gaps inner 8
@@ -210,8 +210,9 @@ bar {
 
 # Workspace assignments
 
-assign [class="code-oss"] 1
-assign [class="jetbrains-idea-ce"] 1
+## nvim > all
+#assign [class="code-oss"] 1
+#assign [class="jetbrains-idea-ce"] 1
 assign [class="discord"] 2
 assign [class="Firefox"] 3
 assign [class="krita"] 4
