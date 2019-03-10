@@ -6,6 +6,22 @@ let g:BASH_Ctrl_j = 'off'
 let g:hybrid_termcolors=256
 let g:hybrid_termtrans=1
 
+let $RUST_SRC_PATH = systemlist("rustc --print sysroot")[0] . "/lib/rustlib/src/rust/src"
+
+let g:ale_lint_on_insert_leave = 1
+let g:ale_lint_on_save = 1
+let g:ale_lint_on_enter = 1
+let g:ale_virtualtext_cursor = 1
+let g:ale_rust_rls_config = {
+	\ 'rust': {
+		\ 'all_targets': 1,
+		\ 'build_on_save': 1,
+		\ 'clippy_preference': 'on'
+	\ }
+	\ }
+let g:ale_rust_rls_toolchain = ''
+let g:ale_linters = {'rust': ['rls']}
+
 let g:python_highlight_all = 1
 
 let g:ycm_confirm_extra_conf = 0
@@ -17,6 +33,10 @@ let g:ycm_min_num_of_chars_for_completion=1
 let g:ycm_cache_omnifunc=0
 let g:ycm_seed_identifiers_with_syntax=1
 let g:ycm_key_invoke_completion = '<C-y>'
+
+let g:lightline = {
+      \ 'colorscheme': 'seoul256',
+      \ }
 
 let g:Tex_ViewRule_pdf = 'xdg-open'
 let g:Tex_DefaultTargetFormat = 'pdf'
@@ -35,7 +55,7 @@ if dein#load_state('~/.cache/dein')
     call dein#begin('~/.cache/dein')
 
     call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
-    call dein#add('Valloric/YouCompleteMe', {'build': './install.sh --all --system-libclang'})
+    call dein#add('Valloric/YouCompleteMe', {'build': './install.sh --all --system-libclang --rust-completer'})
     call dein#add('arakashic/chromatica.nvim', {'merged': 0})
     call dein#add('rodnaph/vim-color-schemes')
     call dein#add('ctrlpvim/ctrlp.vim')
@@ -46,6 +66,14 @@ if dein#load_state('~/.cache/dein')
     call dein#add('scrooloose/nerdtree')
     call dein#add('airblade/vim-gitgutter')
     call dein#add('vim-latex/vim-latex')
+    call dein#add('justinmk/vim-sneak')
+    call dein#add('itchyny/lightline.vim')
+    call dein#add('machakann/vim-highlightedyank')
+    call dein#add('andymass/vim-matchup')
+    call dein#add('w0rp/ale')
+    call dein#add('cespare/vim-toml')
+    call dein#add('rust-lang/rust.vim')
+    call dein#add('plasticboy/vim-markdown')
 
     call dein#end()
     call dein#save_state()
@@ -94,6 +122,15 @@ hi YcmErrorSection guibg=#af545b ctermbg=red
 
 hi clear YcmWarningSection
 hi YcmWarningSection guibg=#c9a554 ctermbg=yellow
+
+highlight link ALEWarningSign Todo
+highlight link ALEErrorSign WarningMsg
+highlight link ALEVirtualTextWarning Todo
+highlight link ALEVirtualTextInfo Todo
+highlight link ALEVirtualTextError WarningMsg
+
+highlight ALEError guibg=#af545b ctermbg=red
+highlight ALEWarning guibg=#c9a554 ctermbg=yellow
 
 highlight ColorColumn ctermbg=red
 call matchadd('ColorColumn', '\%89v', 100)     
