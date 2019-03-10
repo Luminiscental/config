@@ -1,6 +1,6 @@
 
 " Clear language syntax
-syn keyword clrKeywords val print
+syn keyword clrKeywords val print if else and or
 
 syn keyword clrBuiltins type str num int bool
 
@@ -14,5 +14,5 @@ syn region clrString start="\"" end="\""
 
 syn match clrComment '//.*'
 
-syn match clrSymbol '[()!+=*\-;/]\(/\)\@!'
+syn match clrSymbol '[{}()!+=\*\-;/]\(/\)\@!'
 

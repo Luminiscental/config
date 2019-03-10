@@ -224,7 +224,7 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
     endfun
     " 
 
-    call <SID>X("Normal", "ffffff", "", "none")
+    call <SID>X("Normal", "ead49b", "", "none")
 
     " highlight groups
     call <SID>X("Cursor", "708090", "f0e68c", "")
@@ -259,7 +259,7 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
     "Scrollbar
     "Tooltip
 
-    " syntax highlighting groups
+    " color_coded
     call <SID>X("Comment", "666666", "", "")
     call <SID>X("Constant", "af545b", "", "")
     call <SID>X("Identifier", "f8b279", "", "none")
@@ -267,13 +267,26 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
     call <SID>X("Define", "936d43", "", "none")
     call <SID>X("Statement", "b36d43", "", "")
     call <SID>X("String", "78824b", "", "")
-    call <SID>X("PreProc", "af545b", "", "")
+    call <SID>X("PreProc", "936d43", "", "")
     call <SID>X("Type", "9d6a47", "", "")
-    call <SID>X("Special", "eae49b", "", "")
+    call <SID>X("Special", "ead49b", "", "")
     call <SID>X("Member", "bad46b", "", "")
     call <SID>X("Variable", "ead49b", "", "")
     call <SID>X("Namespace", "9d6a47", "", "")
     call <SID>X("EnumConstant", "af545b", "", "")
+
+    " python
+    call <SID>X("pythonClassVar", "cb5f36", "", "")
+    call <SID>X("pythonFunction", "bad46b", "", "")
+    call <SID>X("pythonImport", "564438", "", "")
+    call <SID>X("pythonNone", "c9a554", "", "")
+
+    " chromatica 
+    call <SID>X("chromaticaMacroInstantiation", "af545b", "", "")
+    call <SID>X("chromaticaLinkage", "564438", "", "")
+    call <SID>X("chromaticaCast", "af545b", "", "")
+    call <SID>X("AutoType", "cb5f36", "", "")
+
     call <SID>X("MatchParen", "333333", "d4ea9b", "")
     "Underlined
     call <SID>X("Ignore", "666666", "", "")
@@ -285,8 +298,8 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
     " Clear language syntax highlighting
     call <SID>X("clrKeywords", "9d6a47", "", "")
     call <SID>X("clrBuiltins", "f8b279", "", "")
-    call <SID>X("clrNumber", "bad46b", "", "")
-    call <SID>X("clrInteger", "af545b", "", "")
+    call <SID>X("clrNumber", "af545b", "", "")
+    call <SID>X("clrInteger", "bad46b", "", "")
     call <SID>X("clrBoolean", "f8b279", "", "")
     call <SID>X("clrString", "78824b", "", "")
     call <SID>X("clrComment", "666666", "", "")
