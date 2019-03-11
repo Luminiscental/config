@@ -4,11 +4,13 @@ from typing import List, Tuple
 file_locations: List[Tuple[str, str]] = [
     (".zshrc", "~/.zshrc"),
     (".xinitrc", "~/.xinitrc"),
+    (".pylintrc", "~/.pylintrc"),
     (".Xresources", "~/.Xresources"),
     (".profile", "~/.profile"),
     (".config/termite/config", "~/.config/termite/config"),
     (".config/cava/config", "~/.config/cava/config"),
     (".config/i3/config", "~/.config/i3/config"),
+    (".config/nvim/modified_lightline_deus.vim", "~/.cache/dein/repos/github.com/itchyny/lightline.vim/autoload/lightline/colorscheme/deus.vim"),
     (".config/polybar/config", "~/.config/polybar/config"),
     (".config/redshift/redshift.conf", "~/.config/redshift/redshift.conf"),
     (".config/neofetch/config.conf", "~/.config/neofetch/config.conf"),

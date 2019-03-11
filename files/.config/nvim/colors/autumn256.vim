@@ -293,7 +293,7 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
     call <SID>X("OperatorOverload", "4e672b", "", "")
     call <SID>X("AutoType", "cb5f36", "", "")
 
-    call <SID>X("MatchParen", "333333", "d4ea9b", "")
+    call <SID>X("MatchParen", "333333", "666666", "")
     "Underlined
     call <SID>X("Ignore", "666666", "", "")
     "Error

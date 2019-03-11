@@ -1,7 +1,4 @@
-
 set nocompatible
-
-let g:BASH_Ctrl_j = 'off'
 
 let g:hybrid_termcolors=256
 let g:hybrid_termtrans=1
@@ -21,6 +18,10 @@ let g:ale_rust_rls_config = {
 	\ }
 let g:ale_rust_rls_toolchain = ''
 let g:ale_linters = {'rust': ['rls']}
+let g:ale_sign_error = "✖"
+let g:ale_sign_warning = "⚠"
+let g:ale_sign_info = "i"
+let g:ale_sign_hint = "➤"
 
 let g:python_highlight_all = 1
 
@@ -34,8 +35,10 @@ let g:ycm_cache_omnifunc=0
 let g:ycm_seed_identifiers_with_syntax=1
 let g:ycm_key_invoke_completion = '<C-y>'
 
+" Use a locally modified version of the deus colorscheme for lightline
+" (i.e. I edited the deus.vim file in the autoload part of the lightline folder)
 let g:lightline = {
-      \ 'colorscheme': 'seoul256',
+      \ 'colorscheme': 'deus',
       \ }
 
 let g:Tex_ViewRule_pdf = 'xdg-open'
@@ -55,7 +58,9 @@ if dein#load_state('~/.cache/dein')
     call dein#begin('~/.cache/dein')
 
     call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
-    call dein#add('Valloric/YouCompleteMe', {'build': './install.sh --all --system-libclang --rust-completer'})
+    " Build on install with support for everything using the system clang
+    call dein#add('Valloric/YouCompleteMe', {'build': './install.sh --all --system-libclang'})
+    " Not merged because of manual building
     call dein#add('arakashic/chromatica.nvim', {'merged': 0})
     call dein#add('rodnaph/vim-color-schemes')
     call dein#add('ctrlpvim/ctrlp.vim')
@@ -67,9 +72,10 @@ if dein#load_state('~/.cache/dein')
     call dein#add('airblade/vim-gitgutter')
     call dein#add('vim-latex/vim-latex')
     call dein#add('justinmk/vim-sneak')
-    call dein#add('itchyny/lightline.vim')
+    " Not merged because of modified autoload file
+    call dein#add('itchyny/lightline.vim', {'merged': 0})
     call dein#add('machakann/vim-highlightedyank')
-    call dein#add('andymass/vim-matchup')
+    "call dein#add('andymass/vim-matchup')
     call dein#add('w0rp/ale')
     call dein#add('cespare/vim-toml')
     call dein#add('rust-lang/rust.vim')
@@ -89,6 +95,7 @@ endif
 nnoremap - dd
 nnoremap <leader>t :retab<CR>
 nnoremap <leader>f :NERDTreeToggle<CR>
+nnoremap <leader>b $a {<CR>}<Esc>ko
 
 nmap <leader>sp :call <SID>SynStack()<CR>
 function! <SID>SynStack()
@@ -109,11 +116,19 @@ set splitbelow
 set splitright
 set updatetime=100
 
+set undodir=~/.vimdid
+set undofile
+
 set t_Co=256
 set background=dark
 set termguicolors
 set number                     " Show current line number
 set relativenumber             " Show relative line numbers
+set signcolumn=yes
+" https://github.com/vim/vim/issues/1735#issuecomment-383353563
+set lazyredraw
+set synmaxcol=500
+set laststatus=2
 
 colorscheme autumn256
 
@@ -132,8 +147,9 @@ highlight link ALEVirtualTextError WarningMsg
 highlight ALEError guibg=#af545b ctermbg=red
 highlight ALEWarning guibg=#c9a554 ctermbg=yellow
 
-highlight ColorColumn ctermbg=red
-call matchadd('ColorColumn', '\%89v', 100)     
+highlight ColorColumn guibg=#1e272b ctermbg=darkgreen
+set colorcolumn=100
+set noshowmode
 set guicursor=
 
 set tabstop=4
