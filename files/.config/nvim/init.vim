@@ -119,16 +119,30 @@ nmap <leader>cn <Plug>(coc-rename)
 " Fix autofix problem of current line
 nmap <leader>cf  <Plug>(coc-fix-current)
 
-noremap <F1> :YcmCompleter FixIt<CR>
-noremap <F2> :noh<CR>
+" Show all diagnostics
+nnoremap <silent> <leader>cld  :<C-u>CocList diagnostics<cr>
+" Manage extensions
+nnoremap <silent> <leader>cle  :<C-u>CocList extensions<cr>
+" Show commands
+nnoremap <silent> <leader>clc  :<C-u>CocList commands<cr>
+" Find symbol of current document
+nnoremap <silent> <leader>clo  :<C-u>CocList outline<cr>
+" Search workspace symbols
+nnoremap <silent> <leader>cls  :<C-u>CocList -I symbols<cr>
+
+" Use `:Format` for format current buffer
+command! -nargs=0 Format :call CocAction('format')
+
+nnoremap <F1> :Format<CR>
+nnoremap <F2> :noh<CR>
 nnoremap <F3> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
-noremap <F8>  :tabp<CR>
-noremap <F9>  :tabn<CR>
+nnoremap <F8>  :tabp<CR>
+nnoremap <F9>  :tabn<CR>
 
 set hidden
 set splitbelow
 set splitright
-set updatetime=300
+set updatetime=100
 
 set undodir=~/.vimdid
 set undofile
@@ -148,22 +162,7 @@ set shortmess+=c
 
 colorscheme autumn256
 
-hi clear YcmErrorSection
-hi YcmErrorSection guibg=#af545b ctermbg=red
-
-hi clear YcmWarningSection
-hi YcmWarningSection guibg=#c9a554 ctermbg=yellow
-
-highlight link ALEWarningSign Todo
-highlight link ALEErrorSign WarningMsg
-highlight link ALEVirtualTextWarning Todo
-highlight link ALEVirtualTextInfo Todo
-highlight link ALEVirtualTextError WarningMsg
-
-highlight ALEError guibg=#af545b ctermbg=red
-highlight ALEWarning guibg=#c9a554 ctermbg=yellow
-
-highlight CocHighlightText guibg=#685742 ctermbg=green
+highlight CocHighlightText guibg=#685742 ctermbg=brown
 
 highlight ColorColumn guibg=#1e272b ctermbg=darkgreen
 set colorcolumn=100
