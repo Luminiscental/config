@@ -3,53 +3,30 @@ set nocompatible
 let g:hybrid_termcolors=256
 let g:hybrid_termtrans=1
 
-let $RUST_SRC_PATH = systemlist("rustc --print sysroot")[0] . "/lib/rustlib/src/rust/src"
-
-let g:ale_lint_on_insert_leave = 1
-let g:ale_lint_on_save = 1
-let g:ale_lint_on_enter = 1
-let g:ale_virtualtext_cursor = 1
-let g:ale_rust_rls_config = {
-	\ 'rust': {
-		\ 'all_targets': 1,
-		\ 'build_on_save': 1,
-		\ 'clippy_preference': 'on'
-	\ }
-	\ }
-let g:ale_rust_rls_toolchain = ''
-let g:ale_linters = {'rust': ['rls']}
-let g:ale_sign_error = "✖"
-let g:ale_sign_warning = "⚠"
-let g:ale_sign_info = "i"
-let g:ale_sign_hint = "➤"
-
 let g:python_highlight_all = 1
-
-let g:ycm_confirm_extra_conf = 0
-let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
-let g:ycm_complete_in_comments=1
-let g:ycm_collect_identifiers_from_tags_files=1
-set completeopt-=preview
-let g:ycm_min_num_of_chars_for_completion=1
-let g:ycm_cache_omnifunc=0
-let g:ycm_seed_identifiers_with_syntax=1
-let g:ycm_key_invoke_completion = '<C-y>'
 
 " Use a locally modified version of the deus colorscheme for lightline
 " (i.e. I edited the deus.vim file in the autoload part of the lightline folder)
 let g:lightline = {
       \ 'colorscheme': 'deus',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'cocstatus': 'coc#status'
+      \ },
       \ }
+
 
 let g:Tex_ViewRule_pdf = 'xdg-open'
 let g:Tex_DefaultTargetFormat = 'pdf'
 
 let g:dein#install_process_timeout = 240
 
-let g:UltiSnipsExpandTrigger="<C-s>"
-
 let g:chromatica#enable_at_startup=1
 let g:chromatica#global_args = ['-isystem/usr/lib/clang/7.0.1/include']
+let g:chromatica#responsive_mode=1
 
 " Add the dein installation directory into runtimepath
 set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
@@ -58,28 +35,25 @@ if dein#load_state('~/.cache/dein')
     call dein#begin('~/.cache/dein')
 
     call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
-    " Build on install with support for everything using the system clang
-    call dein#add('Valloric/YouCompleteMe', {'build': './install.sh --all --system-libclang'})
     " Not merged because of manual building
     call dein#add('arakashic/chromatica.nvim', {'merged': 0})
     call dein#add('rodnaph/vim-color-schemes')
     call dein#add('ctrlpvim/ctrlp.vim')
-    call dein#add('SirVer/ultisnips')
     call dein#add('vim-python/python-syntax')
-    call dein#add('honza/vim-snippets')
     call dein#add('tpope/vim-surround')
     call dein#add('scrooloose/nerdtree')
     call dein#add('airblade/vim-gitgutter')
     call dein#add('vim-latex/vim-latex')
-    call dein#add('justinmk/vim-sneak')
     " Not merged because of modified autoload file
     call dein#add('itchyny/lightline.vim', {'merged': 0})
     call dein#add('machakann/vim-highlightedyank')
     "call dein#add('andymass/vim-matchup')
-    call dein#add('w0rp/ale')
     call dein#add('cespare/vim-toml')
     call dein#add('rust-lang/rust.vim')
     call dein#add('plasticboy/vim-markdown')
+    call dein#add('neoclide/coc.nvim', {'build': 'yarn install'})
+    call dein#add('neovimhaskell/haskell-vim')
+    call dein#add('lervag/vimtex')
 
     call dein#end()
     call dein#save_state()
@@ -105,6 +79,46 @@ function! <SID>SynStack()
     echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
 
+"coc stuff
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> for trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Use <cr> for confirm completion, `<C-g>u` means break undo chain at current position.
+" Coc only does snippet and additional edit on confirm.
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" Use `[c` and `]c` for navigate diagnostics
+nmap <silent> [c <Plug>(coc-diagnostic-prev)
+nmap <silent> ]c <Plug>(coc-diagnostic-next)
+
+" Remap keys for gotos
+nmap <silent> <leader>cd <Plug>(coc-definition)
+nmap <silent> <leader>cy <Plug>(coc-type-definition)
+nmap <silent> <leader>ci <Plug>(coc-implementation)
+nmap <silent> <leader>cr <Plug>(coc-references)
+
+" Highlight symbol under cursor on CursorHold
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Remap for rename current word
+nmap <leader>cn <Plug>(coc-rename)
+
+" Fix autofix problem of current line
+nmap <leader>cf  <Plug>(coc-fix-current)
+
 noremap <F1> :YcmCompleter FixIt<CR>
 noremap <F2> :noh<CR>
 nnoremap <F3> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
@@ -114,7 +128,7 @@ noremap <F9>  :tabn<CR>
 set hidden
 set splitbelow
 set splitright
-set updatetime=100
+set updatetime=300
 
 set undodir=~/.vimdid
 set undofile
@@ -129,6 +143,8 @@ set signcolumn=yes
 set lazyredraw
 set synmaxcol=500
 set laststatus=2
+set cmdheight=2
+set shortmess+=c
 
 colorscheme autumn256
 
@@ -146,6 +162,8 @@ highlight link ALEVirtualTextError WarningMsg
 
 highlight ALEError guibg=#af545b ctermbg=red
 highlight ALEWarning guibg=#c9a554 ctermbg=yellow
+
+highlight CocHighlightText guibg=#685742 ctermbg=green
 
 highlight ColorColumn guibg=#1e272b ctermbg=darkgreen
 set colorcolumn=100

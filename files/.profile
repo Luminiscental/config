@@ -17,6 +17,3 @@ export PATH="$HOME/.cargo/bin:$PATH"
 # MPD daemon start
 [[ ! -s ~/.config/mpd/pid ]] && mpd
 
-alias vim=nvim
-setxkbmap -option caps:escape
-

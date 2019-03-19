@@ -254,7 +254,8 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
     call <SID>X("WarningMsg", "fa8072", "", "")
     "WildMenu
     "Menu
-    call <SID>X("Pmenu", "ead49b", "666666", "")
+    call <SID>X("Pmenu", "ead49b", "1e272b", "")
+    call <SID>X("PmenuSel", "1e272b", "78824b", "")
     "Scrollbar
     "Tooltip
 
@@ -309,7 +310,7 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
     call <SID>X("clrBoolean", "f8b279", "", "")
     call <SID>X("clrString", "78824b", "", "")
     call <SID>X("clrComment", "666666", "", "")
-    call <SID>X("clrSymbol", "ead49b", "", "")
+    call <SID>X("clrSymbol", "ffffff", "", "")
 
     " delete functions 
     delf <SID>X

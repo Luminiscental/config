@@ -7,6 +7,7 @@ file_locations: List[Tuple[str, str]] = [
     (".pylintrc", "~/.pylintrc"),
     (".Xresources", "~/.Xresources"),
     (".profile", "~/.profile"),
+    (".bash_aliases", "~/.bash_aliases"),
     (".config/termite/config", "~/.config/termite/config"),
     (".config/cava/config", "~/.config/cava/config"),
     (".config/i3/config", "~/.config/i3/config"),

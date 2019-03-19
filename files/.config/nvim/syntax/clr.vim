@@ -1,8 +1,8 @@
 
 " Clear language syntax
-syn keyword clrKeywords val var print if else and or
+syn keyword clrKeywords val var print if else and or return func while
 
-syn keyword clrBuiltins type str num int bool
+syn keyword clrBuiltins type str num int bool 
 
 syn match clrNumber '\d\+\(\.\d\+\)\?'
 
@@ -14,5 +14,5 @@ syn region clrString start="\"" end="\""
 
 syn match clrComment '//.*'
 
-syn match clrSymbol '[{}()!+=\*\-;/]\(/\)\@!'
+syn match clrSymbol '[<>{}()!+=\*\-;/]\(/\)\@!'
 
