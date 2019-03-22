@@ -254,8 +254,8 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
     call <SID>X("WarningMsg", "fa8072", "", "")
     "WildMenu
     "Menu
-    call <SID>X("Pmenu", "ead49b", "1e272b", "")
-    call <SID>X("PmenuSel", "1e272b", "78824b", "")
+    call <SID>X("Pmenu", "ead49b", "78824b", "")
+    call <SID>X("PmenuSel", "1e272b", "ead49b", "")
     "Scrollbar
     "Tooltip
 
@@ -291,6 +291,7 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
     call <SID>X("chromaticaMacroInstantiation", "af545b", "", "")
     call <SID>X("chromaticaLinkage", "564438", "", "")
     call <SID>X("chromaticaCast", "af545b", "", "")
+    call <SID>X("chromaticaConditionalOperator", "936d43", "", "")
     call <SID>X("OperatorOverload", "4e672b", "", "")
     call <SID>X("AutoType", "cb5f36", "", "")
 

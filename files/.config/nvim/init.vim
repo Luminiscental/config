@@ -1,11 +1,13 @@
 set nocompatible
 
+" colors, idk if necessary
 let g:hybrid_termcolors=256
 let g:hybrid_termtrans=1
 
+" better python-syntax
 let g:python_highlight_all = 1
 
-" Use a locally modified version of the deus colorscheme for lightline
+" use a locally modified version of the deus colorscheme for lightline
 " (i.e. I edited the deus.vim file in the autoload part of the lightline folder)
 let g:lightline = {
       \ 'colorscheme': 'deus',
@@ -19,23 +21,25 @@ let g:lightline = {
       \ }
 
 
+" tex pdf previews
 let g:Tex_ViewRule_pdf = 'xdg-open'
 let g:Tex_DefaultTargetFormat = 'pdf'
 
-let g:dein#install_process_timeout = 240
-
+" better syntax for c/c++ family by default
 let g:chromatica#enable_at_startup=1
+" fix arch clang lib lookup
 let g:chromatica#global_args = ['-isystem/usr/lib/clang/7.0.1/include']
+" update colors while typing
 let g:chromatica#responsive_mode=1
 
-" Add the dein installation directory into runtimepath
+" add the dein installation directory into runtimepath
 set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
 
 if dein#load_state('~/.cache/dein')
     call dein#begin('~/.cache/dein')
 
     call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
-    " Not merged because of manual building
+    " not merged because of manual building
     call dein#add('arakashic/chromatica.nvim', {'merged': 0})
     call dein#add('rodnaph/vim-color-schemes')
     call dein#add('ctrlpvim/ctrlp.vim')
@@ -44,16 +48,16 @@ if dein#load_state('~/.cache/dein')
     call dein#add('scrooloose/nerdtree')
     call dein#add('airblade/vim-gitgutter')
     call dein#add('vim-latex/vim-latex')
-    " Not merged because of modified autoload file
+    " not merged because of modified autoload file
     call dein#add('itchyny/lightline.vim', {'merged': 0})
     call dein#add('machakann/vim-highlightedyank')
-    "call dein#add('andymass/vim-matchup')
     call dein#add('cespare/vim-toml')
     call dein#add('rust-lang/rust.vim')
     call dein#add('plasticboy/vim-markdown')
     call dein#add('neoclide/coc.nvim', {'build': 'yarn install'})
     call dein#add('neovimhaskell/haskell-vim')
     call dein#add('lervag/vimtex')
+    call dein#add('cohama/lexima.vim')
 
     call dein#end()
     call dein#save_state()
@@ -62,15 +66,17 @@ endif
 filetype plugin indent on
 syntax enable
 
+" auto-install plugins on startup
 if dein#check_install()
     call dein#install()
 endif
 
+" workflow mappings
 nnoremap - dd
 nnoremap <leader>t :retab<CR>
 nnoremap <leader>f :NERDTreeToggle<CR>
-nnoremap <leader>b $a {<CR>}<Esc>ko
 
+" get the syntax flags under the cursor
 nmap <leader>sp :call <SID>SynStack()<CR>
 function! <SID>SynStack()
     if !exists("*synstack")
@@ -79,9 +85,9 @@ function! <SID>SynStack()
     echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
 
-"coc stuff
-" Use tab for trigger completion with characters ahead and navigate.
-" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+" -- coc stuff --
+
+" use tab for trigger completion with characters ahead and navigate.
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
@@ -93,82 +99,97 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-" Use <c-space> for trigger completion.
+" use <c-space> for trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
 
-" Use <cr> for confirm completion, `<C-g>u` means break undo chain at current position.
-" Coc only does snippet and additional edit on confirm.
+" use <cr> for confirm completion, `<C-g>u` means break undo chain at current position.
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
-" Use `[c` and `]c` for navigate diagnostics
+" use `[c` and `]c` to navigate diagnostics
 nmap <silent> [c <Plug>(coc-diagnostic-prev)
 nmap <silent> ]c <Plug>(coc-diagnostic-next)
 
-" Remap keys for gotos
+" remap keys for gotos
 nmap <silent> <leader>cd <Plug>(coc-definition)
 nmap <silent> <leader>cy <Plug>(coc-type-definition)
 nmap <silent> <leader>ci <Plug>(coc-implementation)
 nmap <silent> <leader>cr <Plug>(coc-references)
 
-" Highlight symbol under cursor on CursorHold
+" highlight symbol under cursor on CursorHold
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
-" Remap for rename current word
+" remap for rename current word
 nmap <leader>cn <Plug>(coc-rename)
 
-" Fix autofix problem of current line
+" autofix binding
 nmap <leader>cf  <Plug>(coc-fix-current)
 
-" Show all diagnostics
+" show all diagnostics
 nnoremap <silent> <leader>cld  :<C-u>CocList diagnostics<cr>
-" Manage extensions
+" manage extensions
 nnoremap <silent> <leader>cle  :<C-u>CocList extensions<cr>
-" Show commands
+" show commands
 nnoremap <silent> <leader>clc  :<C-u>CocList commands<cr>
-" Find symbol of current document
-nnoremap <silent> <leader>clo  :<C-u>CocList outline<cr>
-" Search workspace symbols
-nnoremap <silent> <leader>cls  :<C-u>CocList -I symbols<cr>
 
-" Use `:Format` for format current buffer
-command! -nargs=0 Format :call CocAction('format')
-
-nnoremap <F1> :Format<CR>
+" format buffer
+nnoremap <F1> :call CocAction('format')<CR>
+" remove highlights
 nnoremap <F2> :noh<CR>
+" remove trailing whitespace
 nnoremap <F3> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
+
+" move tab
 nnoremap <F8>  :tabp<CR>
 nnoremap <F9>  :tabn<CR>
 
+" sane buffers
 set hidden
 set splitbelow
 set splitright
+
+" speedy
 set updatetime=100
 
+" cached undo
 set undodir=~/.vimdid
 set undofile
 
+" color stuff
 set t_Co=256
 set background=dark
 set termguicolors
-set number                     " Show current line number
-set relativenumber             " Show relative line numbers
+" show current line number and relative numbers
+set number
+set relativenumber
+" use the sign column
 set signcolumn=yes
 " https://github.com/vim/vim/issues/1735#issuecomment-383353563
 set lazyredraw
 set synmaxcol=500
+" better command presentation in the line
 set laststatus=2
 set cmdheight=2
 set shortmess+=c
 
+" custom colorscheme
 colorscheme autumn256
 
+" make coc highlight prettier
 highlight CocHighlightText guibg=#685742 ctermbg=brown
+highlight CocErrorHighlight guibg=#af545b ctermbg=red
+highlight CocWarningHighlight guibg=#c9a554 ctermbg=yellow
 
-highlight ColorColumn guibg=#1e272b ctermbg=darkgreen
+" color column at 100
 set colorcolumn=100
+" with a reasonable color
+highlight ColorColumn guibg=#1e272b ctermbg=darkgreen
+
+" lightline shows the mode too so don't bother
 set noshowmode
+" nvim cursor is ugly
 set guicursor=
 
+" sane tabs
 set tabstop=4
 set shiftwidth=4
 set expandtab
