@@ -58,6 +58,7 @@ if dein#load_state('~/.cache/dein')
     call dein#add('neovimhaskell/haskell-vim')
     call dein#add('lervag/vimtex')
     call dein#add('cohama/lexima.vim')
+    call dein#add('tikhomirov/vim-glsl')
 
     call dein#end()
     call dein#save_state()
@@ -114,6 +115,17 @@ nmap <silent> <leader>cd <Plug>(coc-definition)
 nmap <silent> <leader>cy <Plug>(coc-type-definition)
 nmap <silent> <leader>ci <Plug>(coc-implementation)
 nmap <silent> <leader>cr <Plug>(coc-references)
+
+" show documentation in preview window
+nnoremap <silent> <leader>co :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if &filetype == 'vim'
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
 
 " highlight symbol under cursor on CursorHold
 autocmd CursorHold * silent call CocActionAsync('highlight')
@@ -176,8 +188,8 @@ colorscheme autumn256
 
 " make coc highlight prettier
 highlight CocHighlightText guibg=#685742 ctermbg=brown
-highlight CocErrorHighlight guibg=#af545b ctermbg=red
-highlight CocWarningHighlight guibg=#c9a554 ctermbg=yellow
+highlight CocErrorHighlight guibg=#8b4147 ctermbg=red
+highlight CocWarningHighlight guibg=#755b24 ctermbg=yellow
 
 " color column at 100
 set colorcolumn=100
