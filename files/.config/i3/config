@@ -220,8 +220,8 @@ assign [class="krita"] 4
 exec --no-startup-id kshare --background
 exec --no-startup-id compton -cCfb
 exec --no-startup-id polybar_wrapper.sh
-exec --no-startup-id redshift
 exec --no-startup-id mpd ~/.config/mpd/mpd.conf
+exec --no-startup-id redshift
 
 exec --no-startup-id betterlockscreen -u ~/wallpapers/
 exec --no-startup-id betterlockscreen -w
@@ -229,11 +229,8 @@ exec --no-startup-id betterlockscreen -w
 exec --no-startup-id conky -dq -c ~/conky/system.conf
 exec --no-startup-id conky -dq -c ~/conky/todo.conf
 
-exec --no-startup-id disable_mouse_accel.sh
-
 # Fixes for i3
 for_window [title="IntelliJ IDEA Help"] floating enable, border normal 0
 for_window [class="KShare"] floating enable, border normal 0
 for_window [class="Conky"] floating enable, border none
 no_focus [window_role="popup"]
-no_focus [class="MuPDF"]

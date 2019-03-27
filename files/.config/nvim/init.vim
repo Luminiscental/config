@@ -4,8 +4,12 @@ set nocompatible
 let g:hybrid_termcolors=256
 let g:hybrid_termtrans=1
 
-" better python-syntax
+" better python syntax
 let g:python_highlight_all = 1
+
+" better java syntax
+let g:java_highlight_functions = 1
+let g:java_highlight_java_lang_ids = 1
 
 " use a locally modified version of the deus colorscheme for lightline
 " (i.e. I edited the deus.vim file in the autoload part of the lightline folder)
@@ -47,7 +51,6 @@ if dein#load_state('~/.cache/dein')
     call dein#add('tpope/vim-surround')
     call dein#add('scrooloose/nerdtree')
     call dein#add('airblade/vim-gitgutter')
-    call dein#add('vim-latex/vim-latex')
     " not merged because of modified autoload file
     call dein#add('itchyny/lightline.vim', {'merged': 0})
     call dein#add('machakann/vim-highlightedyank')
@@ -59,6 +62,8 @@ if dein#load_state('~/.cache/dein')
     call dein#add('lervag/vimtex')
     call dein#add('cohama/lexima.vim')
     call dein#add('tikhomirov/vim-glsl')
+    call dein#add('honza/vim-snippets')
+    call dein#add('tpope/vim-repeat')
 
     call dein#end()
     call dein#save_state()
@@ -74,6 +79,8 @@ endif
 
 " workflow mappings
 nnoremap - dd
+nnoremap ; :
+vnoremap ; :
 nnoremap <leader>t :retab<CR>
 nnoremap <leader>f :NERDTreeToggle<CR>
 
@@ -88,7 +95,13 @@ endfunc
 
 " -- coc stuff --
 
-" use tab for trigger completion with characters ahead and navigate.
+" use <C-j> to go to the next snippet hole
+let g:coc_snippet_next = '<C-j>'
+
+" use <C-k> to go to the previous snippet hole
+let g:coc_snippet_prev = '<C-k>'
+
+" use tab for completion
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :

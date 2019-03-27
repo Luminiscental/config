@@ -251,10 +251,11 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
     call <SID>X("Title", "cd5c5c", "", "")
     call <SID>X("Visual", "d3d3d3", "3e3e3e", "reverse")
     "VisualNOS
-    call <SID>X("WarningMsg", "fa8072", "", "")
+    call <SID>X("WarningMsg", "1e272b", "755b24", "")
+    call <SID>X("ErrorMsg", "1e272b", "8b4147", "")
     "WildMenu
     "Menu
-    call <SID>X("Pmenu", "ead49b", "78824b", "")
+    call <SID>X("Pmenu", "ead49b", "263137", "")
     call <SID>X("PmenuSel", "1e272b", "ead49b", "")
     "Scrollbar
     "Tooltip
@@ -295,6 +296,16 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
     call <SID>X("OperatorOverload", "4e672b", "", "")
     call <SID>X("AutoType", "cb5f36", "", "")
 
+    " java
+    call <SID>X("javaC_JavaLang", "bad46b", "", "")
+    call <SID>X("javaClassDecl", "9d6a47", "", "")
+    call <SID>X("javaExternal", "564438", "", "")
+    call <SID>X("javaStorageClass", "af545b", "", "")
+    call <SID>X("javaScopeDecl", "564438", "", "")
+    call <SID>X("javaTypedef", "9d6a47", "", "")
+    call <SID>X("javaExceptions", "936d43", "", "")
+    call <SID>X("javaOperator", "cb5f36", "", "")
+
     call <SID>X("MatchParen", "333333", "666666", "")
     "Underlined
     call <SID>X("Ignore", "666666", "", "")
@@ -306,6 +317,7 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
     " Clear language syntax highlighting
     call <SID>X("clrKeywords", "9d6a47", "", "")
     call <SID>X("clrBuiltins", "f8b279", "", "")
+    call <SID>X("clrIdent", "ead49b", "", "")
     call <SID>X("clrNumber", "af545b", "", "")
     call <SID>X("clrInteger", "bad46b", "", "")
     call <SID>X("clrBoolean", "f8b279", "", "")
