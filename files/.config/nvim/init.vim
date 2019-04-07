@@ -132,6 +132,9 @@ nmap <silent> <leader>cr <Plug>(coc-references)
 " show documentation in preview window
 nnoremap <silent> <leader>co :call <SID>show_documentation()<CR>
 
+" also on cursor hold
+autocmd CursorHold * silent call CocActionAsync('doHover')
+
 function! s:show_documentation()
   if &filetype == 'vim'
     execute 'h '.expand('<cword>')

@@ -150,7 +150,7 @@ bindsym $mod+Ctrl+mod1+r restart
 bindsym $mod+Shift+e exec --no-startup-id "i3-nagbar -t warning -m 'Do you want to exit i3?' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # Discord launch keybind
-bindsym $mod+d exec --no-startup-id discord-canary
+bindsym $mod+d exec --no-startup-id "discord"
 
 # Audio controls ($mod+Alt for audio)
 bindsym $mod+mod1+bracketright exec --no-startup-id amixer set Master 1%+ #increase sound volume
