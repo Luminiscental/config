@@ -32,7 +32,7 @@ let g:Tex_DefaultTargetFormat = 'pdf'
 " better syntax for c/c++ family by default
 let g:chromatica#enable_at_startup=1
 " fix arch clang lib lookup
-let g:chromatica#global_args = ['-isystem/usr/lib/clang/7.0.1/include']
+let g:chromatica#global_args = ['-isystem/usr/lib/clang/8.0.0/include']
 " update colors while typing
 let g:chromatica#responsive_mode=1
 

@@ -1,6 +1,6 @@
 
 " Clear language syntax
-syn keyword clrKeywords val var print if else and or return func while
+syn keyword clrKeywords val var print if else and or return func while struct
 
 syn keyword clrBuiltins type str num int bool 
 
@@ -16,5 +16,5 @@ syn region clrString start="\"" end="\""
 
 syn match clrComment '//.*'
 
-syn match clrSymbol '[<>{}()!+=\*\-;/]\(/\)\@!'
+syn match clrSymbol '[,<>{}()!+=\*\-;/]\(/\)\@!'
 
