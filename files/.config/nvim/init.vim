@@ -64,6 +64,13 @@ if dein#load_state('~/.cache/dein')
     call dein#add('tikhomirov/vim-glsl')
     call dein#add('honza/vim-snippets')
     call dein#add('tpope/vim-repeat')
+    call dein#add('tpope/vim-fireplace')
+    call dein#add('tpope/vim-classpath')
+    call dein#add('tpope/vim-salve')
+    call dein#add('guns/vim-clojure-highlight')
+    call dein#add('kien/rainbow_parentheses.vim')
+    call dein#add('guns/vim-sexp')
+    call dein#add('tpope/vim-sexp-mappings-for-regular-people')
 
     call dein#end()
     call dein#save_state()
@@ -132,8 +139,8 @@ nmap <silent> <leader>cr <Plug>(coc-references)
 " show documentation in preview window
 nnoremap <silent> <leader>co :call <SID>show_documentation()<CR>
 
-" also on cursor hold
-autocmd CursorHold * silent call CocActionAsync('doHover')
+" (not) also on cursor hold
+"autocmd CursorHold * silent call CocActionAsync('doHover')
 
 function! s:show_documentation()
   if &filetype == 'vim'

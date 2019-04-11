@@ -314,6 +314,10 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
     call <SID>X("Todo", "ffcc44", "", "bold")
     call <SID>X("myNote", "a3e99b", "", "bold")
 
+    " Clojure
+    call <SID>X("clojureSpecial", "564438", "", "")
+    call <SID>X("clojureSymbol", "bad46b", "", "")
+
     " Clear language syntax highlighting
     call <SID>X("clrKeywords", "9d6a47", "", "")
     call <SID>X("clrBuiltins", "f8b279", "", "")
