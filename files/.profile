@@ -17,3 +17,5 @@ export PATH="$HOME/.cargo/bin:$PATH"
 # MPD daemon start
 [[ ! -s ~/.config/mpd/pid ]] && mpd
 
+# Start fcitx
+fcitx -d -r

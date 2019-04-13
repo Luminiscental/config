@@ -38,6 +38,5 @@ export GTK_THEME=Numix:dark
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export XMODIFIERS="@im=fcitx"
-fcitx -d -r
 
 exec i3

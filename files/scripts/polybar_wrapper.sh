@@ -1,4 +1,13 @@
 #!/usr/bin/env bash
-width=$(smallest_resolution_width.py)
 
-env MIN_WIDTH="$width" polybar -r bar
+# Terminate already running bar instances
+killall -q polybar
+
+# Wait until the processes have been shut down
+while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
+
+# Launch bars
+polybar main_bar &
+polybar tray_bar &
+
+echo "Bars launched..."

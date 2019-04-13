@@ -20,7 +20,79 @@ my_color13	= ${xrdb:color13}
 my_color14	= ${xrdb:color14}
 my_color15	= ${xrdb:color15}
 
-[bar/bar]
+[bar/tray_bar]
+monitor = ${env:MONITOR:HDMI-0}
+bottom = true
+width = 40%
+height = 40
+offset-x = 30%
+offset-y = 0
+radius = 0.0
+fixed-center = false
+
+background = ${colors.my_background}
+foreground =  ${colors.my_foreground}
+
+line-size = 4
+line-color = ${colors.my_color4}
+
+border-size = 0
+border-color = ${colors.my_color4}
+
+padding-left = 0
+padding-right = 0
+
+module-margin-left = 0
+module-margin-right = 0
+
+font-0 = "SauceCodePro Nerd Font:size=9;2"
+font-1 = "SauceCodePro Nerd Font:size=12;2"
+font-2 = "fontawesome:pixelsize=10"
+font-3 = "unifont:pixelsize=10"
+font-4 = "Siji:pizelsize=10"
+
+modules-left = pulseaudio
+modules-center = 
+modules-right = 
+
+override-redirect = true
+wm-restack = i3
+
+; Position of the system tray window
+; If empty or undefined, tray support will be disabled
+; NOTE: A center aligned tray will cover center aligned modules
+;
+; Available positions:
+;   left
+;   center
+;   right
+;   none
+tray-position = right
+
+; If true, the bar will not shift its
+; contents when the tray changes
+tray-detached = false
+
+; Tray icon max size
+tray-maxsize = 16
+
+; Background color for the tray container 
+; ARGB color (e.g. #f00, #ff992a, #ddff1023)
+; By default the tray container will use the bar
+; background color.
+tray-background = ${colors.my_background}
+
+; Tray offset defined as pixel value (e.g. 35) or percentage (e.g. 50%)
+tray-offset-x = 0
+tray-offset-y = 0
+
+; Pad the sides of each tray icon
+tray-padding = 5
+
+; Scale factor for tray clients
+tray-scale = 1.0
+
+[bar/main_bar]
 monitor = ${env:MONITOR:HDMI-0}
 bottom = false
 ;width = 90%
@@ -34,7 +106,6 @@ radius = 0.0
 fixed-center = true
 
 background = ${colors.my_background}
-;foreground = ${colors.my_foreground}
 foreground =  ${colors.my_foreground}
 
 line-size = 4
@@ -60,6 +131,18 @@ modules-center = date
 modules-right = musicinfo powermenu
 
 ;override-redirect = true
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+format-volume = <bar-volume> <label-volume>
+format-volume-margin = 2
+
+bar-volume-width = 40
+bar-volume-empty = "-"
+bar-volume-fill = "="
+bar-volume-indicator = "|"
+
 
 [module/i3]
 type = internal/i3
