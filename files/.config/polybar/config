@@ -137,12 +137,17 @@ type = internal/pulseaudio
 
 format-volume = <bar-volume> <label-volume>
 format-volume-margin = 2
+format-volume-foreground = ${colors.my_foreground}
+
+label-muted = muted
+label-muted-margin = 2
+label-muted-foreground = ${colors.my_foreground}
 
 bar-volume-width = 40
 bar-volume-empty = "-"
 bar-volume-fill = "="
 bar-volume-indicator = "|"
-
+bar-volume-foreground = ${colors.my_foreground}
 
 [module/i3]
 type = internal/i3

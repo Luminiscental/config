@@ -1,6 +1,8 @@
 #!/bin/sh
 
 if [ $# -gt 0 ]; then
+    mkdir $1
+    cd $1
     echo "\documentclass[a4paper]{article}
 
 \usepackage{amsmath}
@@ -16,7 +18,20 @@ if [ $# -gt 0 ]; then
 {0pt}{5.5ex plus 1ex minus .2ex}{4.3ex plus .2ex}
 
 \begin{document}
-\end{document}" > $1
+
+\section{Overall Section}
+
+\subsection{Specific Section}
+
+\begin{enumerate}[itemsep=20ex]
+    \item
+        \begin{enumerate}[label=(\roman*), itemsep=10ex]
+            \item
+                Hello, World!
+        \end{enumerate}
+\end{enumerate}
+
+\end{document}" > "$1.tex"
 else
-    echo "Please specify a file to create"
+    echo "Please specify a name for the project"
 fi

@@ -211,6 +211,7 @@ bar {
 ## nvim > all
 #assign [class="code-oss"] 1
 #assign [class="jetbrains-idea-ce"] 1
+assign [title="osu!"] 1
 assign [class="discord"] 2
 assign [class="Firefox"] 3
 assign [class="krita"] 4
@@ -219,7 +220,7 @@ exec --no-startup-id kshare --background
 exec --no-startup-id compton -cCfb
 exec --no-startup-id polybar_wrapper.sh
 exec --no-startup-id mpd ~/.config/mpd/mpd.conf
-exec --no-startup-id redshift
+exec --no-startup-id redshift-gtk
 
 exec --no-startup-id betterlockscreen -u ~/wallpapers/
 exec --no-startup-id betterlockscreen -w
