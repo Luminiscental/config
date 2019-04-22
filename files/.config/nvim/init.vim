@@ -88,8 +88,6 @@ endif
 nnoremap - dd
 nnoremap ; :
 vnoremap ; :
-nnoremap e w<BS>
-nnoremap E W<BS>
 nnoremap <leader>t :retab<CR>
 nnoremap <leader>f :NERDTreeToggle<CR>
 
