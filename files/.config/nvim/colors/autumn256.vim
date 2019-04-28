@@ -319,14 +319,7 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
     call <SID>X("clojureSymbol", "bad46b", "", "")
 
     " Clear language syntax highlighting
-    call <SID>X("clrKeywords", "9d6a47", "", "")
-    call <SID>X("clrBuiltins", "f8b279", "", "")
-    call <SID>X("clrIdent", "ead49b", "", "")
-    call <SID>X("clrNumber", "af545b", "", "")
     call <SID>X("clrInteger", "bad46b", "", "")
-    call <SID>X("clrBoolean", "f8b279", "", "")
-    call <SID>X("clrString", "78824b", "", "")
-    call <SID>X("clrComment", "666666", "", "")
     call <SID>X("clrSymbol", "ffffff", "", "")
 
     " delete functions 

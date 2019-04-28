@@ -71,6 +71,8 @@ if dein#load_state('~/.cache/dein')
     call dein#add('kien/rainbow_parentheses.vim')
     call dein#add('guns/vim-sexp')
     call dein#add('tpope/vim-sexp-mappings-for-regular-people')
+    call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
+    call dein#add('idanarye/vim-vebugger')
 
     call dein#end()
     call dein#save_state()
