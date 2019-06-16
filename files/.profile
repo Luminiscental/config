@@ -1,8 +1,10 @@
 ## Sourced by others such as .bash_profile and .zprofile ## 
 
 # Update path
-PATH="/usr/local/bin:$HOME/.local/bin:$PATH"
+PATH="/usr/local/bin:$PATH"
 PATH="$HOME/.cargo/bin:$PATH"
+PATH="$HOME/.cabal/bin:$PATH"
+PATH="$HOME/.local/bin:$PATH"
 
 # Use nvim by default
 export VISUAL=nvim
@@ -15,7 +17,7 @@ export PATH="$HOME/.cargo/bin:$PATH"
 [[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx
 
 # MPD daemon start
-[[ ! -s ~/.config/mpd/pid ]] && mpd
+[[ ! -s ~/.config/mpd/pid ]] && mpd ~/.config/mpd/mpd.conf
 
 # Start fcitx
 fcitx -d -r

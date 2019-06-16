@@ -11,6 +11,15 @@ let g:python_highlight_all = 1
 let g:java_highlight_functions = 1
 let g:java_highlight_java_lang_ids = 1
 
+" fix for tex filetypes in coc
+let g:coc_filetype_map = {
+  \ 'tex': 'latext',
+  \ 'plaintex': 'tex',
+  \ }
+
+" markdown preview config
+let g:mkdp_browser = 'firefox'
+
 " use a locally modified version of the deus colorscheme for lightline
 " (i.e. I edited the deus.vim file in the autoload part of the lightline folder)
 let g:lightline = {
@@ -57,6 +66,8 @@ if dein#load_state('~/.cache/dein')
     call dein#add('cespare/vim-toml')
     call dein#add('rust-lang/rust.vim')
     call dein#add('plasticboy/vim-markdown')
+    call dein#add('iamcco/markdown-preview.nvim', {'on_ft': ['markdown', 'pandoc.markdown', 'rmd'],
+					\ 'build': 'cd app & yarn install' })
     call dein#add('neoclide/coc.nvim', {'build': 'yarn install'})
     call dein#add('neovimhaskell/haskell-vim')
     call dein#add('lervag/vimtex')
@@ -88,6 +99,8 @@ endif
 
 " workflow mappings
 nnoremap - dd
+nnoremap n nzt
+nnoremap N Nzt
 nnoremap ; :
 vnoremap ; :
 nnoremap <leader>t :retab<CR>
@@ -101,6 +114,9 @@ function! <SID>SynStack()
     endif
     echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
+
+" markdown preview mappings
+nmap <leader>mp <Plug>MarkdownPreviewToggle
 
 " -- coc stuff --
 
@@ -155,11 +171,25 @@ endfunction
 " highlight symbol under cursor on CursorHold
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
+augroup cocgroup
+  autocmd!
+  " Setup formatexpr specified filetype(s).
+  autocmd FileType haskell,c,cpp,python,rust setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+
 " remap for rename current word
 nmap <leader>cn <Plug>(coc-rename)
 
+" format binding
+xmap <leader>cs <Plug>(coc-format-selected)
+nmap <leader>cs <Plug>(coc-format-selected)
+
 " autofix binding
-nmap <leader>cf  <Plug>(coc-fix-current)
+nmap <leader>cf <Plug>(coc-fix-current)
+" codeaction binding
+nmap <leader>ca <Plug>(coc-codeaction)
 
 " show all diagnostics
 nnoremap <silent> <leader>cld  :<C-u>CocList diagnostics<cr>
@@ -229,4 +259,5 @@ set guicursor=
 " sane tabs
 set tabstop=4
 set shiftwidth=4
+set softtabstop=4
 set expandtab

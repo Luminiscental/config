@@ -6,6 +6,7 @@ if [ $# -gt 0 ]; then
     echo "\documentclass[a4paper]{article}
 
 \usepackage{amsmath}
+\usepackage{commath}
 \usepackage{siunitx}
 \usepackage{enumitem}
 \usepackage{graphicx}
