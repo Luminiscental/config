@@ -93,9 +93,35 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 source ~/.bash_aliases
 
+bindkey -v
+
 source /usr/share/zsh-theme-powerlevel9k/powerlevel9k.zsh-theme
 
 # Hacky solution for weird issue I had
 export LC_ALL=en_GB.UTF-8
+
+terminfo_down_sc=$terminfo[cud1]$terminfo[cuu1]$terminfo[sc]$terminfo[cud1]
+
+function insert-mode () { echo "%{$fg_bold[yellow]%} [% INSERT]% %{$reset_color%}" }
+function normal-mode () { echo "%{$fg_bold[yellow]%} [% NORMAL]% %{$reset_color%}" }
+
+function set-prompt () {
+    case ${KEYMAP} in
+      (vicmd)      VI_MODE="$(normal-mode)" ;;
+      (main|viins) VI_MODE="$(insert-mode)" ;;
+      (*)          VI_MODE="$(insert-mode)" ;;
+    esac
+    RPS1="$VI_MODE$EPS1"
+}
+
+function zle-line-init zle-keymap-select {
+    set-prompt
+    zle reset-prompt
+}
+preexec () { print -rn -- $terminfo[el]; }
+
+zle -N zle-line-init
+zle -N zle-keymap-select
+export KEYTIMEOUT=1
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
