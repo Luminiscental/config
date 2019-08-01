@@ -288,6 +288,11 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
     call <SID>X("NERDTreeClosable", "c9a554", "", "")
     call <SID>X("Directory", "bad46b", "", "")
 
+    " LspCxx
+    call <SID>X("LspCxxHlSymNamespace", "cd6a47", "", "")
+    call <SID>X("LspCxxHlSymField", "bad46b", "", "")
+    call <SID>X("LspCxxHlSymMacro", "af545b", "", "")
+
     " chromatica 
     call <SID>X("chromaticaMacroInstantiation", "af545b", "", "")
     call <SID>X("chromaticaLinkage", "564438", "", "")
@@ -320,6 +325,7 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
 
     " Clear language syntax highlighting
     call <SID>X("clrInteger", "bad46b", "", "")
+    call <SID>X("clrExtension", "bad46b", "", "")
     call <SID>X("clrSymbol", "ffffff", "", "")
 
     " delete functions 

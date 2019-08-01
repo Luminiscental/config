@@ -1,4 +1,4 @@
-set nocompatible
+
 
 " colors, idk if necessary
 let g:hybrid_termcolors=256
@@ -38,12 +38,9 @@ let g:lightline = {
 let g:Tex_ViewRule_pdf = 'xdg-open'
 let g:Tex_DefaultTargetFormat = 'pdf'
 
-" better syntax for c/c++ family by default
-let g:chromatica#enable_at_startup=1
-" fix arch clang lib lookup
-let g:chromatica#global_args = ['-isystem/usr/lib/clang/8.0.0/include']
-" update colors while typing
-let g:chromatica#responsive_mode=1
+" log cxx highlighting stuff
+"let g:lsp_cxx_hl_log_file = '/tmp/vim-lsp-cxx-hl.log'
+"let g:lsp_cxx_hl_verbose_log = 1
 
 " add the dein installation directory into runtimepath
 set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
@@ -52,8 +49,6 @@ if dein#load_state('~/.cache/dein')
     call dein#begin('~/.cache/dein')
 
     call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
-    " not merged because of manual building
-    call dein#add('arakashic/chromatica.nvim', {'merged': 0})
     call dein#add('rodnaph/vim-color-schemes')
     call dein#add('ctrlpvim/ctrlp.vim')
     call dein#add('vim-python/python-syntax')
@@ -68,7 +63,7 @@ if dein#load_state('~/.cache/dein')
     call dein#add('plasticboy/vim-markdown')
     call dein#add('iamcco/markdown-preview.nvim', {'on_ft': ['markdown', 'pandoc.markdown', 'rmd'],
 					\ 'build': 'cd app & yarn install' })
-    call dein#add('neoclide/coc.nvim', {'build': 'yarn install'})
+    call dein#add('neoclide/coc.nvim', {'merge': 0, 'rev': 'release'})
     call dein#add('neovimhaskell/haskell-vim')
     call dein#add('lervag/vimtex')
     call dein#add('cohama/lexima.vim')
@@ -84,6 +79,7 @@ if dein#load_state('~/.cache/dein')
     call dein#add('tpope/vim-sexp-mappings-for-regular-people')
     call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
     call dein#add('idanarye/vim-vebugger')
+    call dein#add('jackguo380/vim-lsp-cxx-highlight')
 
     call dein#end()
     call dein#save_state()
@@ -99,8 +95,7 @@ endif
 
 " workflow mappings
 nnoremap - dd
-nnoremap n nzt
-nnoremap N Nzt
+nnoremap t zt5<C-y>
 nnoremap ; :
 vnoremap ; :
 nnoremap <leader>t :retab<CR>
@@ -143,10 +138,6 @@ inoremap <silent><expr> <c-space> coc#refresh()
 
 " use <cr> for confirm completion, `<C-g>u` means break undo chain at current position.
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-
-" use `[c` and `]c` to navigate diagnostics
-nmap <silent> [c <Plug>(coc-diagnostic-prev)
-nmap <silent> ]c <Plug>(coc-diagnostic-next)
 
 " remap keys for gotos
 nmap <silent> <leader>cd <Plug>(coc-definition)
@@ -204,6 +195,16 @@ nnoremap <F1> :call CocAction('format')<CR>
 nnoremap <F2> :noh<CR>
 " remove trailing whitespace
 nnoremap <F3> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
+
+" navigation
+
+" gitgutter
+nmap ]h <Plug>GitGutterNextHunk
+nmap [h <Plug>GitGutterPrevHunk
+" coc
+nmap <silent> [c <Plug>(coc-diagnostic-prev)
+nmap <silent> ]c <Plug>(coc-diagnostic-next)
+
 
 " move tab
 nnoremap <F8>  :tabp<CR>

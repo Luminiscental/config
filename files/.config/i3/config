@@ -212,7 +212,7 @@ bar {
 #assign [class="jetbrains-idea-ce"] 1
 assign [title="osu!"] 1
 assign [class="discord"] 2
-assign [class="Firefox"] 3
+assign [class="firefox"] 3
 assign [class="krita"] 4
 
 exec --no-startup-id kshare --background
