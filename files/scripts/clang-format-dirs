@@ -1,0 +1,13 @@
+#!/bin/bash
+
+shopt -s nullglob
+
+for dir in "$@"
+do
+    files=($dir/*.cpp $dir/*.hpp)
+    for file in ${files[@]}
+    do
+        echo "Formatting $file"
+        clang-format -i -style=file $file
+    done
+done

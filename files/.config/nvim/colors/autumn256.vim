@@ -290,7 +290,8 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
 
     " LspCxx
     call <SID>X("LspCxxHlSymNamespace", "cd6a47", "", "")
-    call <SID>X("LspCxxHlSymField", "bad46b", "", "")
+    call <SID>X("LspCxxHlSymField", "a5b565", "", "")
+    call <SID>X("LspCxxHlSymMethod", "c6e650", "", "")
     call <SID>X("LspCxxHlSymMacro", "af545b", "", "")
 
     " chromatica 

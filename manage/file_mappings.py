@@ -36,6 +36,7 @@ file_locations: List[Tuple[str, str]] = [
     ("scripts/i3-get-window-criteria", "~/.local/bin/i3-get-window-criteria"),
     ("scripts/test-dunst", "~/.local/bin/test-dunst"),
     ("scripts/refresh-dunst", "~/.local/bin/refresh-dunst"),
+    ("scripts/clang-format-dirs", "~/.local/bin/clang-format-dirs"),
 ]
 
 def get_normalized_locations():
