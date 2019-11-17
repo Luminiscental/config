@@ -11,12 +11,6 @@ let g:python_highlight_all = 1
 let g:java_highlight_functions = 1
 let g:java_highlight_java_lang_ids = 1
 
-" fix for tex filetypes in coc
-let g:coc_filetype_map = {
-  \ 'tex': 'latext',
-  \ 'plaintex': 'tex',
-  \ }
-
 " markdown preview config
 let g:mkdp_browser = 'firefox'
 
@@ -35,8 +29,10 @@ let g:lightline = {
 
 
 " tex pdf previews
-let g:Tex_ViewRule_pdf = 'xdg-open'
-let g:Tex_DefaultTargetFormat = 'pdf'
+let g:vimtex_view_method='mupdf'
+
+" latex formatting
+let g:vimtex_format_enabled=1
 
 " log cxx highlighting stuff
 "let g:lsp_cxx_hl_log_file = '/tmp/vim-lsp-cxx-hl.log'
@@ -56,7 +52,7 @@ if dein#load_state('~/.cache/dein')
     call dein#add('scrooloose/nerdtree')
     call dein#add('airblade/vim-gitgutter')
     " not merged because of modified autoload file
-    call dein#add('itchyny/lightline.vim', {'merged': 0})
+    call dein#add('itchyny/lightline.vim', {'merge': 0})
     call dein#add('machakann/vim-highlightedyank')
     call dein#add('cespare/vim-toml')
     call dein#add('rust-lang/rust.vim')
@@ -80,6 +76,7 @@ if dein#load_state('~/.cache/dein')
     call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
     call dein#add('idanarye/vim-vebugger')
     call dein#add('jackguo380/vim-lsp-cxx-highlight')
+    call dein#add('aurieh/discord.nvim')
 
     call dein#end()
     call dein#save_state()
@@ -204,7 +201,6 @@ nmap [h <Plug>GitGutterPrevHunk
 " coc
 nmap <silent> [c <Plug>(coc-diagnostic-prev)
 nmap <silent> ]c <Plug>(coc-diagnostic-next)
-
 
 " move tab
 nnoremap <F8>  :tabp<CR>
