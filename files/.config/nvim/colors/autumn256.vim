@@ -260,7 +260,6 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
     "Scrollbar
     "Tooltip
 
-    " color_coded
     call <SID>X("Comment", "666666", "", "")
     call <SID>X("Constant", "af545b", "", "")
     call <SID>X("Identifier", "f8b279", "", "none")
@@ -293,14 +292,6 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
     call <SID>X("LspCxxHlSymField", "a5b565", "", "")
     call <SID>X("LspCxxHlSymMethod", "c6e650", "", "")
     call <SID>X("LspCxxHlSymMacro", "af545b", "", "")
-
-    " chromatica 
-    call <SID>X("chromaticaMacroInstantiation", "af545b", "", "")
-    call <SID>X("chromaticaLinkage", "564438", "", "")
-    call <SID>X("chromaticaCast", "af545b", "", "")
-    call <SID>X("chromaticaConditionalOperator", "936d43", "", "")
-    call <SID>X("OperatorOverload", "4e672b", "", "")
-    call <SID>X("AutoType", "cb5f36", "", "")
 
     " java
     call <SID>X("javaC_JavaLang", "bad46b", "", "")

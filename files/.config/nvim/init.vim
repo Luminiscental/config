@@ -1,5 +1,4 @@
 
-
 " colors, idk if necessary
 let g:hybrid_termcolors=256
 let g:hybrid_termtrans=1
@@ -14,10 +13,9 @@ let g:java_highlight_java_lang_ids = 1
 " markdown preview config
 let g:mkdp_browser = 'firefox'
 
-" use a locally modified version of the deus colorscheme for lightline
-" (i.e. I edited the deus.vim file in the autoload part of the lightline folder)
+" lightline config
 let g:lightline = {
-      \ 'colorscheme': 'deus',
+      \ 'colorscheme': 'jellybeans',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ]
@@ -51,8 +49,7 @@ if dein#load_state('~/.cache/dein')
     call dein#add('tpope/vim-surround')
     call dein#add('scrooloose/nerdtree')
     call dein#add('airblade/vim-gitgutter')
-    " not merged because of modified autoload file
-    call dein#add('itchyny/lightline.vim', {'merge': 0})
+    call dein#add('itchyny/lightline.vim')
     call dein#add('machakann/vim-highlightedyank')
     call dein#add('cespare/vim-toml')
     call dein#add('rust-lang/rust.vim')
@@ -76,7 +73,6 @@ if dein#load_state('~/.cache/dein')
     call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
     call dein#add('idanarye/vim-vebugger')
     call dein#add('jackguo380/vim-lsp-cxx-highlight')
-    call dein#add('aurieh/discord.nvim')
 
     call dein#end()
     call dein#save_state()
@@ -92,7 +88,6 @@ endif
 
 " workflow mappings
 nnoremap - dd
-nnoremap t zt5<C-y>
 nnoremap ; :
 vnoremap ; :
 nnoremap <leader>t :retab<CR>
@@ -129,9 +124,6 @@ function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
-
-" use <c-space> for trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
 
 " use <cr> for confirm completion, `<C-g>u` means break undo chain at current position.
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
@@ -192,12 +184,15 @@ nnoremap <F1> :call CocAction('format')<CR>
 nnoremap <F2> :noh<CR>
 " remove trailing whitespace
 nnoremap <F3> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
+" adjust view
+nnoremap <F4> zt5<C-y>
 
-" navigation
+" navigation:
 
 " gitgutter
 nmap ]h <Plug>GitGutterNextHunk
 nmap [h <Plug>GitGutterPrevHunk
+
 " coc
 nmap <silent> [c <Plug>(coc-diagnostic-prev)
 nmap <silent> ]c <Plug>(coc-diagnostic-next)
@@ -218,22 +213,20 @@ set updatetime=100
 set undodir=~/.vimdid
 set undofile
 
-" color stuff
+" gui colors
 set t_Co=256
 set background=dark
 set termguicolors
+
 " show current line number and relative numbers
 set number
 set relativenumber
+
 " use the sign column
 set signcolumn=yes
-" https://github.com/vim/vim/issues/1735#issuecomment-383353563
-set lazyredraw
-set synmaxcol=500
-" better command presentation in the line
-set laststatus=2
+
+" use 2 lines for commands
 set cmdheight=2
-set shortmess+=c
 
 " custom colorscheme
 colorscheme autumn256
@@ -245,13 +238,11 @@ highlight CocWarningHighlight guibg=#755b24 ctermbg=yellow
 
 " color column at 100
 set colorcolumn=100
-" with a reasonable color
-highlight ColorColumn guibg=#1e272b ctermbg=darkgreen
+" match color of lightline
+highlight ColorColumn guibg=#303030 ctermbg=darkgrey
 
 " lightline shows the mode too so don't bother
 set noshowmode
-" nvim cursor is ugly
-set guicursor=
 
 " sane tabs
 set tabstop=4
