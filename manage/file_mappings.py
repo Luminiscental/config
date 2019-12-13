@@ -25,6 +25,7 @@ file_locations: List[Tuple[str, str]] = [
     (".config/nvim/colors/autumn256.vim", "~/.config/nvim/colors/autumn256.vim"),
     (".config/nvim/indent/clr.vim", "~/.config/nvim/indent/clr.vim"),
     (".config/nvim/UltiSnips/c.snippets", "~/.config/nvim/UltiSnips/c.snippets"),
+    (".config/nvim/coc-settings.json", "~/.config/nvim/coc-settings.json"),
     (".todo/config", "~/.todo/config"),
     ("conky/system.conf", "~/conky/system.conf"),
     ("conky/todo.conf", "~/conky/todo.conf"),
@@ -39,16 +40,16 @@ file_locations: List[Tuple[str, str]] = [
     ("scripts/clang-format-dirs", "~/.local/bin/clang-format-dirs"),
 ]
 
+
 def get_normalized_locations():
     for repo_location, location in file_locations:
-        yield (
-            __normalize_repo_location(repo_location),
-            __normalize_location(location)
-        )
+        yield (__normalize_repo_location(repo_location), __normalize_location(location))
+
 
 def __normalize_repo_location(repo_location):
     repo_location = os.path.join("files", repo_location)
     return repo_location
+
 
 def __normalize_location(location):
     location = os.path.expanduser(location)

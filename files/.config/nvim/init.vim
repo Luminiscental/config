@@ -25,6 +25,8 @@ let g:lightline = {
       \ },
       \ }
 
+let g:vimtex_compiler_progname = 'nvr'
+
 
 " tex pdf previews
 let g:vimtex_view_method='mupdf'
