@@ -3,8 +3,17 @@
 let g:hybrid_termcolors=256
 let g:hybrid_termtrans=1
 
+" ALE linting
+
+" Stuff that goes here doesn't integrate with coc, so things like [c ]c \cf
+" e.t.c. don't work
+"let g:ale_linters = {'clojure': ['clj-kondo']}
+
 " better python syntax
 let g:python_highlight_all = 1
+
+" horrendous ) overrides in insert mode begone
+let g:sexp_enable_insert_mode_mappings = 0
 
 " better java syntax
 let g:java_highlight_functions = 1
@@ -65,16 +74,14 @@ if dein#load_state('~/.cache/dein')
     call dein#add('tikhomirov/vim-glsl')
     call dein#add('honza/vim-snippets')
     call dein#add('tpope/vim-repeat')
-    call dein#add('tpope/vim-fireplace')
-    call dein#add('tpope/vim-classpath')
-    call dein#add('tpope/vim-salve')
-    call dein#add('guns/vim-clojure-highlight')
     call dein#add('kien/rainbow_parentheses.vim')
     call dein#add('guns/vim-sexp')
     call dein#add('tpope/vim-sexp-mappings-for-regular-people')
     call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
     call dein#add('idanarye/vim-vebugger')
     call dein#add('jackguo380/vim-lsp-cxx-highlight')
+    "call dein#add('eraserhd/parinfer-rust', {'build': 'cargo build --release'})
+    "call dein#add('dense-analysis/ale')
 
     call dein#end()
     call dein#save_state()
@@ -192,8 +199,8 @@ nnoremap <F4> zt5<C-y>
 " navigation:
 
 " gitgutter
-nmap ]h <Plug>GitGutterNextHunk
-nmap [h <Plug>GitGutterPrevHunk
+nmap ]h <Plug>(GitGutterNextHunk)
+nmap [h <Plug>(GitGutterPrevHunk)
 
 " coc
 nmap <silent> [c <Plug>(coc-diagnostic-prev)
@@ -233,10 +240,30 @@ set cmdheight=2
 " custom colorscheme
 colorscheme autumn256
 
-" make coc highlight prettier
+" highlights / errors
 highlight CocHighlightText guibg=#685742 ctermbg=brown
-highlight CocErrorHighlight guibg=#8b4147 ctermbg=red
-highlight CocWarningHighlight guibg=#755b24 ctermbg=yellow
+highlight ALEError guibg=#8b4147 ctermbg=red
+highlight ALEErrorSign guifg=#8b4147 ctermfg=red
+highlight link CocErrorHighlight ALEError
+highlight link CocErrorSign ALEErrorSign
+let g:ale_sign_error = '!!'
+highlight ALEWarning guibg=#755b24 ctermbg=yellow
+highlight ALEWarningSign guifg=#755b24 ctermfg=yellow
+highlight link CocWarningHighlight ALEWarning
+highlight link CocWarningSign ALEWarningSign
+let g:ale_sign_warning = '##'
+highlight ALEInfo guibg=#78824b ctermbg=green
+highlight ALEInfoSign guifg=#78824b ctermfg=green
+highlight link CocInfoHighlight ALEInfo
+highlight link CocInfoSign ALEInfoSign
+highlight CocHintSign guifg=#bad46b ctermfg=green
+let g:ale_sign_info = '>>'
+highlight link ALEStyleError ALEWarning
+highlight link ALEStyleErrorSign ALEWarningSign
+let g:ale_sign_style_error = '..'
+highlight link ALEStyleWarning ALEWarning
+highlight link ALEStyleWarningSign ALEWarningSign
+let g:ale_sign_style_warning = '..'
 
 " color column at 100
 set colorcolumn=100
@@ -245,6 +272,9 @@ highlight ColorColumn guibg=#303030 ctermbg=darkgrey
 
 " lightline shows the mode too so don't bother
 set noshowmode
+
+" copypasting
+set clipboard+=unnamedplus
 
 " sane tabs
 set tabstop=4

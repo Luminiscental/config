@@ -1,6 +1,8 @@
 {
     "suggest.noselect": true,
     "python.formatting.provider": "black",
+    "diagnostic.displayByAle": false,
+    "diagnostic.virtualText": true,
     "languageserver": {
         "digestif": {
             "command": "digestif",
@@ -70,6 +72,25 @@
                     "hlintOn": true
                 }
             }
+        },
+        "clojure-lsp": {
+            "command": "bash",
+            "args": [
+                "-c",
+                "clojure-lsp"
+            ],
+            "filetypes": [
+                "clojure"
+            ],
+            "rootPatterns": [
+                "project.clj"
+            ],
+            "additionalSchemes": [
+                "jar",
+                "zipfile"
+            ],
+            "trace.server": "verbose",
+            "initializationOptions": {}
         }
     }
 }

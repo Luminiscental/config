@@ -5,6 +5,7 @@ PATH="/usr/local/bin:$PATH"
 PATH="$HOME/.cargo/bin:$PATH"
 PATH="$HOME/.cabal/bin:$PATH"
 PATH="$HOME/.local/bin:$PATH"
+PATH="$HOME/.emacs.d/bin:$PATH"
 
 # Use nvim by default
 export VISUAL=nvim

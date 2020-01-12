@@ -9,6 +9,10 @@ if [ $# -gt 0 ]; then
 \usepackage{enumitem} \usepackage{graphicx} \usepackage{titlesec}
 \usepackage{xifthen} \usepackage{amssymb} \usepackage{amsthm}
 
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\M}{\mathcal{M}}
 \newcommand{\defn}{\textbf{defn:} }
 \newcommand{\prop}[1][]{\textbf{proposition}\ifthenelse{\isempty{#1}}{}{\textbf{
 (}\textbf{#1}\textbf{)}}\textbf{:} } \newcommand{\claim}{\textbf{claim:} }
