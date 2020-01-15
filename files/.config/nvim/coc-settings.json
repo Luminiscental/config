@@ -57,6 +57,9 @@
         },
         "haskell": {
             "command": "hie-wrapper",
+            "args": [
+                "--lsp"
+            ],
             "rootPatterns": [
                 "stack.yaml",
                 "cabal.config",

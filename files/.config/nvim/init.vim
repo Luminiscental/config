@@ -1,4 +1,7 @@
 
+" coc extensions
+let g:coc_global_extensions = [ 'coc-pairs', 'coc-snippets', 'coc-java', 'coc-rls', 'coc-vimtex', 'coc-python', 'coc-json', 'coc-tsserver' ]
+
 " colors, idk if necessary
 let g:hybrid_termcolors=256
 let g:hybrid_termtrans=1
@@ -44,8 +47,8 @@ let g:vimtex_view_method='mupdf'
 let g:vimtex_format_enabled=1
 
 " log cxx highlighting stuff
-"let g:lsp_cxx_hl_log_file = '/tmp/vim-lsp-cxx-hl.log'
-"let g:lsp_cxx_hl_verbose_log = 1
+let g:lsp_cxx_hl_log_file = '/tmp/vim-lsp-cxx-hl.log'
+let g:lsp_cxx_hl_verbose_log = 1
 
 " add the dein installation directory into runtimepath
 set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
@@ -82,6 +85,7 @@ if dein#load_state('~/.cache/dein')
     call dein#add('jackguo380/vim-lsp-cxx-highlight')
     "call dein#add('eraserhd/parinfer-rust', {'build': 'cargo build --release'})
     "call dein#add('dense-analysis/ale')
+    call dein#add('pangloss/vim-javascript')
 
     call dein#end()
     call dein#save_state()
@@ -142,6 +146,7 @@ nmap <silent> <leader>cd <Plug>(coc-definition)
 nmap <silent> <leader>cy <Plug>(coc-type-definition)
 nmap <silent> <leader>ci <Plug>(coc-implementation)
 nmap <silent> <leader>cr <Plug>(coc-references)
+nmap <silent> <leader>cp <Plug>(coc-refactor)
 
 " show documentation in preview window
 nnoremap <silent> <leader>co :call <SID>show_documentation()<CR>
