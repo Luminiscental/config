@@ -227,4 +227,5 @@ for_window [title="IntelliJ IDEA Help"] floating enable, border normal 0
 for_window [class="KShare"] floating enable, border normal 0
 for_window [class="Conky"] floating enable, border none
 for_window [class="Wine"] floating enable, border none
+for_window [class="Microsoft Teams - Preview"] floating enable, border none
 no_focus [window_role="popup"]

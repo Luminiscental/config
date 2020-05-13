@@ -1,29 +1,68 @@
 #!/bin/sh
 
 if [ $# -gt 0 ]; then
+    if [ $# -gt 1 ]; then
+        title=$2
+    else
+        title=$1
+    fi
     mkdir "$1"
     cd "$1"
     echo "\documentclass[a4paper]{article}
 
-\usepackage{amsmath} \usepackage{commath} \usepackage{siunitx}
-\usepackage{enumitem} \usepackage{graphicx} \usepackage{titlesec}
-\usepackage{xifthen} \usepackage{amssymb} \usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{pythonhighlight}
+\usepackage{cancel}
+\usepackage{array}
+\usepackage{commath}
+\usepackage{siunitx}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{titlesec}
+\usepackage{xifthen}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{nth}
+\usepackage{bm}
+\usepackage{adjustbox}
+\usepackage[margin=0.9in]{geometry}
 
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\C}{\mathbb{C}}
 \newcommand{\F}{\mathbb{F}}
 \newcommand{\M}{\mathcal{M}}
+\newcommand{\mean}[1]{\overline{#1}}
+\newcommand{\estimate}[1]{\widehat{#1}}
+\newcommand{\divides}{\bigm|}
+\newcommand{\code}[1]{\texttt{#1}}
+
+\DeclareMathOperator{\sign}{sign}
+\DeclareMathOperator{\curl}{curl}
+\DeclareMathOperator{\divergence}{div}
+\DeclareMathOperator{\var}{var}
+\DeclareMathOperator{\hcf}{hcf}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\id}{id}
+
+\renewcommand{\vec}[1]{\bm{#1}}
+
 \newcommand{\defn}{\textbf{defn:} }
-\newcommand{\prop}[1][]{\textbf{proposition}\ifthenelse{\isempty{#1}}{}{\textbf{
-(}\textbf{#1}\textbf{)}}\textbf{:} } \newcommand{\claim}{\textbf{claim:} }
-\newcommand{\prf}{\textbf{proof:} } \newcommand{\eg}{\textbf{example:} }
+\newcommand{\prop}[1][]{\textbf{proposition}\ifthenelse{\isempty{#1}}{}{\textbf{(}\textbf{#1}\textbf{)}}\textbf{:} }
+\newcommand{\claim}{\textbf{claim:} }
+\newcommand{\prf}{\textbf{proof:} }
+\newcommand{\eg}{\textbf{example:} }
 \newcommand{\rmk}{\textbf{remark:} }
 
-\addtolength{\jot}{1em} \titlespacing*{\section} {0pt}{5.5ex plus 1ex minus
-.2ex}{4.3ex plus .2ex} \titlespacing*{\subsection} {0pt}{5.5ex plus 1ex minus
-.2ex}{4.3ex plus .2ex}
+\addtolength{\jot}{1em}
+\titlespacing*{\section} {0pt}{5.5ex plus 1ex minus .2ex}{4.3ex plus .2ex}
+\titlespacing*{\subsection} {0pt}{5.5ex plus 1ex minus .2ex}{4.3ex plus .2ex}
 
-\title{$1} \author{Luminiscental}
+\title{$title} \author{Luminiscental} \date{}
 
 \setlength{\parindent}{0cm}
 
@@ -36,6 +75,5 @@ if [ $# -gt 0 ]; then
     nvim "$1.tex"
 
 else
-    echo "Please specify a name for the project"
+    echo "Usage: $ new-tex project-name [document-title]"
 fi
-

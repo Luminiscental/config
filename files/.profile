@@ -22,3 +22,6 @@ export PATH="$HOME/.cargo/bin:$PATH"
 
 # Start fcitx
 fcitx -d -r
+
+# Turn tablet upside down
+xsetwacom --set "Wacom One by Wacom S Pen stylus" Rotate half

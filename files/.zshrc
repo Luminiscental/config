@@ -1,10 +1,17 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
 
-POWERLEVEL9K_MODE="nerdfont-complete"
+POWERLEVEL10K_MODE="nerdfont-complete"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -53,21 +60,21 @@ plugins=(git dirhistory)
 
 # ===== POWERLEVEL9K CONFIG ===== 
 # Newline after a command, to separate the prompt a bit nicer
-POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
-POWERLEVEL9K_CONTEXT_BACKGROUND="8"
-POWERLEVEL9K_CUSTOM_RETURN_CODE="powerlevel9k_get_last_command_return_code"
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs custom_return_code)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
-POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
+POWERLEVEL10K_PROMPT_ADD_NEWLINE=true
+POWERLEVEL10K_CONTEXT_BACKGROUND="8"
+POWERLEVEL10K_CUSTOM_RETURN_CODE="powerlevel10k_get_last_command_return_code"
+POWERLEVEL10K_LEFT_PROMPT_ELEMENTS=(context dir vcs custom_return_code)
+POWERLEVEL10K_RIGHT_PROMPT_ELEMENTS=()
+POWERLEVEL10K_SHORTEN_DIR_LENGTH=2
 
-# == Custom Powerlevel9k sections ==
+# == Custom Powerlevel10k sections ==
 
 # DESCRIPTION: Show the return code, if it was non-zero
-POWERLEVEL9K_CUSTOM_RETURN_CODE_FOREGROUND="3"
-POWERLEVEL9K_CUSTOM_RETURN_CODE_BACKGROUND="8"
+POWERLEVEL10K_CUSTOM_RETURN_CODE_FOREGROUND="3"
+POWERLEVEL10K_CUSTOM_RETURN_CODE_BACKGROUND="8"
 
 # FUNCTION:
-powerlevel9k_get_last_command_return_code() {
+powerlevel10k_get_last_command_return_code() {
   if [[ $RETVAL -ne 0 ]]; then
     echo $RETVAL
   fi
@@ -95,7 +102,7 @@ source ~/.bash_aliases
 
 bindkey -v
 
-source /usr/share/zsh-theme-powerlevel9k/powerlevel9k.zsh-theme
+source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 
 # Hacky solution for weird issue I had
 export LC_ALL=en_GB.UTF-8
@@ -125,3 +132,6 @@ zle -N zle-keymap-select
 export KEYTIMEOUT=1
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

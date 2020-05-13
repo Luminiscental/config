@@ -21,7 +21,7 @@ my_color14	= ${xrdb:color14}
 my_color15	= ${xrdb:color15}
 
 [bar/tray_bar]
-monitor = ${env:MONITOR:eDP-1}
+monitor = ${env:MONITOR:HDMI-0}
 bottom = true
 width = 40%
 height = 40
@@ -93,7 +93,7 @@ tray-padding = 5
 tray-scale = 1.0
 
 [bar/main_bar]
-monitor = ${env:MONITOR:eDP-1}
+monitor = ${env:MONITOR:HDMI-0}
 bottom = false
 ;width = 90%
 width = 100%
