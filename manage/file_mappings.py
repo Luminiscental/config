@@ -3,6 +3,7 @@ from typing import List, Tuple
 
 file_locations: List[Tuple[str, str]] = [
     (".zshrc", "~/.zshrc"),
+    (".p10k.zsh", "~/.p10k.zsh"),
     (".xinitrc", "~/.xinitrc"),
     (".pylintrc", "~/.pylintrc"),
     (".Xresources", "~/.Xresources"),
