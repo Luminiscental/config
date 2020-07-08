@@ -1,6 +1,6 @@
 
 " coc extensions
-let g:coc_global_extensions = [ 'coc-pairs', 'coc-snippets', 'coc-java', 'coc-rls', 'coc-vimtex', 'coc-python', 'coc-json', 'coc-tsserver' ]
+let g:coc_global_extensions = [ 'coc-pairs', 'coc-snippets', 'coc-java', 'coc-rls', 'coc-vimtex', 'coc-python', 'coc-json', 'coc-clangd', 'coc-conjure' ]
 
 " colors, idk if necessary
 let g:hybrid_termcolors=256

@@ -3,6 +3,10 @@
     "python.formatting.provider": "black",
     "diagnostic.displayByAle": false,
     "diagnostic.virtualText": true,
+    "clangd.semanticHighlighting": true,
+    "clangd.arguments": [
+        "--clang-tidy-checks=-hicpp-signed-bitwise,-cppcoreguidelines-avoid-magic-numbers,-readability-magic-numbers,-misc-non-private-member-variables-in-classes"
+    ],
     "languageserver": {
         "digestif": {
             "command": "digestif",
@@ -10,49 +14,6 @@
                 "tex",
                 "plaintex",
                 "context"
-            ]
-        },
-        "ccls": {
-            "command": "ccls",
-            "filetypes": [
-                "c",
-                "cpp",
-                "objc",
-                "objcpp"
-            ],
-            "rootPatterns": [
-                ".ccls",
-                "compile_commands.json",
-                ".vim/",
-                ".git/",
-                ".hg/"
-            ],
-            "initializationOptions": {
-                "cache": {
-                    "directory": "/tmp/ccls"
-                },
-                "highlight": {
-                    "lsRanges": true
-                }
-            }
-        },
-        "clangd": {
-            "command": "clangd",
-            "args": [
-                "--background-index"
-            ],
-            "rootPatterns": [
-                "compile_flags.txt",
-                "compile_commands.json",
-                ".vim/",
-                ".git/",
-                ".hg/"
-            ],
-            "filetypes": [
-                "c",
-                "cpp",
-                "objc",
-                "objcpp"
             ]
         },
         "haskell": {

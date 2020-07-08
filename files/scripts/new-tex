@@ -11,6 +11,7 @@ if [ $# -gt 0 ]; then
     echo "\documentclass[a4paper]{article}
 
 \usepackage{mathtools}
+\usepackage{caption}
 \usepackage{pythonhighlight}
 \usepackage{cancel}
 \usepackage{array}
@@ -43,11 +44,18 @@ if [ $# -gt 0 ]; then
 \DeclareMathOperator{\curl}{curl}
 \DeclareMathOperator{\divergence}{div}
 \DeclareMathOperator{\var}{var}
+\DeclareMathOperator{\cov}{cov}
+\DeclareMathOperator{\bias}{bias}
+\DeclareMathOperator{\SE}{SE}
 \DeclareMathOperator{\hcf}{hcf}
 \DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\tr}{tr}
 \DeclareMathOperator{\Sym}{Sym}
 \DeclareMathOperator{\Aut}{Aut}
 \DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\Stab}{Stab}
+\DeclareMathOperator{\Orb}{Orb}
+\DeclareMathOperator{\Conj}{Conj}
 
 \renewcommand{\vec}[1]{\bm{#1}}
 

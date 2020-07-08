@@ -207,10 +207,10 @@ bar {
 ## nvim > all
 #assign [class="code-oss"] 1
 #assign [class="jetbrains-idea-ce"] 1
-assign [title="osu!"] 1
 assign [class="discord"] 2
 assign [class="firefox"] 3
 assign [class="krita"] 4
+for_window [class="Spotify"] move to workspace 5 # spotify doesn't assign class on window creation or something
 
 exec --no-startup-id kshare --background
 # painfully slow :c
