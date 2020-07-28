@@ -210,7 +210,6 @@ bar {
 assign [class="discord"] 2
 assign [class="firefox"] 3
 assign [class="krita"] 4
-for_window [class="Spotify"] move to workspace 5 # spotify doesn't assign class on window creation or something
 
 exec --no-startup-id kshare --background
 # painfully slow :c

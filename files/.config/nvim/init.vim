@@ -242,6 +242,12 @@ set signcolumn=yes
 " use 2 lines for commands
 set cmdheight=2
 
+" add more keywords
+augroup vimrc_todo
+    au!
+    au Syntax * syn keyword Note containedin=.*Comment.* contained NOTE
+augroup END
+
 " custom colorscheme
 colorscheme autumn256
 

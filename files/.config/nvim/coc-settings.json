@@ -7,6 +7,7 @@
     "clangd.arguments": [
         "--clang-tidy-checks=-hicpp-signed-bitwise,-cppcoreguidelines-avoid-magic-numbers,-readability-magic-numbers,-misc-non-private-member-variables-in-classes"
     ],
+    "clangd.fallbackFlags" : ["-xc++"],
     "languageserver": {
         "digestif": {
             "command": "digestif",
@@ -56,5 +57,6 @@
             "trace.server": "verbose",
             "initializationOptions": {}
         }
-    }
+    },
+    "java.errors.incompleteClasspath.severity": "ignore"
 }

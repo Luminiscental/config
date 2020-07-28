@@ -310,7 +310,7 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
     "Error
     exec "hi clear Todo"
     call <SID>X("Todo", "ffcc44", "", "bold")
-    call <SID>X("myNote", "a3e99b", "", "bold")
+    call <SID>X("Note", "c6e650", "", "bold")
 
     " Clojure
     call <SID>X("clojureSpecial", "564438", "", "")
