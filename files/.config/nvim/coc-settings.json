@@ -1,6 +1,8 @@
 {
     "suggest.noselect": true,
+    "rust-analyzer.checkOnSave.command": "clippy",
     "python.formatting.provider": "black",
+    "python.jediEnabled": true,
     "diagnostic.displayByAle": false,
     "diagnostic.virtualText": true,
     "clangd.semanticHighlighting": true,

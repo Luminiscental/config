@@ -153,8 +153,8 @@ bar-volume-foreground = ${colors.my_foreground}
 [module/network]
 type=internal/network
 interface = enp0s31f6
-label-disconnected = 睊
-label-connected =   :  %downspeed:8%  %upspeed:8%
+label-disconnected = 睊 [ disconnected ]
+label-connected =   [  %downspeed:8%  %upspeed:8% ]
 
 [module/i3]
 type = internal/i3
@@ -246,7 +246,8 @@ format-margin = 1
 [module/spotify]
 type = custom/ipc
 hook-0 = echo ""
-hook-1 = spotifyctl -q status --format '  %artist%: %title%'
+;hook-1 = spotifyctl -q status --format '  %artist%: %title%'
+hook-1 = spotifyctl -q status --format '%artist% - %title%'
 format-foreground = ${colors.my_color2}
 format-margin = 2
 

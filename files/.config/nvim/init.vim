@@ -1,16 +1,13 @@
 
 " coc extensions
-let g:coc_global_extensions = [ 'coc-pairs', 'coc-snippets', 'coc-java', 'coc-rls', 'coc-vimtex', 'coc-python', 'coc-json', 'coc-clangd', 'coc-conjure' ]
+let g:coc_global_extensions = [ 'coc-pairs', 'coc-snippets', 'coc-java', 'coc-rust-analyzer', 'coc-vimtex', 'coc-python', 'coc-json', 'coc-clangd', 'coc-conjure' ]
+
+" vista.vim
+let g:vista_sidebar_width=50
 
 " colors, idk if necessary
 let g:hybrid_termcolors=256
 let g:hybrid_termtrans=1
-
-" ALE linting
-
-" Stuff that goes here doesn't integrate with coc, so things like [c ]c \cf
-" e.t.c. don't work
-"let g:ale_linters = {'clojure': ['clj-kondo']}
 
 " better python syntax
 let g:python_highlight_all = 1
@@ -25,6 +22,12 @@ let g:java_highlight_java_lang_ids = 1
 " markdown preview config
 let g:mkdp_browser = 'firefox'
 
+" fuzzy ignore
+let g:ctrlp_custom_ignore = {
+  \ 'dir': '\v[\/]\.(git|hg|svn)$',
+  \ 'file': '\v\.(exe|so|dll)$',
+  \ }
+
 " lightline config
 let g:lightline = {
       \ 'colorscheme': 'jellybeans',
@@ -37,6 +40,7 @@ let g:lightline = {
       \ },
       \ }
 
+let g:tex_flavor = 'latex'
 let g:vimtex_compiler_progname = 'nvr'
 
 
@@ -86,6 +90,7 @@ if dein#load_state('~/.cache/dein')
     "call dein#add('eraserhd/parinfer-rust', {'build': 'cargo build --release'})
     "call dein#add('dense-analysis/ale')
     call dein#add('pangloss/vim-javascript')
+    call dein#add('liuchengxu/vista.vim')
 
     call dein#end()
     call dein#save_state()
@@ -105,6 +110,9 @@ nnoremap ; :
 vnoremap ; :
 nnoremap <leader>t :retab<CR>
 nnoremap <leader>f :NERDTreeToggle<CR>
+
+" toggle vista.vim sidebar
+nnoremap <leader>v :Vista!!<CR>
 
 " get the syntax flags under the cursor
 nmap <leader>sp :call <SID>SynStack()<CR>
@@ -276,8 +284,10 @@ highlight link ALEStyleWarning ALEWarning
 highlight link ALEStyleWarningSign ALEWarningSign
 let g:ale_sign_style_warning = '..'
 
-" color column at 100
-set colorcolumn=100
+highlight link CocRustChainingHint Comment
+
+" color column at 80
+set colorcolumn=80
 " match color of lightline
 highlight ColorColumn guibg=#303030 ctermbg=darkgrey
 
