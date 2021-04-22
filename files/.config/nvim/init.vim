@@ -1,6 +1,6 @@
 
 " coc extensions
-let g:coc_global_extensions = [ 'coc-pairs', 'coc-snippets', 'coc-java', 'coc-rust-analyzer', 'coc-vimtex', 'coc-python', 'coc-json', 'coc-clangd', 'coc-conjure' ]
+let g:coc_global_extensions = [ 'coc-snippets', 'coc-java', 'coc-rust-analyzer', 'coc-vimtex', 'coc-python', 'coc-json', 'coc-clangd', 'coc-conjure' ]
 
 " vista.vim
 let g:vista_sidebar_width=50
@@ -21,6 +21,8 @@ let g:java_highlight_java_lang_ids = 1
 
 " markdown preview config
 let g:mkdp_browser = 'firefox'
+
+let g:lexima_enable_newline_rules = 1
 
 " fuzzy ignore
 let g:ctrlp_custom_ignore = {
@@ -77,20 +79,21 @@ if dein#load_state('~/.cache/dein')
     call dein#add('neoclide/coc.nvim', {'merge': 0, 'rev': 'release'})
     call dein#add('neovimhaskell/haskell-vim')
     call dein#add('lervag/vimtex')
-    call dein#add('cohama/lexima.vim')
+    call dein#add('cohama/lexima.vim', {'if': 1})
     call dein#add('tikhomirov/vim-glsl')
     call dein#add('honza/vim-snippets')
     call dein#add('tpope/vim-repeat')
-    call dein#add('kien/rainbow_parentheses.vim')
+    call dein#add('kien/rainbow_parentheses.vim', {'if': 0})
     call dein#add('guns/vim-sexp')
     call dein#add('tpope/vim-sexp-mappings-for-regular-people')
     call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
     call dein#add('idanarye/vim-vebugger')
     call dein#add('jackguo380/vim-lsp-cxx-highlight')
-    "call dein#add('eraserhd/parinfer-rust', {'build': 'cargo build --release'})
-    "call dein#add('dense-analysis/ale')
+    call dein#add('eraserhd/parinfer-rust', {'build': 'cargo build --release', 'if': 0})
+    call dein#add('dense-analysis/ale', {'if': 0})
     call dein#add('pangloss/vim-javascript')
     call dein#add('liuchengxu/vista.vim')
+    call dein#add('justinmk/vim-sneak')
 
     call dein#end()
     call dein#save_state()
@@ -103,6 +106,19 @@ syntax enable
 if dein#check_install()
     call dein#install()
 endif
+
+" lexima rules
+call lexima#add_rule({'char': '<', 'at': '\S\%#', 'input_after': '>', 'mode': 'i', 'filetype': ['rust', 'c', 'cpp']})
+call lexima#add_rule({'char': '>', 'at': '\%#>', 'leave': 1, 'filetype': ['rust', 'c', 'cpp']})
+call lexima#add_rule({'char': '<BS>', 'at': '<\%#>', 'delete': 1, 'filetype': ['rust', 'c', 'cpp']})
+
+call lexima#add_rule({'char': '$', 'input_after': '$', 'filetype': 'tex'})
+call lexima#add_rule({'char': '$', 'at': '\%#\$', 'leave': 1, 'filetype': 'tex'})
+call lexima#add_rule({'char': '<BS>', 'at': '\$\%#\$', 'delete': 1, 'filetype': 'tex'})
+
+call lexima#add_rule({'char': '{', 'at': '\\\%#', 'input': '{', 'input_after': '\}', 'mode': 'i', 'filetype': 'tex'})
+call lexima#add_rule({'char': '\', 'at': '\%#\\}', 'leave': 1, 'filetype': 'tex'})
+call lexima#add_rule({'char': '<BS>', 'at': '\\{\%#\\}', 'input': '<BS><DEL><DEL>', 'filetype': 'tex'})
 
 " workflow mappings
 nnoremap - dd
@@ -146,12 +162,13 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-" use <cr> for confirm completion, `<C-g>u` means break undo chain at current position.
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+" Make <CR> auto-select the first completion item and notify coc.nvim to
+" format on enter, <cr> could be remapped by other vim plugin
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " remap keys for gotos
 nmap <silent> <leader>cd <Plug>(coc-definition)
-nmap <silent> <leader>cy <Plug>(coc-type-definition)
 nmap <silent> <leader>ci <Plug>(coc-implementation)
 nmap <silent> <leader>cr <Plug>(coc-references)
 nmap <silent> <leader>cp <Plug>(coc-refactor)
@@ -159,14 +176,21 @@ nmap <silent> <leader>cp <Plug>(coc-refactor)
 " show documentation in preview window
 nnoremap <silent> <leader>co :call <SID>show_documentation()<CR>
 
-" (not) also on cursor hold
-"autocmd CursorHold * silent call CocActionAsync('doHover')
+" autofix binding
+nmap <leader>cf <Plug>(coc-fix-current)
+" codeaction binding
+nmap <leader>caa <Plug>(coc-codeaction)
+nmap <leader>cac <Plug>(coc-codeaction-cursor)
+" codelens action
+nmap <silent> <leader>cal <Plug>(coc-codelens-action)
 
 function! s:show_documentation()
-  if &filetype == 'vim'
+  if (index(['vim','help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
   else
-    call CocAction('doHover')
+    execute '!' . &keywordprg . " " . expand('<cword>')
   endif
 endfunction
 
@@ -187,11 +211,6 @@ nmap <leader>cn <Plug>(coc-rename)
 " format binding
 xmap <leader>cs <Plug>(coc-format-selected)
 nmap <leader>cs <Plug>(coc-format-selected)
-
-" autofix binding
-nmap <leader>cf <Plug>(coc-fix-current)
-" codeaction binding
-nmap <leader>ca <Plug>(coc-codeaction)
 
 " show all diagnostics
 nnoremap <silent> <leader>cld  :<C-u>CocList diagnostics<cr>
@@ -222,6 +241,10 @@ nmap <silent> ]c <Plug>(coc-diagnostic-next)
 " move tab
 nnoremap <F8>  :tabp<CR>
 nnoremap <F9>  :tabn<CR>
+
+" remap sneak
+map = <Plug>Sneak_;
+map # <Plug>Sneak_,
 
 " sane buffers
 set hidden
@@ -285,6 +308,10 @@ highlight link ALEStyleWarningSign ALEWarningSign
 let g:ale_sign_style_warning = '..'
 
 highlight link CocRustChainingHint Comment
+highlight link CocRustTypeHint Comment
+highlight link CocCodeLens Comment
+
+highlight Sneak guibg=#666666 ctermbg=grey
 
 " color column at 80
 set colorcolumn=80

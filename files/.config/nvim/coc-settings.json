@@ -1,15 +1,19 @@
 {
     "suggest.noselect": true,
+    "codeLens.enable": true,
     "rust-analyzer.checkOnSave.command": "clippy",
+    "codeLens.separator": "|",
+    "rust-analyzer.inlayHints.typeHintsSeparator": "| ",
+    "rust-analyzer.inlayHints.chainingHintsSeparator": "| ",
+    "rust-analyzer.lens.run": true,
     "python.formatting.provider": "black",
     "python.jediEnabled": true,
     "diagnostic.displayByAle": false,
     "diagnostic.virtualText": true,
     "clangd.semanticHighlighting": true,
-    "clangd.arguments": [
-        "--clang-tidy-checks=-hicpp-signed-bitwise,-cppcoreguidelines-avoid-magic-numbers,-readability-magic-numbers,-misc-non-private-member-variables-in-classes"
+    "clangd.fallbackFlags": [
+        "-xc++"
     ],
-    "clangd.fallbackFlags" : ["-xc++"],
     "languageserver": {
         "digestif": {
             "command": "digestif",

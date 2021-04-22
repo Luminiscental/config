@@ -39,6 +39,7 @@ if [ $# -gt 0 ]; then
 \newcommand{\estimate}[1]{\widehat{#1}}
 \newcommand{\divides}{\bigm|}
 \newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\conj}[1]{\overline{#1}}
 
 \DeclareMathOperator{\sign}{sign}
 \DeclareMathOperator{\curl}{curl}
@@ -59,20 +60,21 @@ if [ $# -gt 0 ]; then
 
 \renewcommand{\vec}[1]{\bm{#1}}
 
-\newcommand{\defn}{\textbf{defn:} }
-\newcommand{\prop}[1][]{\textbf{proposition}\ifthenelse{\isempty{#1}}{}{\textbf{(}\textbf{#1}\textbf{)}}\textbf{:} }
-\newcommand{\claim}{\textbf{claim:} }
-\newcommand{\prf}{\textbf{proof:} }
-\newcommand{\eg}{\textbf{example:} }
-\newcommand{\rmk}{\textbf{remark:} }
-
 \addtolength{\jot}{1em}
 \titlespacing*{\section} {0pt}{5.5ex plus 1ex minus .2ex}{4.3ex plus .2ex}
 \titlespacing*{\subsection} {0pt}{5.5ex plus 1ex minus .2ex}{4.3ex plus .2ex}
 
-\title{$title} \author{Luminiscental} \date{}
+\makeatletter
+\renewcommand*\env@matrix[1][\arraystretch]{%
+  \edef\arraystretch{#1}%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{*\c@MaxMatrixCols c}}
+\makeatother
 
 \setlength{\parindent}{0cm}
+
+\title{$title} \author{Luminiscental} \date{}
 
 \begin{document}
 
