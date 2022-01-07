@@ -275,6 +275,8 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
     call <SID>X("Variable", "ead49b", "", "")
     call <SID>X("Namespace", "cd6a47", "", "")
     call <SID>X("EnumConstant", "af545b", "", "")
+    call <SID>X("Sneak", "", "666666", "")
+    call <SID>X("Conceal", "bad46b", "", "")
 
     " python
     call <SID>X("pythonClassVar", "cb5f36", "", "")
@@ -320,6 +322,45 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
     call <SID>X("clrInteger", "bad46b", "", "")
     call <SID>X("clrExtension", "bad46b", "", "")
     call <SID>X("clrSymbol", "ffffff", "", "")
+
+    " Coc
+    call <SID>X("CocHighlightText", "", "685742", "")
+    call <SID>X("CocFadeOut", "666666", "", "underline")
+    call <SID>X("CocErrorHighlight", "", "8b4147", "")
+    call <SID>X("CocErrorSign", "8b4147", "", "")
+    call <SID>X("CocWarningHighlight", "", "755b24", "")
+    call <SID>X("CocWarningSign", "755b24", "", "")
+    call <SID>X("CocInfoHighlight", "", "78824b", "")
+    call <SID>X("CocInfoSign", "78824b", "", "")
+    call <SID>X("CocHintHighlight", "", "", "underline")
+    call <SID>X("CocHintSign", "bad46b", "", "")
+    call <SID>X("CocCodeLens", "666666", "", "italic")
+
+    call <SID>X("CocRustChainingHint", "666666", "", "italic")
+    call <SID>X("CocRustTypeHint", "666666", "", "italic")
+
+    call <SID>X("CocSem_namespace", "936d43", "", "") "Identifier
+    call <SID>X("CocSem_type", "9d6a47", "", "") "Type
+    call <SID>X("CocSem_class", "9d6a47", "", "") "Structure
+    call <SID>X("CocSem_enum", "9d6a47", "", "") "Type
+    call <SID>X("CocSem_interface", "9d6a47", "", "") "Type
+    call <SID>X("CocSem_struct", "9d6a47", "", "") "Structure
+    call <SID>X("CocSem_typeParameter", "ead49b", "", "") "Type
+    call <SID>X("CocSem_parameter", "f8b279", "", "") "Identifier
+    call <SID>X("CocSem_variable", "f8b279", "", "") "Identifier
+    call <SID>X("CocSem_property", "f8b279", "", "") "Identifier
+    call <SID>X("CocSem_enumMember", "af545b", "", "") "Constant
+    call <SID>X("CocSem_event", "f8b279", "", "") "Identifier
+    call <SID>X("CocSem_function", "c9a554", "", "") "Function
+    call <SID>X("CocSem_method", "c9a554", "", "") "Function
+    call <SID>X("CocSem_macro", "936d43", "", "") "Macro
+    call <SID>X("CocSem_keyword", "b36d43", "", "") "Keyword
+    call <SID>X("CocSem_modifier", "9d6a47", "", "") "StorageClass
+    call <SID>X("CocSem_comment", "666666", "", "") "Comment
+    call <SID>X("CocSem_string", "78824b", "", "") "String
+    call <SID>X("CocSem_number", "af545b", "", "") "Number
+    call <SID>X("CocSem_regexp", "af545b", "", "") "Normal
+    call <SID>X("CocSem_operator", "b36d43", "", "") "Operator
 
     " delete functions 
     delf <SID>X

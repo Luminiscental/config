@@ -48,7 +48,7 @@ font pango:Noto Sans 11
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec termite
+bindsym $mod+Return exec alacritty
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -205,8 +205,9 @@ bar {
 # Workspace assignments
 
 assign [class="discord"] 2
-assign [window_role="browser"] 3
+assign [class="firefox"] 3
 assign [class="krita"] 4
+assign [class="REAPER"] 4
 
 exec --no-startup-id kshare --background
 exec --no-startup-id polybar_wrapper.sh
@@ -218,6 +219,7 @@ exec --no-startup-id conky -dq -c ~/conky/todo.conf
 
 # Fixes for i3
 for_window [title="IntelliJ IDEA Help"] floating enable, border normal 0
+for_window [class="Steam"] floating enable, border none
 for_window [title="OpenTabletDriver.UX.Gtk"] floating enable, border normal 0
 for_window [class="KShare"] floating enable, border normal 0
 for_window [class="Conky"] floating enable, border none

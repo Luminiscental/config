@@ -1,6 +1,8 @@
 
 " coc extensions
-let g:coc_global_extensions = [ 'coc-snippets', 'coc-java', 'coc-rust-analyzer', 'coc-vimtex', 'coc-python', 'coc-json', 'coc-clangd', 'coc-conjure' ]
+let g:coc_global_extensions = [ 'coc-snippets', 'coc-java', 'coc-rust-analyzer', 'coc-vimtex', 'coc-pyright', 'coc-json', 'coc-clangd', 'coc-conjure' ]
+let g:coc_disable_transparent_cursor=1
+let g:coc_default_semantic_highlight_groups = 1
 
 " vista.vim
 let g:vista_sidebar_width=50
@@ -44,6 +46,7 @@ let g:lightline = {
 
 let g:tex_flavor = 'latex'
 let g:vimtex_compiler_progname = 'nvr'
+let g:vimtex_syntax_conceal_default = 1
 
 
 " tex pdf previews
@@ -108,7 +111,7 @@ if dein#check_install()
 endif
 
 " lexima rules
-call lexima#add_rule({'char': '<', 'at': '\S\%#', 'input_after': '>', 'mode': 'i', 'filetype': ['rust', 'c', 'cpp']})
+call lexima#add_rule({'char': '<', 'at': '[^< ]\%#', 'input_after': '>', 'mode': 'i', 'filetype': ['rust', 'c', 'cpp']})
 call lexima#add_rule({'char': '>', 'at': '\%#>', 'leave': 1, 'filetype': ['rust', 'c', 'cpp']})
 call lexima#add_rule({'char': '<BS>', 'at': '<\%#>', 'delete': 1, 'filetype': ['rust', 'c', 'cpp']})
 
@@ -169,6 +172,7 @@ inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
 
 " remap keys for gotos
 nmap <silent> <leader>cd <Plug>(coc-definition)
+nmap <silent> <leader>ct <Plug>(coc-type-definition)
 nmap <silent> <leader>ci <Plug>(coc-implementation)
 nmap <silent> <leader>cr <Plug>(coc-references)
 nmap <silent> <leader>cp <Plug>(coc-refactor)
@@ -282,37 +286,6 @@ augroup END
 " custom colorscheme
 colorscheme autumn256
 
-" highlights / errors
-highlight CocHighlightText guibg=#685742 ctermbg=brown
-highlight ALEError guibg=#8b4147 ctermbg=red
-highlight ALEErrorSign guifg=#8b4147 ctermfg=red
-highlight link CocErrorHighlight ALEError
-highlight link CocErrorSign ALEErrorSign
-let g:ale_sign_error = '!!'
-highlight ALEWarning guibg=#755b24 ctermbg=yellow
-highlight ALEWarningSign guifg=#755b24 ctermfg=yellow
-highlight link CocWarningHighlight ALEWarning
-highlight link CocWarningSign ALEWarningSign
-let g:ale_sign_warning = '##'
-highlight ALEInfo guibg=#78824b ctermbg=green
-highlight ALEInfoSign guifg=#78824b ctermfg=green
-highlight link CocInfoHighlight ALEInfo
-highlight link CocInfoSign ALEInfoSign
-highlight CocHintSign guifg=#bad46b ctermfg=green
-let g:ale_sign_info = '>>'
-highlight link ALEStyleError ALEWarning
-highlight link ALEStyleErrorSign ALEWarningSign
-let g:ale_sign_style_error = '..'
-highlight link ALEStyleWarning ALEWarning
-highlight link ALEStyleWarningSign ALEWarningSign
-let g:ale_sign_style_warning = '..'
-
-highlight link CocRustChainingHint Comment
-highlight link CocRustTypeHint Comment
-highlight link CocCodeLens Comment
-
-highlight Sneak guibg=#666666 ctermbg=grey
-
 " color column at 80
 set colorcolumn=80
 " match color of lightline
@@ -323,6 +296,12 @@ set noshowmode
 
 " copypasting
 set clipboard+=unnamedplus
+
+augroup vimtexgroup
+  autocmd!
+  " enable conceal
+  autocmd FileType tex set conceallevel=2
+augroup end
 
 " sane tabs
 set tabstop=4

@@ -6,10 +6,9 @@
     "rust-analyzer.inlayHints.typeHintsSeparator": "| ",
     "rust-analyzer.inlayHints.chainingHintsSeparator": "| ",
     "rust-analyzer.lens.run": true,
-    "python.formatting.provider": "black",
-    "python.jediEnabled": true,
     "diagnostic.displayByAle": false,
     "diagnostic.virtualText": true,
+    "python.formatting.provider": "black",
     "clangd.semanticHighlighting": true,
     "clangd.fallbackFlags": [
         "-xc++"
@@ -24,25 +23,23 @@
             ]
         },
         "haskell": {
-            "command": "hie-wrapper",
+            "command": "haskell-language-server-wrapper",
             "args": [
                 "--lsp"
             ],
             "rootPatterns": [
+                "*.cabal",
                 "stack.yaml",
-                "cabal.config",
-                "package.yaml"
+                "cabal.project",
+                "package.yaml",
+                "hie.yaml"
             ],
             "filetypes": [
                 "hs",
                 "lhs",
-                "haskell"
-            ],
-            "initializationOptions": {
-                "languageServerHaskell": {
-                    "hlintOn": true
-                }
-            }
+                "haskell",
+                "lhaskell"
+            ]
         },
         "clojure-lsp": {
             "command": "bash",

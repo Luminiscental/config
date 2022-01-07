@@ -2,6 +2,7 @@
 
 # Update path
 PATH="/usr/local/bin:$PATH"
+PATH="/opt/wine-osu/bin:$PATH"
 PATH="$HOME/.cargo/bin:$PATH"
 PATH="$HOME/.cabal/bin:$PATH"
 PATH="$HOME/.local/bin:$PATH"
