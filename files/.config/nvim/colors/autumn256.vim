@@ -255,6 +255,7 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
     call <SID>X("WarningMsg", "1e272b", "755b24", "")
     call <SID>X("ErrorMsg", "1e272b", "8b4147", "")
     "WildMenu
+    call <SID>X("Directory", "848851", "263137", "")
     "Menu
     call <SID>X("Pmenu", "ead49b", "263137", "")
     call <SID>X("PmenuSel", "1e272b", "ead49b", "")
@@ -284,11 +285,6 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
     call <SID>X("pythonBuiltinFunc", "bad46b", "", "")
     call <SID>X("pythonImport", "564438", "", "")
     call <SID>X("pythonBuiltinType", "bad46b", "", "")
-
-    "NERDTree
-    call <SID>X("NERDTreeOpenable", "9d6a47", "", "")
-    call <SID>X("NERDTreeClosable", "c9a554", "", "")
-    call <SID>X("Directory", "bad46b", "", "")
 
     " LspCxx
     call <SID>X("LspCxxHlSymNamespace", "cd6a47", "", "")
@@ -323,44 +319,74 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
     call <SID>X("clrExtension", "bad46b", "", "")
     call <SID>X("clrSymbol", "ffffff", "", "")
 
-    " Coc
-    call <SID>X("CocHighlightText", "", "685742", "")
-    call <SID>X("CocFadeOut", "666666", "", "underline")
-    call <SID>X("CocErrorHighlight", "", "8b4147", "")
-    call <SID>X("CocErrorSign", "8b4147", "", "")
-    call <SID>X("CocWarningHighlight", "", "755b24", "")
-    call <SID>X("CocWarningSign", "755b24", "", "")
-    call <SID>X("CocInfoHighlight", "", "78824b", "")
-    call <SID>X("CocInfoSign", "78824b", "", "")
-    call <SID>X("CocHintHighlight", "", "", "underline")
-    call <SID>X("CocHintSign", "bad46b", "", "")
-    call <SID>X("CocCodeLens", "666666", "", "italic")
+    "call <SID>X("CocHighlightText", "", "685742", "")
+    "call <SID>X("CocFadeOut", "666666", "", "underline")
+    "call <SID>X("CocErrorHighlight", "", "8b4147", "")
+    "call <SID>X("CocErrorSign", "8b4147", "", "")
+    "call <SID>X("CocWarningHighlight", "", "755b24", "")
+    "call <SID>X("CocWarningSign", "755b24", "", "")
+    "call <SID>X("CocInfoHighlight", "", "78824b", "")
+    "call <SID>X("CocInfoSign", "78824b", "", "")
+    "call <SID>X("CocHintHighlight", "", "", "underline")
+    "call <SID>X("CocHintSign", "bad46b", "", "")
+    "call <SID>X("CocCodeLens", "666666", "", "italic")
 
-    call <SID>X("CocRustChainingHint", "666666", "", "italic")
-    call <SID>X("CocRustTypeHint", "666666", "", "italic")
+    "call <SID>X("CocRustChainingHint", "666666", "", "italic")
+    "call <SID>X("CocRustTypeHint", "666666", "", "italic")
 
-    call <SID>X("CocSem_namespace", "936d43", "", "") "Identifier
-    call <SID>X("CocSem_type", "9d6a47", "", "") "Type
-    call <SID>X("CocSem_class", "9d6a47", "", "") "Structure
-    call <SID>X("CocSem_enum", "9d6a47", "", "") "Type
-    call <SID>X("CocSem_interface", "9d6a47", "", "") "Type
-    call <SID>X("CocSem_struct", "9d6a47", "", "") "Structure
-    call <SID>X("CocSem_typeParameter", "ead49b", "", "") "Type
-    call <SID>X("CocSem_parameter", "f8b279", "", "") "Identifier
-    call <SID>X("CocSem_variable", "f8b279", "", "") "Identifier
-    call <SID>X("CocSem_property", "f8b279", "", "") "Identifier
-    call <SID>X("CocSem_enumMember", "af545b", "", "") "Constant
-    call <SID>X("CocSem_event", "f8b279", "", "") "Identifier
-    call <SID>X("CocSem_function", "c9a554", "", "") "Function
-    call <SID>X("CocSem_method", "c9a554", "", "") "Function
-    call <SID>X("CocSem_macro", "936d43", "", "") "Macro
-    call <SID>X("CocSem_keyword", "b36d43", "", "") "Keyword
-    call <SID>X("CocSem_modifier", "9d6a47", "", "") "StorageClass
-    call <SID>X("CocSem_comment", "666666", "", "") "Comment
-    call <SID>X("CocSem_string", "78824b", "", "") "String
-    call <SID>X("CocSem_number", "af545b", "", "") "Number
-    call <SID>X("CocSem_regexp", "af545b", "", "") "Normal
-    call <SID>X("CocSem_operator", "b36d43", "", "") "Operator
+    " nvim-lsp
+    call <SID>X("LspReferenceRead", "", "685742", "")
+    call <SID>X("LspReferenceText", "", "685742", "")
+    call <SID>X("LspReferenceWrite", "", "685742", "")
+
+    " TODO: diagnostics
+
+    " nvim-treesitter
+    call <SID>X("TSError", "", "", "")
+    call <SID>X("TSNote", "c6e650", "", "bold")
+    call <SID>X("TSWarning", "ffcc44", "", "bold")
+    call <SID>X("TSDanger", "8b4147", "", "bold")
+    call <SID>X("TSSymbol", "ead49b", "", "")
+    call <SID>X("TSPunctDelimiter", "ead49b", "", "")
+    call <SID>X("TSPunctBracket", "ead49b", "", "")
+    call <SID>X("TSPunctSpecial", "ead49b", "", "")
+    call <SID>X("TSNamespace", "936d43", "", "")
+    call <SID>X("TSInclude", "564438", "", "")
+    call <SID>X("TSAttribute", "ead49b", "", "")
+    call <SID>X("TSType", "9d6a47", "", "")
+    call <SID>X("TSTypeBuiltin", "9d6a47", "", "")
+    call <SID>X("TSParameter", "f8b279", "", "")
+    call <SID>X("TSParameterReference", "f8b279", "", "")
+    call <SID>X("TSVariable", "f8b279", "", "")
+    call <SID>X("TSVariableBuiltin", "cb5f36", "", "")
+    call <SID>X("TSProperty", "f8b279", "", "")
+    call <SID>X("TSField", "f8b279", "", "")
+    call <SID>X("TSFunction", "c9a554", "", "")
+    call <SID>X("TSMethod", "c9a554", "", "")
+    call <SID>X("TSConstructor", "c9a554", "", "")
+    call <SID>X("TSFuncMacro", "936d43", "", "")
+    call <SID>X("TSFuncBuiltin", "bad46b", "", "")
+    call <SID>X("TSKeyword", "b36d43", "", "")
+    call <SID>X("TSRepeat", "b36d43", "", "")
+    call <SID>X("TSKeywordFunction", "b36d43", "", "")
+    call <SID>X("TSKeywordOperator", "b36d43", "", "")
+    call <SID>X("TSKeywordReturn", "b36d43", "", "")
+    call <SID>X("TSLabel", "b36d43", "", "")
+    call <SID>X("TSException", "b36d43", "", "")
+    call <SID>X("TSConditional", "b36d43", "", "")
+    call <SID>X("TSComment", "666666", "", "")
+    call <SID>X("TSString", "78824b", "", "")
+    call <SID>X("TSStringRegex", "af545b", "", "")
+    call <SID>X("TSStringEscape", "ead49b", "", "")
+    call <SID>X("TSStringSpecial", "ead49b", "", "")
+    call <SID>X("TSConstant", "af545b", "", "")
+    call <SID>X("TSConstBuiltin", "af545b", "", "")
+    call <SID>X("TSConstMacro", "af545b", "", "")
+    call <SID>X("TSNumber", "af545b", "", "")
+    call <SID>X("TSFloat", "af545b", "", "")
+    call <SID>X("TSBoolean", "af545b", "", "")
+    call <SID>X("TSCharacter", "af545b", "", "")
+    call <SID>X("TSOperator", "b36d43", "", "")
 
     " delete functions 
     delf <SID>X

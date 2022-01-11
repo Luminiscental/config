@@ -25,8 +25,6 @@ file_locations: List[Tuple[str, str]] = [
     (".config/nvim/syntax/clr.vim", "~/.config/nvim/syntax/clr.vim"),
     (".config/nvim/colors/autumn256.vim", "~/.config/nvim/colors/autumn256.vim"),
     (".config/nvim/indent/clr.vim", "~/.config/nvim/indent/clr.vim"),
-    (".config/nvim/UltiSnips/c.snippets", "~/.config/nvim/UltiSnips/c.snippets"),
-    (".config/nvim/coc-settings.json", "~/.config/nvim/coc-settings.json"),
     (".todo/config", "~/.todo/config"),
     ("conky/system.conf", "~/conky/system.conf"),
     ("conky/todo.conf", "~/conky/todo.conf"),

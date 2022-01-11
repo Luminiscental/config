@@ -1,8 +1,5 @@
 
-" coc extensions
-let g:coc_global_extensions = [ 'coc-snippets', 'coc-java', 'coc-rust-analyzer', 'coc-vimtex', 'coc-pyright', 'coc-json', 'coc-clangd', 'coc-conjure' ]
-let g:coc_disable_transparent_cursor=1
-let g:coc_default_semantic_highlight_groups = 1
+let mapleader = '\'
 
 " vista.vim
 let g:vista_sidebar_width=50
@@ -37,10 +34,7 @@ let g:lightline = {
       \ 'colorscheme': 'jellybeans',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ]
-      \ },
-      \ 'component_function': {
-      \   'cocstatus': 'coc#status'
+      \             [ 'lsp_status', 'readonly', 'filename', 'modified' ] ]
       \ },
       \ }
 
@@ -55,60 +49,44 @@ let g:vimtex_view_method='mupdf'
 " latex formatting
 let g:vimtex_format_enabled=1
 
-" log cxx highlighting stuff
-let g:lsp_cxx_hl_log_file = '/tmp/vim-lsp-cxx-hl.log'
-let g:lsp_cxx_hl_verbose_log = 1
+call plug#begin()
 
-" add the dein installation directory into runtimepath
-set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
+  Plug 'ctrlpvim/ctrlp.vim'
+  Plug 'vim-python/python-syntax'
+  Plug 'tpope/vim-surround'
+  Plug 'scrooloose/nerdtree'
+  Plug 'airblade/vim-gitgutter'
+  Plug 'itchyny/lightline.vim'
+  Plug 'machakann/vim-highlightedyank'
+  Plug 'cespare/vim-toml'
+  Plug 'rust-lang/rust.vim'
+  Plug 'plasticboy/vim-markdown'
+  Plug 'iamcco/markdown-preview.nvim', {'for': ['markdown', 'pandoc.markdown', 'rmd'], 'do': 'cd app & yarn install'}
+  Plug 'neovimhaskell/haskell-vim'
+  Plug 'lervag/vimtex'
+  Plug 'cohama/lexima.vim'
+  Plug 'tikhomirov/vim-glsl'
+  Plug 'honza/vim-snippets'
+  Plug 'tpope/vim-repeat'
+  Plug 'guns/vim-sexp'
+  Plug 'tpope/vim-sexp-mappings-for-regular-people'
+  Plug 'liuchengxu/vista.vim'
+  Plug 'justinmk/vim-sneak'
+  Plug 'neovim/nvim-lspconfig'
+  Plug 'nvim-lua/lsp_extensions.nvim'
+  Plug 'hrsh7th/cmp-nvim-lsp', {'branch': 'main'}
+  Plug 'hrsh7th/cmp-buffer', {'branch': 'main'}
+  Plug 'hrsh7th/cmp-path', {'branch': 'main'}
+  Plug 'hrsh7th/nvim-cmp', {'branch': 'main'}
+  Plug 'hrsh7th/vim-vsnip'
+  Plug 'hrsh7th/cmp-vsnip'
+  Plug 'ray-x/lsp_signature.nvim'
+  Plug 'josa42/nvim-lightline-lsp'
+  Plug 'nvim-treesitter/nvim-treesitter', {'do': 'TSUpdate'}
 
-if dein#load_state('~/.cache/dein')
-    call dein#begin('~/.cache/dein')
+call plug#end()
 
-    call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
-    call dein#add('rodnaph/vim-color-schemes')
-    call dein#add('ctrlpvim/ctrlp.vim')
-    call dein#add('vim-python/python-syntax')
-    call dein#add('tpope/vim-surround')
-    call dein#add('scrooloose/nerdtree')
-    call dein#add('airblade/vim-gitgutter')
-    call dein#add('itchyny/lightline.vim')
-    call dein#add('machakann/vim-highlightedyank')
-    call dein#add('cespare/vim-toml')
-    call dein#add('rust-lang/rust.vim')
-    call dein#add('plasticboy/vim-markdown')
-    call dein#add('iamcco/markdown-preview.nvim', {'on_ft': ['markdown', 'pandoc.markdown', 'rmd'],
-					\ 'build': 'cd app & yarn install' })
-    call dein#add('neoclide/coc.nvim', {'merge': 0, 'rev': 'release'})
-    call dein#add('neovimhaskell/haskell-vim')
-    call dein#add('lervag/vimtex')
-    call dein#add('cohama/lexima.vim', {'if': 1})
-    call dein#add('tikhomirov/vim-glsl')
-    call dein#add('honza/vim-snippets')
-    call dein#add('tpope/vim-repeat')
-    call dein#add('kien/rainbow_parentheses.vim', {'if': 0})
-    call dein#add('guns/vim-sexp')
-    call dein#add('tpope/vim-sexp-mappings-for-regular-people')
-    call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
-    call dein#add('idanarye/vim-vebugger')
-    call dein#add('jackguo380/vim-lsp-cxx-highlight')
-    call dein#add('eraserhd/parinfer-rust', {'build': 'cargo build --release', 'if': 0})
-    call dein#add('dense-analysis/ale', {'if': 0})
-    call dein#add('pangloss/vim-javascript')
-    call dein#add('liuchengxu/vista.vim')
-    call dein#add('justinmk/vim-sneak')
-
-    call dein#end()
-    call dein#save_state()
-endif
-
-filetype plugin indent on
-syntax enable
-
-" auto-install plugins on startup
-if dein#check_install()
-    call dein#install()
-endif
+call lightline#lsp#register()
 
 " lexima rules
 call lexima#add_rule({'char': '<', 'at': '[^< ]\%#', 'input_after': '>', 'mode': 'i', 'filetype': ['rust', 'c', 'cpp']})
@@ -128,9 +106,6 @@ nnoremap - dd
 nnoremap ; :
 vnoremap ; :
 nnoremap <leader>t :retab<CR>
-nnoremap <leader>f :NERDTreeToggle<CR>
-
-" toggle vista.vim sidebar
 nnoremap <leader>v :Vista!!<CR>
 
 " get the syntax flags under the cursor
@@ -145,86 +120,183 @@ endfunc
 " markdown preview mappings
 nmap <leader>mp <Plug>MarkdownPreviewToggle
 
-" -- coc stuff --
+" LSP
+lua <<EOF
+  -- Setup nvim-cmp.
+  local cmp = require'cmp'
+  local lspconfig = require'lspconfig'
 
-" use <C-j> to go to the next snippet hole
-let g:coc_snippet_next = '<C-j>'
+  local has_words_before = function()
+    local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+    return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+  end
+  
+  local feedkey = function(key, mode)
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
+  end
 
-" use <C-k> to go to the previous snippet hole
-let g:coc_snippet_prev = '<C-k>'
+  cmp.setup({
+    snippet = {
+      -- REQUIRED - you must specify a snippet engine
+      expand = function(args)
+        vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+        -- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+        -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
+        -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+      end,
+    },
+    mapping = {
+      ["<Tab>"] = cmp.mapping(function(fallback)
+        if cmp.visible() then
+          cmp.select_next_item()
+        elseif vim.fn["vsnip#available"](1) == 1 then
+          feedkey("<Plug>(vsnip-expand-or-jump)", "")
+        elseif has_words_before() then
+          cmp.complete()
+        else
+          fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
+        end
+      end, { "i", "s" }),
 
-" use tab for completion
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+      ["<c-Tab>"] = cmp.mapping(function()
+        if cmp.visible() then
+          cmp.select_prev_item()
+        elseif vim.fn["vsnip#jumpable"](-1) == 1 then
+          feedkey("<Plug>(vsnip-jump-prev)", "")
+        end
+      end, { "i", "s" }),
 
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
+      ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+    },
+    sources = cmp.config.sources({
+      { name = 'nvim_lsp' },
+      { name = 'vsnip' }, -- For vsnip users.
+      -- { name = 'luasnip' }, -- For luasnip users.
+      -- { name = 'ultisnips' }, -- For ultisnips users.
+      -- { name = 'snippy' }, -- For snippy users.
+    }, {
+      { name = 'buffer' },
+    }),
+    experimental = {
+      ghost_text = true,
+    }
+  })
 
-" Make <CR> auto-select the first completion item and notify coc.nvim to
-" format on enter, <cr> could be remapped by other vim plugin
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+  -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
+  cmp.setup.cmdline('/', {
+    sources = {
+      { name = 'buffer' }
+    }
+  })
 
-" remap keys for gotos
-nmap <silent> <leader>cd <Plug>(coc-definition)
-nmap <silent> <leader>ct <Plug>(coc-type-definition)
-nmap <silent> <leader>ci <Plug>(coc-implementation)
-nmap <silent> <leader>cr <Plug>(coc-references)
-nmap <silent> <leader>cp <Plug>(coc-refactor)
+  -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+  cmp.setup.cmdline(':', {
+    sources = cmp.config.sources({
+      { name = 'path' }
+    }, {
+      { name = 'cmdline' }
+    })
+  })
 
-" show documentation in preview window
-nnoremap <silent> <leader>co :call <SID>show_documentation()<CR>
+  local on_attach = function(client, bufnr)
+    local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+    local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+  
+    if client.resolved_capabilities.document_highlight then
+      vim.cmd [[
+        augroup lsp_document_highlight
+          autocmd! * <buffer>
+          autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+          autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+        augroup END
+      ]]
+    end
+  
+    -- Mappings.
+    local opts = { noremap=true, silent=true }
+  
+    -- See `:help vim.lsp.*` for documentation on any of the below functions
+    buf_set_keymap('n', '<leader>lD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+    buf_set_keymap('n', '<leader>ld', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
+    buf_set_keymap('n', '<leader>lh', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
+    buf_set_keymap('n', '<leader>li', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+    buf_set_keymap('n', '<leader>ls', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+    buf_set_keymap('n', '<leader>lt', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+    buf_set_keymap('n', '<leader>ln', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+    buf_set_keymap('n', '<leader>la', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+    buf_set_keymap('n', '<leader>lr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+    buf_set_keymap('n', '<leader>ll', '<cmd>lua vim.diagnostic.show()<CR>', opts)
+    buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
+    buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+    buf_set_keymap('n', '<leader>lL', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
+    buf_set_keymap("n", "<leader>lf", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+  
+    -- Get signatures (and _only_ signatures) when in argument lists.
+    require "lsp_signature".on_attach({
+      doc_lines = 0,
+      handler_opts = {
+        border = "none"
+      },
+    })
+  end
 
-" autofix binding
-nmap <leader>cf <Plug>(coc-fix-current)
-" codeaction binding
-nmap <leader>caa <Plug>(coc-codeaction)
-nmap <leader>cac <Plug>(coc-codeaction-cursor)
-" codelens action
-nmap <silent> <leader>cal <Plug>(coc-codelens-action)
+  -- Setup lspconfig.
+  local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+  lspconfig.rust_analyzer.setup {
+    on_attach = on_attach,
+    flags = {
+      debounce_text_changes = 150,
+    },
+    settings = {
+      ["rust-analyzer"] = {
+        cargo = {
+          allFeatures = true,
+        },
+        completion = {
+  	      postfix = {
+  	        enable = false,
+  	      },
+        },
+      },
+    },
+    capabilities = capabilities,
+  }
 
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  elseif (coc#rpc#ready())
-    call CocActionAsync('doHover')
-  else
-    execute '!' . &keywordprg . " " . expand('<cword>')
-  endif
-endfunction
+  lspconfig.pyright.setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+  }
 
-" highlight symbol under cursor on CursorHold
-autocmd CursorHold * silent call CocActionAsync('highlight')
+  require'nvim-treesitter.configs'.setup {
+    -- One of "all", "maintained" (parsers with maintainers), or a list of languages
+    ensure_installed = "maintained",
 
-augroup cocgroup
-  autocmd!
-  " Setup formatexpr specified filetype(s).
-  autocmd FileType haskell,c,cpp,python,rust setl formatexpr=CocAction('formatSelected')
-  " Update signature help on jump placeholder
-  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-augroup end
+    -- Install languages synchronously (only applied to `ensure_installed`)
+    sync_install = false,
 
-" remap for rename current word
-nmap <leader>cn <Plug>(coc-rename)
+    -- List of parsers to ignore installing
+    ignore_install = { "javascript", "pascal" },
 
-" format binding
-xmap <leader>cs <Plug>(coc-format-selected)
-nmap <leader>cs <Plug>(coc-format-selected)
+    highlight = {
+      -- `false` will disable the whole extension
+      enable = true,
 
-" show all diagnostics
-nnoremap <silent> <leader>cld  :<C-u>CocList diagnostics<cr>
-" manage extensions
-nnoremap <silent> <leader>cle  :<C-u>CocList extensions<cr>
-" show commands
-nnoremap <silent> <leader>clc  :<C-u>CocList commands<cr>
+      -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+      -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+      -- Using this option may slow down your editor, and you may see some duplicate highlights.
+      -- Instead of true it can also be a list of languages
+      additional_vim_regex_highlighting = false,
+    },
+  }
+EOF
+
+" menuone: popup even when there's only one match
+" noinsert: Do not insert text until a selection is made
+" noselect: Do not select, force user to select one from the menu
+set completeopt=menuone,noinsert,noselect
 
 " format buffer
-nnoremap <F1> :call CocAction('format')<CR>
+nnoremap <F1> <cmd>lua vim.lsp.buf.formatting()<CR>
 " remove highlights
 nnoremap <F2> :noh<CR>
 " remove trailing whitespace
@@ -237,10 +309,6 @@ nnoremap <F4> zt5<C-y>
 " gitgutter
 nmap ]h <Plug>(GitGutterNextHunk)
 nmap [h <Plug>(GitGutterPrevHunk)
-
-" coc
-nmap <silent> [c <Plug>(coc-diagnostic-prev)
-nmap <silent> ]c <Plug>(coc-diagnostic-next)
 
 " move tab
 nnoremap <F8>  :tabp<CR>
