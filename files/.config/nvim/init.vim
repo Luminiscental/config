@@ -5,8 +5,8 @@ let mapleader = '\'
 let g:vista_sidebar_width=50
 
 " colors, idk if necessary
-let g:hybrid_termcolors=256
-let g:hybrid_termtrans=1
+"let g:hybrid_termcolors=256
+"let g:hybrid_termtrans=1
 
 " better python syntax
 let g:python_highlight_all = 1
@@ -226,8 +226,8 @@ lua <<EOF
     buf_set_keymap('n', '<leader>la', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
     buf_set_keymap('n', '<leader>lr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
     buf_set_keymap('n', '<leader>ll', '<cmd>lua vim.diagnostic.show()<CR>', opts)
-    buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
-    buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+    buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+    buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
     buf_set_keymap('n', '<leader>lL', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
     buf_set_keymap("n", "<leader>lf", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
   
@@ -288,6 +288,13 @@ lua <<EOF
       additional_vim_regex_highlighting = false,
     },
   }
+
+  -- diagnostic signs
+  local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+  for type, icon in pairs(signs) do
+      local hl = "DiagnosticSign" .. type
+      vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+  end
 EOF
 
 " menuone: popup even when there's only one match
