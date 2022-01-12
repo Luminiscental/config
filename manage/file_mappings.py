@@ -10,7 +10,7 @@ file_locations: List[Tuple[str, str]] = [
     (".profile", "~/.profile"),
     (".zprofile", "~/.zprofile"),
     (".bash_aliases", "~/.bash_aliases"),
-    (".config/termite/config", "~/.config/termite/config"),
+    (".config/kitty/kitty.conf", "~/.config/kitty/kitty.conf"),
     (".config/cava/config", "~/.config/cava/config"),
     (".config/i3/config", "~/.config/i3/config"),
     (".config/polybar/config", "~/.config/polybar/config"),
