@@ -267,6 +267,22 @@ lua <<EOF
     capabilities = capabilities,
   }
 
+  lspconfig.clangd.setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+  }
+
+  lspconfig.clojure_lsp.setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+  }
+
+  lspconfig.omnisharp.setup {
+    cmd = { "omnisharp", "--languageserver", "--hostPID", tostring(pid) },
+    on_attach = on_attach,
+    capabilities = capabilities,
+  }
+
   require'nvim-treesitter.configs'.setup {
     -- One of "all", "maintained" (parsers with maintainers), or a list of languages
     ensure_installed = "maintained",
@@ -325,6 +341,12 @@ nnoremap <F9>  :tabn<CR>
 map = <Plug>Sneak_;
 map # <Plug>Sneak_,
 
+" remap snippet completion
+imap <expr> <C-L> vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<C-L>'
+smap <expr> <C-L> vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<C-L>'
+imap <expr> <C-K> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<C-K>'
+smap <expr> <C-K> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<C-K>'
+
 " sane buffers
 set hidden
 set splitbelow
@@ -346,8 +368,8 @@ set termguicolors
 set number
 set relativenumber
 
-" use the sign column
-set signcolumn=yes
+" use a sign column with space for 3 signs
+set signcolumn=yes:3
 
 " use 2 lines for commands
 set cmdheight=2
