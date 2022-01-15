@@ -55,7 +55,6 @@ call plug#begin()
   Plug 'vim-python/python-syntax'
   Plug 'tpope/vim-surround'
   Plug 'scrooloose/nerdtree'
-  Plug 'airblade/vim-gitgutter'
   Plug 'itchyny/lightline.vim'
   Plug 'machakann/vim-highlightedyank'
   Plug 'cespare/vim-toml'
@@ -71,7 +70,6 @@ call plug#begin()
   Plug 'guns/vim-sexp'
   Plug 'tpope/vim-sexp-mappings-for-regular-people'
   Plug 'liuchengxu/vista.vim'
-  Plug 'justinmk/vim-sneak'
   Plug 'neovim/nvim-lspconfig'
   Plug 'nvim-lua/lsp_extensions.nvim'
   Plug 'hrsh7th/cmp-nvim-lsp', {'branch': 'main'}
@@ -83,6 +81,13 @@ call plug#begin()
   Plug 'ray-x/lsp_signature.nvim'
   Plug 'josa42/nvim-lightline-lsp'
   Plug 'nvim-treesitter/nvim-treesitter', {'do': 'TSUpdate'}
+  Plug 'simrat39/rust-tools.nvim'
+  Plug 'nvim-lua/plenary.nvim'
+  Plug 'saecki/crates.nvim', { 'tag': 'v0.1.0' }
+  Plug 'ggandor/lightspeed.nvim'
+  Plug 'tpope/vim-fugitive'
+  Plug 'lewis6991/gitsigns.nvim'
+  Plug 'onsails/lspkind-nvim'
 
 call plug#end()
 
@@ -125,12 +130,13 @@ lua <<EOF
   -- Setup nvim-cmp.
   local cmp = require'cmp'
   local lspconfig = require'lspconfig'
+  local lspkind = require'lspkind'
 
   local has_words_before = function()
     local line, col = unpack(vim.api.nvim_win_get_cursor(0))
     return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
   end
-  
+
   local feedkey = function(key, mode)
     vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
   end
@@ -144,6 +150,15 @@ lua <<EOF
         -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
         -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
       end,
+    },
+    formatting = {
+      format = lspkind.cmp_format {
+        with_text = false,
+        maxwidth = 50,
+        before = function (entry, vim_item)
+          return vim_item
+        end
+      }
     },
     mapping = {
       ["<Tab>"] = cmp.mapping(function(fallback)
@@ -174,6 +189,7 @@ lua <<EOF
       -- { name = 'luasnip' }, -- For luasnip users.
       -- { name = 'ultisnips' }, -- For ultisnips users.
       -- { name = 'snippy' }, -- For snippy users.
+      { name = 'crates' },
     }, {
       { name = 'buffer' },
     }),
@@ -201,7 +217,7 @@ lua <<EOF
   local on_attach = function(client, bufnr)
     local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
     local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
-  
+
     if client.resolved_capabilities.document_highlight then
       vim.cmd [[
         augroup lsp_document_highlight
@@ -211,10 +227,10 @@ lua <<EOF
         augroup END
       ]]
     end
-  
+
     -- Mappings.
     local opts = { noremap=true, silent=true }
-  
+
     -- See `:help vim.lsp.*` for documentation on any of the below functions
     buf_set_keymap('n', '<leader>lD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
     buf_set_keymap('n', '<leader>ld', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
@@ -230,7 +246,7 @@ lua <<EOF
     buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
     buf_set_keymap('n', '<leader>lL', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
     buf_set_keymap("n", "<leader>lf", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
-  
+
     -- Get signatures (and _only_ signatures) when in argument lists.
     require "lsp_signature".on_attach({
       doc_lines = 0,
@@ -242,24 +258,29 @@ lua <<EOF
 
   -- Setup lspconfig.
   local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-  lspconfig.rust_analyzer.setup {
-    on_attach = on_attach,
-    flags = {
-      debounce_text_changes = 150,
-    },
-    settings = {
-      ["rust-analyzer"] = {
-        cargo = {
-          allFeatures = true,
-        },
-        completion = {
-  	      postfix = {
-  	        enable = false,
-  	      },
+
+  -- rust-tools (calls lspconfig.rust_analyzer.setup)
+  require'rust-tools'.setup {
+    hover_with_actions = false,
+    server = {
+      on_attach = on_attach,
+      flags = {
+        debounce_text_changes = 150,
+      },
+      settings = {
+        ["rust-analyzer"] = {
+          cargo = {
+            allFeatures = true,
+          },
+          completion = {
+  	        postfix = {
+  	          enable = false,
+  	        },
+          },
         },
       },
+      capabilities = capabilities,
     },
-    capabilities = capabilities,
   }
 
   lspconfig.pyright.setup {
@@ -305,12 +326,81 @@ lua <<EOF
     },
   }
 
+  require'crates'.setup {}
+
   -- diagnostic signs
   local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
   for type, icon in pairs(signs) do
       local hl = "DiagnosticSign" .. type
       vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
   end
+
+  -- git signs
+  require'gitsigns'.setup {
+    signs = {
+      add          = {hl = 'GitSignsAdd'   , text = '+', numhl='GitSignsAddNr'   , linehl='GitSignsAddLn'},
+      change       = {hl = 'GitSignsChange', text = '|', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn'},
+      delete       = {hl = 'GitSignsDelete', text = '-', numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn'},
+      topdelete    = {hl = 'GitSignsDelete', text = '‾', numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn'},
+      changedelete = {hl = 'GitSignsChange', text = '~', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn'},
+    },
+    signcolumn = true,  -- Toggle with `:Gitsigns toggle_signs`
+    numhl      = false, -- Toggle with `:Gitsigns toggle_numhl`
+    linehl     = false, -- Toggle with `:Gitsigns toggle_linehl`
+    word_diff  = false, -- Toggle with `:Gitsigns toggle_word_diff`
+    keymaps = {
+      -- Default keymap options
+      noremap = true,
+
+      ['n ]h'] = { expr = true, "&diff ? ']h' : '<cmd>Gitsigns next_hunk<CR>'"},
+      ['n [h'] = { expr = true, "&diff ? '[h' : '<cmd>Gitsigns prev_hunk<CR>'"},
+
+      ['n <leader>hs'] = '<cmd>Gitsigns stage_hunk<CR>',
+      ['v <leader>hs'] = ':Gitsigns stage_hunk<CR>',
+      ['n <leader>hr'] = '<cmd>Gitsigns undo_stage_hunk<CR>',
+      ['n <leader>hu'] = '<cmd>Gitsigns reset_hunk<CR>',
+      ['v <leader>hu'] = ':Gitsigns reset_hunk<CR>',
+      -- ['n <leader>hR'] = '<cmd>Gitsigns reset_buffer<CR>',
+      ['n <leader>hp'] = '<cmd>Gitsigns preview_hunk<CR>',
+      ['n <leader>hb'] = '<cmd>lua require"gitsigns".blame_line{full=true}<CR>',
+      -- ['n <leader>hS'] = '<cmd>Gitsigns stage_buffer<CR>',
+      -- ['n <leader>hU'] = '<cmd>Gitsigns reset_buffer_index<CR>',
+
+      -- Text objects
+      -- ['o ih'] = ':<C-U>Gitsigns select_hunk<CR>',
+      -- ['x ih'] = ':<C-U>Gitsigns select_hunk<CR>'
+    },
+    watch_gitdir = {
+      interval = 1000,
+      follow_files = true
+    },
+    attach_to_untracked = true,
+    current_line_blame = false, -- Toggle with `:Gitsigns toggle_current_line_blame`
+    current_line_blame_opts = {
+      virt_text = true,
+      virt_text_pos = 'eol', -- 'eol' | 'overlay' | 'right_align'
+      delay = 1000,
+      ignore_whitespace = false,
+    },
+    current_line_blame_formatter_opts = {
+      relative_time = false
+    },
+    sign_priority = 6,
+    update_debounce = 100,
+    status_formatter = nil, -- Use default
+    max_file_length = 40000,
+    preview_config = {
+      -- Options passed to nvim_open_win
+      border = 'single',
+      style = 'minimal',
+      relative = 'cursor',
+      row = 0,
+      col = 1
+    },
+    yadm = {
+      enable = false
+    },
+  }
 EOF
 
 " menuone: popup even when there's only one match
@@ -336,10 +426,6 @@ nmap [h <Plug>(GitGutterPrevHunk)
 " move tab
 nnoremap <F8>  :tabp<CR>
 nnoremap <F9>  :tabn<CR>
-
-" remap sneak
-map = <Plug>Sneak_;
-map # <Plug>Sneak_,
 
 " remap snippet completion
 imap <expr> <C-L> vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<C-L>'

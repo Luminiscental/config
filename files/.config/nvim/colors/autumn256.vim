@@ -232,10 +232,6 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
     " highlight groups
     call <SID>X("Cursor", "708090", "f0e68c", "", "")
     "CursorIM
-    "DiffAdd
-    "DiffChange
-    "DiffDelete
-    "DiffText
     "ErrorMsg
     call <SID>X("SignColumn", "", "none", "none", "")
     call <SID>X("VertSplit", "c2bfa5", "7f7f7f", "reverse", "")
@@ -336,6 +332,17 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
 
     "call <SID>X("CocRustChainingHint", "666666", "", "italic", "")
     "call <SID>X("CocRustTypeHint", "666666", "", "italic", "")
+
+    " vimdiff
+    call <SID>X("DiffAdd", "none", "283912", "", "")
+    call <SID>X("DiffChange", "none", "615822", "", "")
+    call <SID>X("DiffDelete", "1e272b", "522215", "", "")
+    call <SID>X("DiffText", "none", "837b45", "underline", "ead49b")
+
+    " git-signs
+    call <SID>X("GitSignsAdd", "78824b", "", "", "")
+    call <SID>X("GitSignsChange", "d9b554", "", "", "")
+    call <SID>X("GitSignsDelete", "8b4147", "", "", "")
 
     " nvim-lsp
     call <SID>X("LspReferenceRead", "", "685742", "", "")
