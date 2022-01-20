@@ -4,10 +4,6 @@ let mapleader = '\'
 " vista.vim
 let g:vista_sidebar_width=50
 
-" colors, idk if necessary
-"let g:hybrid_termcolors=256
-"let g:hybrid_termtrans=1
-
 " better python syntax
 let g:python_highlight_all = 1
 
@@ -55,7 +51,6 @@ call plug#begin()
   Plug 'vim-python/python-syntax'
   Plug 'tpope/vim-surround'
   Plug 'scrooloose/nerdtree'
-  Plug 'itchyny/lightline.vim'
   Plug 'machakann/vim-highlightedyank'
   Plug 'cespare/vim-toml'
   Plug 'rust-lang/rust.vim'
@@ -72,15 +67,14 @@ call plug#begin()
   Plug 'liuchengxu/vista.vim'
   Plug 'neovim/nvim-lspconfig'
   Plug 'nvim-lua/lsp_extensions.nvim'
-  Plug 'hrsh7th/cmp-nvim-lsp', {'branch': 'main'}
-  Plug 'hrsh7th/cmp-buffer', {'branch': 'main'}
-  Plug 'hrsh7th/cmp-path', {'branch': 'main'}
-  Plug 'hrsh7th/nvim-cmp', {'branch': 'main'}
+  Plug 'hrsh7th/cmp-nvim-lsp'
+  Plug 'hrsh7th/cmp-buffer'
+  Plug 'hrsh7th/cmp-path'
+  Plug 'hrsh7th/nvim-cmp'
   Plug 'hrsh7th/vim-vsnip'
   Plug 'hrsh7th/cmp-vsnip'
   Plug 'ray-x/lsp_signature.nvim'
-  Plug 'josa42/nvim-lightline-lsp'
-  Plug 'nvim-treesitter/nvim-treesitter', {'do': 'TSUpdate'}
+  Plug 'nvim-treesitter/nvim-treesitter'
   Plug 'simrat39/rust-tools.nvim'
   Plug 'nvim-lua/plenary.nvim'
   Plug 'saecki/crates.nvim', { 'tag': 'v0.1.0' }
@@ -88,10 +82,13 @@ call plug#begin()
   Plug 'tpope/vim-fugitive'
   Plug 'lewis6991/gitsigns.nvim'
   Plug 'onsails/lspkind-nvim'
+  Plug 'SmiteshP/nvim-gps'
+  Plug 'nvim-lualine/lualine.nvim'
+  Plug 'kyazdani42/nvim-web-devicons'
+  Plug 'arkav/lualine-lsp-progress'
+  Plug 'beauwilliams/focus.nvim'
 
 call plug#end()
-
-call lightline#lsp#register()
 
 " lexima rules
 call lexima#add_rule({'char': '<', 'at': '[^< ]\%#', 'input_after': '>', 'mode': 'i', 'filetype': ['rust', 'c', 'cpp']})
@@ -401,6 +398,46 @@ lua <<EOF
       enable = false
     },
   }
+
+  local gps = require'nvim-gps'
+  gps.setup {}
+
+  require'lualine'.setup {
+    options = {
+      icons_enabled = true,
+      theme = 'jellybeans',
+      component_separators = { left = '', right = ''},
+      section_separators = { left = '', right = ''},
+      disabled_filetypes = {},
+      always_divide_middle = true,
+    },
+    sections = {
+      lualine_a = {'mode'},
+      lualine_b = {'filename', 'diff', 'diagnostics'},
+      lualine_c = {
+        { gps.get_location, cond = gps.is_available },
+        'lsp_progress'
+      },
+      lualine_x = {'encoding', 'fileformat', 'filetype'},
+      lualine_y = {'progress'},
+      lualine_z = {'location'}
+    },
+    inactive_sections = {
+      lualine_a = {},
+      lualine_b = {},
+      lualine_c = {'filename'},
+      lualine_x = {'location'},
+      lualine_y = {},
+      lualine_z = {}
+    },
+    tabline = {},
+    extensions = {}
+  }
+
+  require'focus'.setup {
+    cursorline = false,
+    signcolumn = false,
+  }
 EOF
 
 " menuone: popup even when there's only one match
@@ -446,7 +483,6 @@ set undodir=~/.vimdid
 set undofile
 
 " gui colors
-set t_Co=256
 set background=dark
 set termguicolors
 
@@ -463,7 +499,7 @@ set cmdheight=2
 " add more keywords
 augroup vimrc_todo
     au!
-    au Syntax * syn keyword Note containedin=.*Comment.* contained NOTE
+    au Syntax * syn keyword Note NOTE containedin=.*Comment.* contained
 augroup END
 
 " custom colorscheme
@@ -471,10 +507,9 @@ colorscheme autumn256
 
 " color column at 80
 set colorcolumn=80
-" match color of lightline
 highlight ColorColumn guibg=#303030 ctermbg=darkgrey
 
-" lightline shows the mode too so don't bother
+" lualine shows the mode too so don't bother
 set noshowmode
 
 " copypasting

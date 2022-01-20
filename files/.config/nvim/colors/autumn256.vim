@@ -226,6 +226,7 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
         endif
     endfun
     " 
+    "
 
     call <SID>X("Normal", "ead49b", "", "none", "")
 
@@ -238,8 +239,10 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
     call <SID>X("Folded", "ffd700", "4d4d4d", "", "")
     call <SID>X("FoldColumn", "d2b48c", "4d4d4d", "", "")
     call <SID>X("IncSearch", "708090", "f0e68c", "", "")
-    call <SID>X("LineNr", "564438", "", "", "")
+    call <SID>X("LineNr", "9d6a47", "", "", "")
     call <SID>X("CursorLineNR", "9d6a47", "", "", "")
+    call <SID>X("LineNrAbove", "564438", "", "", "")
+    call <SID>X("LineNrBelow", "564438", "", "", "")
     call <SID>X("ModeMsg", "d4d4d4", "", "", "")
     call <SID>X("MoreMsg", "2e8b57", "", "", "")
     call <SID>X("NonText", "addbe7", "", "bold", "")
