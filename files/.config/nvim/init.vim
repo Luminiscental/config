@@ -10,10 +10,6 @@ let g:python_highlight_all = 1
 " horrendous ) overrides in insert mode begone
 let g:sexp_enable_insert_mode_mappings = 0
 
-" better java syntax
-let g:java_highlight_functions = 1
-let g:java_highlight_java_lang_ids = 1
-
 " markdown preview config
 let g:mkdp_browser = 'firefox'
 
@@ -25,19 +21,9 @@ let g:ctrlp_custom_ignore = {
   \ 'file': '\v\.(exe|so|dll)$',
   \ }
 
-" lightline config
-let g:lightline = {
-      \ 'colorscheme': 'jellybeans',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'lsp_status', 'readonly', 'filename', 'modified' ] ]
-      \ },
-      \ }
-
 let g:tex_flavor = 'latex'
 let g:vimtex_compiler_progname = 'nvr'
 let g:vimtex_syntax_conceal_default = 1
-
 
 " tex pdf previews
 let g:vimtex_view_method='mupdf'
@@ -86,7 +72,7 @@ call plug#begin()
   Plug 'nvim-lualine/lualine.nvim'
   Plug 'kyazdani42/nvim-web-devicons'
   Plug 'arkav/lualine-lsp-progress'
-  Plug 'beauwilliams/focus.nvim'
+  Plug 'Luminiscental/autumn256.vim'
 
 call plug#end()
 
@@ -271,7 +257,7 @@ lua <<EOF
           },
           completion = {
   	        postfix = {
-  	          enable = false,
+  	          enable = true,
   	        },
           },
         },
@@ -315,6 +301,10 @@ lua <<EOF
       -- `false` will disable the whole extension
       enable = true,
 
+      disable = function(lang, bufnr)
+        return vim.api.nvim_buf_line_count(bufnr) > 10000
+      end,
+
       -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
       -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
       -- Using this option may slow down your editor, and you may see some duplicate highlights.
@@ -334,6 +324,11 @@ lua <<EOF
 
   -- git signs
   require'gitsigns'.setup {
+    on_attach = function(bufnr)
+      if vim.api.nvim_buf_line_count(bufnr) > 10000 then
+        return false
+      end
+    end,
     signs = {
       add          = {hl = 'GitSignsAdd'   , text = '+', numhl='GitSignsAddNr'   , linehl='GitSignsAddLn'},
       change       = {hl = 'GitSignsChange', text = '|', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn'},
@@ -405,8 +400,8 @@ lua <<EOF
   require'lualine'.setup {
     options = {
       icons_enabled = true,
-      theme = 'jellybeans',
-      component_separators = { left = '', right = ''},
+      theme = require'autumn256.lualine_theme',
+      component_separators = { left = '|', right = '|'},
       section_separators = { left = '', right = ''},
       disabled_filetypes = {},
       always_divide_middle = true,
@@ -432,11 +427,6 @@ lua <<EOF
     },
     tabline = {},
     extensions = {}
-  }
-
-  require'focus'.setup {
-    cursorline = false,
-    signcolumn = false,
   }
 EOF
 
@@ -483,7 +473,6 @@ set undodir=~/.vimdid
 set undofile
 
 " gui colors
-set background=dark
 set termguicolors
 
 " show current line number and relative numbers
@@ -502,12 +491,11 @@ augroup vimrc_todo
     au Syntax * syn keyword Note NOTE containedin=.*Comment.* contained
 augroup END
 
-" custom colorscheme
+" use autumn256 colorscheme
 colorscheme autumn256
 
 " color column at 80
 set colorcolumn=80
-highlight ColorColumn guibg=#303030 ctermbg=darkgrey
 
 " lualine shows the mode too so don't bother
 set noshowmode
@@ -520,6 +508,9 @@ augroup vimtexgroup
   " enable conceal
   autocmd FileType tex set conceallevel=2
 augroup end
+
+" lazy folding
+set nofoldenable
 
 " sane tabs
 set tabstop=4
