@@ -1,2 +1,2 @@
 packages: python python-nvim xclip xsel vim neovim
-files: ~/.config/nvim/init.nvim ~/.config/nvim/lua/lsp_autofix.lua ~/.config/nvim/autoload/plug.vim
+files: $$[<HOME>]$$/.config/nvim/init.vim $$[<HOME>]$$/.config/nvim/lua/lsp_autofix.lua $$[<HOME>]$$/.config/nvim/autoload/plug.vim

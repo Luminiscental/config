@@ -1,2 +1,2 @@
 packages: dunst
-files: ~/.config/dunst/dunstrc
+files: $$[<HOME>]$$/.config/dunst/dunstrc

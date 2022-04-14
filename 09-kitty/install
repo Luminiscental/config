@@ -1,2 +1,2 @@
 packages: kitty
-files: ~/.config/kitty/kitty.conf
+files: $$[<HOME>]$$/.config/kitty/kitty.conf

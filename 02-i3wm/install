@@ -1,2 +1,2 @@
 packages: i3-gaps
-files: ~/.config/i3/config
+files: $$[<HOME>]$$/.config/i3/config

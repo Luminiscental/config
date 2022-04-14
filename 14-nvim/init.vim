@@ -48,7 +48,7 @@ call plug#begin()
   Plug 'cespare/vim-toml'
   Plug 'rust-lang/rust.vim'
   Plug 'plasticboy/vim-markdown'
-  Plug 'iamcco/markdown-preview.nvim', {'for': ['markdown', 'pandoc.markdown', 'rmd'], 'do': 'cd app & yarn install'}
+  Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
   Plug 'neovimhaskell/haskell-vim'
   Plug 'lervag/vimtex'
   Plug 'cohama/lexima.vim'
@@ -333,8 +333,7 @@ lua <<EOF
   }
 
   require'nvim-treesitter.configs'.setup {
-    -- One of "all", "maintained" (parsers with maintainers), or a list of languages
-    ensure_installed = "maintained",
+    ensure_installed = "all",
 
     -- Install languages synchronously (only applied to `ensure_installed`)
     sync_install = false,
