@@ -1,0 +1,2 @@
+packages: rofi
+files: ~/.config/rofi/config.rasi

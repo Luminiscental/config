@@ -1,0 +1,12 @@
+#!/bin/sh
+
+function trap_ctrlc() {
+    sudo modprobe wacom
+    sleep 2
+    xsetwacom --set "Wacom One by Wacom S Pen stylus" Rotate half
+}
+
+trap trap_ctrlc 2
+
+sudo rmmod wacom
+otd

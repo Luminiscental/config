@@ -1,0 +1,2 @@
+packages: dunst
+files: ~/.config/dunst/dunstrc

@@ -1,0 +1,2 @@
+packages: conky lm_sensors
+files: ~/Documents/conky/system.conf ~/Documents/conky/todo.conf

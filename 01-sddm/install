@@ -1,0 +1,3 @@
+packages: sddm sddm-sugar-dark
+files: /etc/sddm.conf.d/theme.conf
+services: sddm.service

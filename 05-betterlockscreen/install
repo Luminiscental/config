@@ -1,0 +1,3 @@
+packages: betterlockscreen
+files: ~/Documents/wallpapers/samantha-gades.jpg
+exec: betterlockscreen -u ~/Documents/wallpapers/samantha-gades.jpg

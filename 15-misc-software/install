@@ -1,0 +1,2 @@
+packages: firefox mupdf texlive-most rustup rust-analyzer git pipewire pipewire-pulse pipewire-alsa pipewire-jack 1password discord spotify opentabletdriver
+files: ~/.local/bin/i3-get-window-criteria ~/.local/bin/swap-tablet-area

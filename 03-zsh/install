@@ -1,0 +1,3 @@
+packages: zsh zsh-completions oh-my-zsh zsh-theme-powerlevel10k
+files: ~/.profile ~/.zprofile ~/.zshrc ~/.Xresources ~/.p10k.zsh ~/.aliases
+exec: chsh -s /usr/bin/zsh
