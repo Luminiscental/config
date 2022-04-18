@@ -54,9 +54,12 @@ def update():
                         content = templatize(system_file.read())
                     with open(repo_filename, "w") as repo_file:
                         repo_file.write(templatize(content))
-                repo_basenames.remove(basename)
+                if basename in repo_basenames:
+                    repo_basenames.remove(basename)
+                else:
+                    print(f"  New file: {os.path.join(config, basename)}")
             for basename in repo_basenames:
-                print(f"  Warning: orphaned file {os.path.join(config, basename)}")
+                print(f"  Orphaned file: {os.path.join(config, basename)}")
     print("\nDone")
 
 
