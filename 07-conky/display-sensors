@@ -1,0 +1,51 @@
+#!/usr/bin/env python
+
+
+import subprocess
+import re
+
+
+def get_paragraphs(lines):
+    def take_paragraph(lines):
+        assert lines
+        header = lines[0]
+        end = 1
+        while end < len(lines) and lines[end]:
+            end += 1
+        return header, lines[1:end], lines[end + 1 :]
+
+    paragraphs = {}
+    while lines:
+        header, body, lines = take_paragraph(lines)
+        paragraphs[header] = body
+    return paragraphs
+
+
+def indent(lines):
+    return ["  " + line for line in lines]
+
+
+def main():
+    raw = subprocess.check_output("sensors").decode("utf-8")
+    parens = re.compile(r"\(.*?\)")
+    paragraphs = get_paragraphs(
+        [
+            re.sub(parens, "", line).strip()
+            for line in map(str.strip, raw.splitlines())
+            if line.split(":", 1)[0] not in ("Adapter", "Composite", "Package id 0")
+            and not parens.match(line)
+        ]
+    )
+    paragraphs.pop("acpitz-acpi-0")
+    print(
+        "\n\n".join(
+            "\n".join([header] + indent(body)) for header, body in paragraphs.items()
+        )
+    )
+
+
+if __name__ == "__main__":
+    main()
+
+
+# vim: set syntax=python:

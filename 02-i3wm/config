@@ -217,7 +217,7 @@ exec --no-startup-id flameshot
 exec --no-startup-id polybar-wrapper
 exec --no-startup-id betterlockscreen -w
 exec --no-startup-id conky -dq -c ~/Documents/conky/system.conf
-exec --no-startup-id conky -dq -c ~/Documents/conky/todo.conf
+exec --no-startup-id conky -dq -c ~/Documents/conky/streaks.conf
 exec --no-startup-id redshift-gtk
 
 # Fixes for i3
