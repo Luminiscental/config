@@ -53,7 +53,6 @@ call plug#begin()
   Plug 'lervag/vimtex'
   Plug 'cohama/lexima.vim'
   Plug 'tikhomirov/vim-glsl'
-  Plug 'honza/vim-snippets'
   Plug 'tpope/vim-repeat'
   Plug 'guns/vim-sexp'
   Plug 'tpope/vim-sexp-mappings-for-regular-people'

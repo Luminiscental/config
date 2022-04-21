@@ -1,0 +1,29 @@
+{
+  "Equation": {
+    "prefix": ["eqn"],
+    "body": [
+      "\\begin{equation*}",
+      "\t$0",
+      "\\end{equation*}"
+    ],
+    "description": "Equation environment template."
+  },
+  "Align": {
+    "prefix": ["algn"],
+    "body": [
+      "\\begin{align*}",
+      "\t$0",
+      "\\end{align*}"
+    ],
+    "description": "Align environment template."
+  },
+  "Enumerate": {
+    "prefix": ["enmt"],
+    "body": [
+      "\\begin{enumerate*}$1",
+      "\t\\item $0",
+      "\\end{enumerate*}"
+    ],
+    "description": "Enumeration template."
+  }
+}
