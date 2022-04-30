@@ -33,12 +33,7 @@ class InstallMeta:
     def __init__(self, keys):
         self.packages = arglist(keys["packages"]) if "packages" in keys else []
         self.files = arglist(keys["files"]) if "files" in keys else []
-        self.exec = keys.get("exec")
-
-    def dump(self):
-        print(f"packages: {self.packages}")
-        print(f"files: {self.files}")
-        print(f"exec: {self.exec}")
+        self.exec = keys["exec"].strip() if "exec" in keys else None
 
     @staticmethod
     def from_folder(folder):
@@ -50,10 +45,6 @@ class InstallMeta:
                     if line
                 )
             )
-
-
-def ensure_parents(file):
-    raise NotImplementedError
 
 
 def copy_with_text_filter(src, dst, textmap, *, checkdiff=False):
@@ -105,27 +96,57 @@ def update():
 
 
 def install():
+    print("Warning: This installation script is untested! Use at your own risk.")
+    print("Continue? [y/n]:", end="")
+    if not input().lower().startswith("y"):
+        return
+    print("An AUR helper is required, what command should be used? :", end="")
+    pkg = input()
+    commands = []
     for folder in get_config_folders():
+        print(f"Installing {folder}...")
         install_meta = InstallMeta.from_folder(folder)
-        # TODO: packages?
+        packages = " ".join(install_meta.packages)
+        if os.system(f"{pkg} -S {packages}") != 0:
+            print("Couldn't install packages; aborting")
+            return
         for system_file in install_meta.files:
             basename = os.path.basename(system_file)
             store_file = os.path.join(folder, basename)
-            ensure_parents(system_file)
+            os.makedirs(os.path.dirname(system_file), exist_ok=True)
             copy_with_text_filter(store_file, system_file, apply_substitutions)
-        # TODO: commands?
+        commands.append(install_meta.exec)
+    print("Please run the following commands and restart:")
+    for command in commands:
+        print(f"$ {command}")
 
 
-def dump():
+def instruct():
+    packages = []
+    files = {}
+    commands = []
     for folder in get_config_folders():
-        print(f"{folder}:")
-        InstallMeta.from_folder(folder).dump()
-        print()
+        install_meta = InstallMeta.from_folder(folder)
+        packages.extend(install_meta.packages)
+        for system_file in install_meta.files:
+            repo_file = os.path.join(folder, os.path.basename(system_file))
+            files[repo_file] = system_file
+            copy_with_text_filter(repo_file, repo_file, apply_substitutions)
+        if install_meta.exec:
+            commands.append(install_meta.exec)
+    packages = " ".join(packages)
+    print(f"Install the following packages (some are AUR):\n  {packages}\n")
+    print(f"Copy the following files:")
+    for src, dest in files.items():
+        print(f"  {src} -> {dest}")
+    print("\nRun the following commands and restart:")
+    for command in commands:
+        print(f"  $ {command}")
 
 
 def main():
     print(
-        "\n0) Quit\n1) Update repository files\n2) Install from repository\n3) Dump metadata\nChoice: ",
+        "\n0) Quit\n1) Update repository files\n2) Install from repository\n3) Display manual installation instructions\nChoice: ",
         end="",
     )
     while not (action := input().strip()) in ["1", "2", "3"]:
@@ -138,7 +159,7 @@ def main():
     if action == "2":
         install()
     if action == "3":
-        dump()
+        instruct()
 
 
 if __name__ == "__main__":
