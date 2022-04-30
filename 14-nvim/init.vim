@@ -83,6 +83,7 @@ call plug#begin()
   Plug 'gelguy/wilder.nvim', { 'do': function('UpdateRemotePlugins') }
   Plug 'kyazdani42/nvim-web-devicons'
   Plug 'kyazdani42/nvim-tree.lua'
+  Plug 'kevinhwang91/nvim-bqf'
 
 call plug#end()
 
