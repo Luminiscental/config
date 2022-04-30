@@ -3,6 +3,7 @@
 
 import subprocess
 import re
+import sys
 
 
 def get_paragraphs(lines):
@@ -21,11 +22,19 @@ def get_paragraphs(lines):
     return paragraphs
 
 
-def indent(lines):
-    return ["  " + line for line in lines]
+def ralign_after(pat, string, pad):
+    before, after = string.split(pat, 1)
+    before = before.strip()
+    after = after.strip()
+    return before + pat + " " * (pad - len(before) - len(after)) + after
+
+
+def display_body(lines, width):
+    return ["  " + ralign_after(":", line, width) for line in lines]
 
 
 def main():
+    width = int(sys.argv[1])
     raw = subprocess.check_output("sensors").decode("utf-8")
     parens = re.compile(r"\(.*?\)")
     paragraphs = get_paragraphs(
@@ -39,7 +48,8 @@ def main():
     paragraphs.pop("acpitz-acpi-0")
     print(
         "\n\n".join(
-            "\n".join([header] + indent(body)) for header, body in paragraphs.items()
+            "\n".join([header] + display_body(body, width))
+            for header, body in paragraphs.items()
         )
     )
 
