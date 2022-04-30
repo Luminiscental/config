@@ -33,8 +33,12 @@ class InstallMeta:
     def __init__(self, keys):
         self.packages = arglist(keys["packages"]) if "packages" in keys else []
         self.files = arglist(keys["files"]) if "files" in keys else []
-        self.services = arglist(keys["services"]) if "services" in keys else []
         self.exec = keys.get("exec")
+
+    def dump(self):
+        print(f"packages: {self.packages}")
+        print(f"files: {self.files}")
+        print(f"exec: {self.exec}")
 
     @staticmethod
     def from_folder(folder):
@@ -46,6 +50,10 @@ class InstallMeta:
                     if line
                 )
             )
+
+
+def ensure_parents(file):
+    raise NotImplementedError
 
 
 def copy_with_text_filter(src, dst, textmap, *, checkdiff=False):
@@ -97,24 +105,40 @@ def update():
 
 
 def install():
-    raise NotImplementedError
+    for folder in get_config_folders():
+        install_meta = InstallMeta.from_folder(folder)
+        # TODO: packages?
+        for system_file in install_meta.files:
+            basename = os.path.basename(system_file)
+            store_file = os.path.join(folder, basename)
+            ensure_parents(system_file)
+            copy_with_text_filter(store_file, system_file, apply_substitutions)
+        # TODO: commands?
+
+
+def dump():
+    for folder in get_config_folders():
+        print(f"{folder}:")
+        InstallMeta.from_folder(folder).dump()
+        print()
 
 
 def main():
     print(
-        "\n0) Quit\n1) Update repository files\n2) Install from repository\n\nChoice: ",
+        "\n0) Quit\n1) Update repository files\n2) Install from repository\n3) Dump metadata\nChoice: ",
         end="",
     )
-    while not (action := input().strip()) in ["1", "2"]:
+    while not (action := input().strip()) in ["1", "2", "3"]:
         if action == "0":
             return
-        print("Enter a choice from 0-2: ", end="")
+        print("Enter a choice from 0-3: ", end="")
     print()
     if action == "1":
         update()
-    else:
-        assert action == "2"
+    if action == "2":
         install()
+    if action == "3":
+        dump()
 
 
 if __name__ == "__main__":
