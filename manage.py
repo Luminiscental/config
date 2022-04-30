@@ -7,12 +7,8 @@ BINARY_EXTENSIONS = [".jpg"]
 
 
 def arglist(string):
+    # TODO: handle spaces in file names
     return list(string.strip().split(" "))
-
-
-def exclude(item, list):
-    list.remove(item)
-    return list
 
 
 def apply_substitutions(string):
@@ -23,44 +19,81 @@ def templatize(string):
     return string.replace(os.path.expanduser("~"), "$$[<HOME>]$$")
 
 
-def update():
-    configs = [
-        dir
-        for dir in os.listdir()
-        if dir[:2].isdecimal() and os.path.isfile(os.path.join(dir, "install"))
-    ]
-    for config in sorted(configs):
-        print(config)
-        with open(os.path.join(config, "install"), "r") as install_file:
-            install_metadata = dict(
-                apply_substitutions(line).split(": ", 1)
-                for line in install_file.readlines()
-                if line
+def get_config_folders():
+    return sorted(
+        [
+            dir
+            for dir in os.listdir()
+            if dir[:2].isdecimal() and os.path.isfile(os.path.join(dir, "install"))
+        ]
+    )
+
+
+class InstallMeta:
+    def __init__(self, keys):
+        self.packages = arglist(keys["packages"]) if "packages" in keys else []
+        self.files = arglist(keys["files"]) if "files" in keys else []
+        self.services = arglist(keys["services"]) if "services" in keys else []
+        self.exec = keys.get("exec")
+
+    @staticmethod
+    def from_folder(folder):
+        with open(os.path.join(folder, "install"), "r") as f:
+            return InstallMeta(
+                dict(
+                    apply_substitutions(line).split(": ", 1)
+                    for line in f.readlines()
+                    if line
+                )
             )
-        if "files" in install_metadata:
-            repo_basenames = exclude("install", os.listdir(config))
-            for system_filename in arglist(install_metadata["files"]):
-                basename = os.path.basename(system_filename)
-                repo_filename = os.path.join(config, basename)
-                print(f"  ... {system_filename} -> {repo_filename}")
-                _, ext = os.path.splitext(system_filename)
-                if ext in BINARY_EXTENSIONS:
-                    with open(system_filename, "rb") as system_file:
-                        content = system_file.read()
-                    with open(repo_filename, "wb") as repo_file:
-                        repo_file.write(content)
-                else:
-                    with open(system_filename, "r") as system_file:
-                        content = templatize(system_file.read())
-                    with open(repo_filename, "w") as repo_file:
-                        repo_file.write(templatize(content))
-                if basename in repo_basenames:
-                    repo_basenames.remove(basename)
-                else:
-                    print(f"  New file: {os.path.join(config, basename)}")
-            for basename in repo_basenames:
-                print(f"  Orphaned file: {os.path.join(config, basename)}")
-    print("\nDone")
+
+
+def copy_with_text_filter(src, dst, textmap, *, checkdiff=False):
+    diff = False
+
+    _, ext = os.path.splitext(src)
+    binary = ext in BINARY_EXTENSIONS
+    read_flag = "rb" if binary else "r"
+    write_flag = "wb" if binary else "w"
+    filter = (lambda b: b) if binary else textmap
+
+    with open(src, read_flag) as f:
+        content = filter(f.read())
+    if checkdiff:
+        with open(dst, read_flag) as f:
+            diff = f.read() != content
+    with open(dst, write_flag) as f:
+        f.write(content)
+
+    return diff
+
+
+def update():
+    updated = False
+    for folder in get_config_folders():
+        install_meta = InstallMeta.from_folder(folder)
+        store_files = [
+            os.path.join(folder, basename)
+            for basename in os.listdir(folder)
+            if basename != "install"
+        ]
+        for system_file in install_meta.files:
+            basename = os.path.basename(system_file)
+            store_file = os.path.join(folder, basename)
+            if store_file in store_files:
+                store_files.remove(store_file)
+                if copy_with_text_filter(
+                    system_file, store_file, templatize, checkdiff=True
+                ):
+                    print(f"Updated: {store_file}")
+                    updated = True
+            else:
+                copy_with_text_filter(system_file, store_file, templatize)
+                print(f"New: {store_file}")
+                updated = True
+        for file in store_files:
+            print(f"Orphan: {file}")
+    print("Complete" if updated else "No changes")
 
 
 def install():
