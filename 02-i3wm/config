@@ -153,6 +153,7 @@ bindsym $mod+mod1+m exec --no-startup-id "dunstctl close-all"
 
 # flameshot
 bindsym mod1+A exec --no-startup-id "flameshot gui"
+bindsym mod1+F exec --no-startup-id "flameshot full"
 
 # Lock screen
 bindsym $mod+p exec --no-startup-id betterlockscreen -l dimblur
@@ -221,3 +222,5 @@ for_window [class="Conky"] floating enable, border none
 for_window [class="Wine"] floating enable, border none
 for_window [class="Microsoft Teams - Preview"] floating enable, border none
 no_focus [window_role="popup"]
+
+# vim: ft=i3config
