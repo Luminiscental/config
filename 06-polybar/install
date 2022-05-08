@@ -1,3 +1,2 @@
-packages: polybar polybar-spotify-module
+packages: polybar polybar-spotify playerctl
 files: $$[<HOME>]$$/.config/polybar/config.ini $$[<HOME>]$$/.local/bin/polybar-wrapper
-exec: systemctl --user enable spotify-listener
