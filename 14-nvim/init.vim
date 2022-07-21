@@ -84,6 +84,7 @@ call plug#begin()
   Plug 'kyazdani42/nvim-web-devicons'
   Plug 'kyazdani42/nvim-tree.lua'
   Plug 'kevinhwang91/nvim-bqf'
+  Plug 'Julian/lean.nvim'
 
 call plug#end()
 
@@ -474,6 +475,13 @@ lua <<EOF
   }
 
   require'nvim-tree'.setup {}
+
+  require'lean'.setup {
+    abbreviations = { builtin = true },
+    lsp = { on_attach = on_attach },
+    lsp3 = { on_attach = on_attach },
+    mappings = true,
+  }
 EOF
 
 " menuone: popup even when there's only one match
