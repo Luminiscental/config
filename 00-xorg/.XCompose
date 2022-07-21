@@ -1,0 +1,56 @@
+include "%L"
+
+<Multi_key> <u> <less> : "⊆" U2286 # u < SUBSET OF OR EQUAL TO
+<Multi_key> <u> <less> <slash> : "⊊" U228A # u < / SUBSET OF BUT NOT EQUAL TO
+<Multi_key> <slash> <u> <less> : "⊈" U2288 # / u < NOT SUBSET OF OR EQUAL TO
+<Multi_key> <u> <greater> : "⊇" U2287 # u > SUPERSET OF OR EQUAL TO
+<Multi_key> <u> <greater> <slash> : "⊋" U228B # u > / SUPERSET OF BUT NOT EQUAL TO
+<Multi_key> <slash> <u> <greater> : "⊉" U2289 # / u > NOT SUPERSET OF OR EQUAL TO
+
+<Multi_key> <o> <period> : "∘" U2218 # o . FUNCTION COMPOSE CIRCLE
+<Multi_key> <period> <o> : "∘" U2218 # . o FUNCTION COMPOSE CIRCLE
+
+<Multi_key> <bar> <minus> <less> : "↤" U21A6 # - < LEFTWARDS ARROW FROM BAR
+<Multi_key> <minus> <less> : "⟵" U27F6 # - < LONG LEFTWARDS ARROW
+<Multi_key> <bar> <minus> <greater> : "↦" U21A6 # - > RIGHTWARDS ARROW FROM BAR
+<Multi_key> <minus> <greater> : "⟶" U27F6 # - > LONG RIGHTWARDS ARROW
+
+<Multi_key> <g> <a> : "α" U03B1 # g a GREEK SMALL LETTER ALPHA
+<Multi_key> <g> <b> : "β" U03B2 # g b GREEK SMALL LETTER BETA
+<Multi_key> <g> <g> : "γ" U03B3 # g g GREEK SMALL LETTER GAMMA
+<Multi_key> <g> <G> : "Γ" U0393 # g G GREEK CAPITAL LETTER GAMMA
+<Multi_key> <g> <d> : "δ" U03B4 # g d GREEK SMALL LETTER DELTA
+<Multi_key> <g> <D> : "Δ" U0394 # g D GREEK CAPITAL LETTER DELTA
+<Multi_key> <g> <e> : "ε" U03B5 # g e GREEK SMALL LETTER EPSILON
+<Multi_key> <g> <z> : "ζ" U03B6 # g z GREEK SMALL LETTER ZETA
+<Multi_key> <g> <h> : "η" U03B7 # g h GREEK SMALL LETTER ETA
+<Multi_key> <g> <t> <h> : "θ" U03B8 # g t h GREEK SMALL LETTER THETA
+<Multi_key> <g> <T> <h> : "Θ" U0398 # g T h GREEK CAPITAL LETTER THETA
+<Multi_key> <g> <i> : "ι" U03B9 # g i GREEK SMALL LETTER IOTA
+<Multi_key> <g> <k> : "κ" U03BA # g k GREEK SMALL LETTER KAPPA
+<Multi_key> <g> <l> : "λ" U03BB # g l GREEK SMALL LETTER LAMBDA
+<Multi_key> <g> <L> : "Λ" U039B # g L GREEK CAPITAL LETTER LAMBDA
+<Multi_key> <g> <m> : "μ" U03BC # g m GREEK SMALL LETTER MU
+<Multi_key> <g> <n> : "ν" U03BD # g n GREEK SMALL LETTER NU
+<Multi_key> <g> <x> : "ξ" U03BE # g x GREEK SMALL LETTER XI
+<Multi_key> <g> <X> : "Ξ" U039E # g X GREEK CAPITAL LETTER XI
+<Multi_key> <g> <p> <i> : "π" U03C0 # g p i GREEK SMALL LETTER PI
+<Multi_key> <g> <P> <i> : "Π" U03A0 # g P i GREEK CAPITAL LETTER PI
+<Multi_key> <g> <r> : "ρ" U03C1 # g r GREEK SMALL LETTER RHO
+<Multi_key> <g> <s> : "σ" U03C3 # g s GREEK SMALL LETTER SIGMA
+<Multi_key> <g> <S> : "Σ" U03A3 # g S GREEK CAPITAL LETTER SIGMA
+<Multi_key> <g> <t> <a> : "τ" U03C4 # g t a GREEK SMALL LETTER TAU
+<Multi_key> <g> <f> : "φ" U03C6 # g f GREEK SMALL LETTER PHI
+<Multi_key> <g> <F> : "Φ" U03A6 # g F GREEK CAPITAL LETTER PHI
+<Multi_key> <g> <c> : "χ" U03C7 # g c GREEK SMALL LETTER CHI
+<Multi_key> <g> <p> <s> : "ψ" U03C8 # g p s GREEK SMALL LETTER PSI
+<Multi_key> <g> <P> <s> : "Ψ" U03A8 # g P s GREEK SMALL LETTER PSI
+<Multi_key> <g> <w> : "ω" U03C9 # g w GREEK SMALL LETTER OMEGA
+<Multi_key> <g> <O> : "Ω" U03A9 # g O GREEK CAPITAL LETTER OMEGA
+
+<Multi_key> <f> <a> : "∀" U2200 # g f a FOR ALL
+<Multi_key> <t> <e> : "∃" U2203 # g t e THERE EXISTS
+<Multi_key> <d> <d> : "∂" U2202 # g d d BOUNDARY DIFFERENTIAL
+<Multi_key> <e> <o> : "∈" U2208 # g e o ELEMENT OF
+<Multi_key> <slash> <e> <o> : "∉" U2209 # g / e o NOT ELEMENT OF
+<Multi_key> <i> <f> <f> : "⇔" U21D4 # g i f f IF AND ONLY IF
