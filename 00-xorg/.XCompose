@@ -1,9 +1,9 @@
 include "%L"
 
-<Multi_key> <u> <less> : "⊆" U2286 # u < SUBSET OF OR EQUAL TO
+<Multi_key> <u> <less> <equal> : "⊆" U2286 # u < = SUBSET OF OR EQUAL TO
 <Multi_key> <u> <less> <slash> : "⊊" U228A # u < / SUBSET OF BUT NOT EQUAL TO
 <Multi_key> <slash> <u> <less> : "⊈" U2288 # / u < NOT SUBSET OF OR EQUAL TO
-<Multi_key> <u> <greater> : "⊇" U2287 # u > SUPERSET OF OR EQUAL TO
+<Multi_key> <u> <greater> <equal> : "⊇" U2287 # u > = SUPERSET OF OR EQUAL TO
 <Multi_key> <u> <greater> <slash> : "⊋" U228B # u > / SUPERSET OF BUT NOT EQUAL TO
 <Multi_key> <slash> <u> <greater> : "⊉" U2289 # / u > NOT SUPERSET OF OR EQUAL TO
 
