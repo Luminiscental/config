@@ -124,11 +124,21 @@ def install_files():
     for folder in get_config_folders():
         print(f"Installing files from {folder}...")
         install_meta = InstallMeta.from_folder(folder)
+        skipped = []
         for system_file in install_meta.files:
             basename = os.path.basename(system_file)
             store_file = os.path.join(folder, basename)
-            os.makedirs(os.path.dirname(system_file), exist_ok=True)
-            copy_with_text_filter(store_file, system_file, apply_substitutions)
+            print(f"...Copying {store_file} -> {system_file}")
+            try:
+                os.makedirs(os.path.dirname(system_file), exist_ok=True)
+                copy_with_text_filter(store_file, system_file, apply_substitutions)
+            except PermissionError as e:
+                print(f"...Skipping due to permission error: {e}")
+                skipped.append((store_file, system_file))
+        if skipped:
+            print("Please copy the following files which were skipped:")
+        for store_file, system_file in skipped:
+            print(f"   {store_file} -> {system_file}")
 
 
 def instruct():
