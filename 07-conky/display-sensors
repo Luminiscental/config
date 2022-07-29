@@ -6,6 +6,9 @@ import re
 import sys
 
 
+BLACKLIST = ["acpitz", "iwlwifi"]
+
+
 def get_paragraphs(lines):
     def take_paragraph(lines):
         assert lines
@@ -45,11 +48,11 @@ def main():
             and not parens.match(line)
         ]
     )
-    paragraphs.pop("acpitz-acpi-0")
     print(
         "\n\n".join(
             "\n".join([header] + display_body(body, width))
             for header, body in paragraphs.items()
+            if not any(header.startswith(w) for w in BLACKLIST)
         )
     )
 
