@@ -6,7 +6,7 @@ import re
 import sys
 
 
-BLACKLIST = ["acpitz", "iwlwifi"]
+BLACKLIST = ["acpitz", "iwlwifi", "ath10k", "ucsi", "BAT0"]
 
 
 def get_paragraphs(lines):
@@ -44,15 +44,17 @@ def main():
         [
             re.sub(parens, "", line).strip()
             for line in map(str.strip, raw.splitlines())
-            if line.split(":", 1)[0] not in ("Adapter", "Composite", "Package id 0")
+            if line.split(":", 1)[0] not in ("Adapter", "Package id 0")
             and not parens.match(line)
         ]
     )
     print(
         "\n\n".join(
-            "\n".join([header] + display_body(body, width))
-            for header, body in paragraphs.items()
-            if not any(header.startswith(w) for w in BLACKLIST)
+            sorted(
+                "\n".join([header] + display_body(body, width))
+                for header, body in paragraphs.items()
+                if not any(header.startswith(w) for w in BLACKLIST)
+            )
         )
     )
 
