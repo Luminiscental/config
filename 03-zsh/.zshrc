@@ -9,7 +9,7 @@ fi
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=~/.oh-my-zsh
+export ZSH=/usr/share/.oh-my-zsh
 
 POWERLEVEL10K_MODE="nerdfont-complete"
 
