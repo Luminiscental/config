@@ -7,7 +7,7 @@ export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 
 # GPG
-export GPG_TTY=$(tty)
+export GPG_TTY=$TTY
 
 # Use nvim by default
 export VISUAL=nvim
