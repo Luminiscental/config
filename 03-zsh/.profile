@@ -6,6 +6,9 @@ export PATH="/opt/wine-osu/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 
+# GPG
+export GPG_TTY=$(tty)
+
 # Use nvim by default
 export VISUAL=nvim
 export EDITOR="$VISUAL"
