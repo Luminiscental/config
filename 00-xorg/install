@@ -1,2 +1,2 @@
-packages: xorg xf86-input-wacom
+packages: xorg
 files: /etc/X11/xorg.conf.d/00-keyboard.conf /etc/X11/xorg.conf.d/50-mouse.conf $$[<HOME>]$$/.xinitrc $$[<HOME>]$$/.XCompose

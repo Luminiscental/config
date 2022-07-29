@@ -1,2 +1,2 @@
-packages: redshift-gtk
+packages: redshift
 files: $$[<HOME>]$$/.config/redshift/redshift.conf
