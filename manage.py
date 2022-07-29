@@ -116,9 +116,19 @@ def install():
             os.makedirs(os.path.dirname(system_file), exist_ok=True)
             copy_with_text_filter(store_file, system_file, apply_substitutions)
         commands.append(install_meta.exec)
-    print("Please run the following commands and restart:")
     for command in commands:
-        print(f"$ {command}")
+        os.system(command)
+
+
+def install_files():
+    for folder in get_config_folders():
+        print(f"Installing files from {folder}...")
+        install_meta = InstallMeta.from_folder(folder)
+        for system_file in install_meta.files:
+            basename = os.path.basename(system_file)
+            store_file = os.path.join(folder, basename)
+            os.makedirs(os.path.dirname(system_file), exist_ok=True)
+            copy_with_text_filter(store_file, system_file, apply_substitutions)
 
 
 def instruct():
@@ -146,13 +156,23 @@ def instruct():
 
 def main():
     print(
-        "\n0) Quit\n1) Update repository files\n2) Install from repository\n3) Display manual installation instructions\nChoice: ",
+        "\n".join(
+            [
+                "",
+                "0) Quit",
+                "1) Update repository files",
+                "2) Install from repository",
+                "3) Display manual installation instructions",
+                "4) Copy the files needed for installation",
+                "Choice: ",
+            ]
+        ),
         end="",
     )
-    while not (action := input().strip()) in ["1", "2", "3"]:
+    while not (action := input().strip()) in "1234":
         if action == "0":
             return
-        print("Enter a choice from 0-3: ", end="")
+        print("Enter a choice from 0-4: ", end="")
     print()
     if action == "1":
         update()
@@ -160,6 +180,8 @@ def main():
         install()
     if action == "3":
         instruct()
+    if action == "4":
+        install_files()
 
 
 if __name__ == "__main__":
