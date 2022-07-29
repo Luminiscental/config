@@ -340,7 +340,7 @@ lua <<EOF
     sync_install = false,
 
     -- List of parsers to ignore installing
-    ignore_install = { "javascript", "pascal", "vala" },
+    ignore_install = { "javascript", "pascal", "vala", "phpdoc" },
 
     highlight = {
       -- `false` will disable the whole extension
