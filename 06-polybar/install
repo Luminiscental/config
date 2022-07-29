@@ -1,2 +1,3 @@
 packages: polybar polybar-spotify playerctl
 files: $$[<HOME>]$$/.config/polybar/config.ini $$[<HOME>]$$/.local/bin/polybar-wrapper
+exec: chmod +x $$[<HOME>]$$/.local/bin/polybar-wrapper
