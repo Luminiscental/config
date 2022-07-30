@@ -2,7 +2,6 @@
 
 # Update path
 export PATH="/usr/local/bin:$PATH"
-export PATH="/opt/wine-osu/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 

@@ -1,2 +1,2 @@
-packages: fcitx5 fcitx5-mozc
-files: /etc/environment
+packages: fcitx5-im fcitx5-mozc
+files: /etc/environment $$[<HOME>]$$/.config/fcitx5/profile $$[<HOME>]$$/.config/fcitx5/config
