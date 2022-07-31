@@ -11,6 +11,8 @@ fi
 # Path to your oh-my-zsh installation.
 export ZSH=/usr/share/oh-my-zsh
 
+export GPG_TTY=$TTY
+
 POWERLEVEL10K_MODE="nerdfont-complete"
 
 # Uncomment the following line to use case-sensitive completion.

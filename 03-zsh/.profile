@@ -5,9 +5,6 @@ export PATH="/usr/local/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 
-# GPG
-export GPG_TTY=$TTY
-
 # Use nvim by default
 export VISUAL=nvim
 export EDITOR="$VISUAL"
