@@ -1,3 +1,3 @@
-packages: firefox mupdf texlive-most rustup rust-analyzer git pipewire pipewire-pulse pipewire-alsa pipewire-jack 1password discord spotify opentabletdriver pyright nautilus gnome-themes-extra
+packages: firefox mupdf zathura zathura-pdf-mupdf texlive-most rustup rust-analyzer git pipewire pipewire-pulse pipewire-alsa pipewire-jack 1password discord spotify opentabletdriver pyright nautilus gnome-themes-extra
 files: $$[<HOME>]$$/.local/bin/i3-get-window-criteria $$[<HOME>]$$/.local/bin/swap-tablet-driver
 exec: chmod +x $$[<HOME>]$$/.local/bin/i3-get-window-criteria $$[<HOME>]$$/.local/bin/swap-tablet-driver && mkdir $$[<HOME>]$$/.themes && ln -s /usr/share/themes/Adwaita-dark $$[<HOME>]$$/.themes/Adwaita

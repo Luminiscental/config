@@ -24,13 +24,7 @@ let g:ctrlp_custom_ignore = {
   \ }
 
 let g:tex_flavor = 'latex'
-let g:vimtex_compiler_progname = 'nvr'
-
-" tex pdf previews
-let g:vimtex_view_method='mupdf'
-
-" latex formatting
-let g:vimtex_format_enabled=1
+let g:vimtex_view_method = 'zathura'
 
 function! UpdateRemotePlugins(...)
   let &rtp=&rtp
