@@ -17,7 +17,3 @@ export EDITOR="$VISUAL"
 
 # Start programs
 fcitx5 -d -r
-
-xsetwacom --set "Wacom One by Wacom S Pen stylus" Rotate half
-
-streaks update
