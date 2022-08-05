@@ -318,16 +318,16 @@ lua <<EOF
     capabilities = capabilities,
   }
 
-  --lspconfig.clojure_lsp.setup {
-  --  on_attach = on_attach,
-  --  capabilities = capabilities,
-  --}
+  lspconfig.clojure_lsp.setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+  }
 
-  --lspconfig.omnisharp.setup {
-  --  cmd = { "omnisharp", "--languageserver", "--hostPID", tostring(pid) },
-  --  on_attach = on_attach,
-  --  capabilities = capabilities,
-  --}
+  lspconfig.omnisharp.setup {
+    cmd = { "omnisharp", "--languageserver", "--hostPID", tostring(pid) },
+    on_attach = on_attach,
+    capabilities = capabilities,
+  }
 
   require'nvim-treesitter.configs'.setup {
     ensure_installed = "all",
@@ -473,12 +473,12 @@ lua <<EOF
 
   require'nvim-tree'.setup {}
 
-  --require'lean'.setup {
-  --  abbreviations = { builtin = true },
-  --  lsp = { on_attach = on_attach },
-  --  lsp3 = { on_attach = on_attach },
-  --  mappings = true,
-  --}
+  require'lean'.setup {
+    abbreviations = { builtin = true },
+    lsp = { on_attach = on_attach },
+    lsp3 = { on_attach = on_attach },
+    mappings = true,
+  }
 EOF
 
 " menuone: popup even when there's only one match
