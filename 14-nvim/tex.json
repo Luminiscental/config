@@ -20,10 +20,28 @@
   "Enumerate": {
     "prefix": ["enmt"],
     "body": [
-      "\\begin{enumerate*}$1",
+      "\\begin{enumerate}$1",
       "\t\\item $0",
-      "\\end{enumerate*}"
+      "\\end{enumerate}"
     ],
     "description": "Enumeration template."
+  },
+  "Itemize": {
+      "prefix": ["itmz"],
+      "body": [
+          "\\begin{itemize}",
+          "\t\\item $0",
+          "\\end{itemize}"
+      ],
+      "description": "Itemize template."
+  },
+  "Begin": {
+      "prefix": ["begn"],
+      "body": [
+          "\\begin{$1}",
+          "\t$0",
+          "\\end{$1}"
+      ],
+      "description": "Begin/end environment."
   }
 }

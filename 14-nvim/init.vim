@@ -25,6 +25,8 @@ let g:ctrlp_custom_ignore = {
 
 let g:tex_flavor = 'latex'
 let g:vimtex_view_method = 'zathura'
+let g:vimtex_fold_enabled = 1 " nice tex folding
+let g:vimtex_fold_manual = 1 " not unbearably slow
 
 function! UpdateRemotePlugins(...)
   let &rtp=&rtp
@@ -316,16 +318,16 @@ lua <<EOF
     capabilities = capabilities,
   }
 
-  lspconfig.clojure_lsp.setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-  }
+  --lspconfig.clojure_lsp.setup {
+  --  on_attach = on_attach,
+  --  capabilities = capabilities,
+  --}
 
-  lspconfig.omnisharp.setup {
-    cmd = { "omnisharp", "--languageserver", "--hostPID", tostring(pid) },
-    on_attach = on_attach,
-    capabilities = capabilities,
-  }
+  --lspconfig.omnisharp.setup {
+  --  cmd = { "omnisharp", "--languageserver", "--hostPID", tostring(pid) },
+  --  on_attach = on_attach,
+  --  capabilities = capabilities,
+  --}
 
   require'nvim-treesitter.configs'.setup {
     ensure_installed = "all",
@@ -471,12 +473,12 @@ lua <<EOF
 
   require'nvim-tree'.setup {}
 
-  require'lean'.setup {
-    abbreviations = { builtin = true },
-    lsp = { on_attach = on_attach },
-    lsp3 = { on_attach = on_attach },
-    mappings = true,
-  }
+  --require'lean'.setup {
+  --  abbreviations = { builtin = true },
+  --  lsp = { on_attach = on_attach },
+  --  lsp3 = { on_attach = on_attach },
+  --  mappings = true,
+  --}
 EOF
 
 " menuone: popup even when there's only one match
@@ -555,8 +557,8 @@ augroup vimtexgroup
   autocmd FileType tex set conceallevel=2
 augroup end
 
-" lazy folding
-set nofoldenable
+" don't fold stuff in markdown
+au FileType markdown setlocal nofoldenable
 
 " sane tabs
 set tabstop=4
