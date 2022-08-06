@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 
 import os
+import sys
+import textwrap
 
 
 BINARY_EXTENSIONS = [".jpg"]
@@ -67,9 +69,11 @@ def copy_with_text_filter(src, dst, textmap, *, checkdiff=False):
     return diff
 
 
-def update():
+def update(args):
     updated = False
     for folder in get_config_folders():
+        if args and not any(arg in folder for arg in args):
+            continue
         install_meta = InstallMeta.from_folder(folder)
         store_files = [
             os.path.join(folder, basename)
@@ -95,7 +99,7 @@ def update():
     print("Complete" if updated else "No changes")
 
 
-def install():
+def install(args):
     print("Warning: This installation script is untested! Use at your own risk.")
     print("Continue? [y/n]:", end="")
     if not input().lower().startswith("y"):
@@ -103,7 +107,10 @@ def install():
     print("An AUR helper is required, what command should be used? :", end="")
     pkg = input()
     commands = []
+    skipped = []
     for folder in get_config_folders():
+        if args and not any(arg in folder for arg in args):
+            continue
         print(f"Installing {folder}...")
         install_meta = InstallMeta.from_folder(folder)
         packages = " ".join(install_meta.packages)
@@ -113,16 +120,27 @@ def install():
         for system_file in install_meta.files:
             basename = os.path.basename(system_file)
             store_file = os.path.join(folder, basename)
-            os.makedirs(os.path.dirname(system_file), exist_ok=True)
-            copy_with_text_filter(store_file, system_file, apply_substitutions)
+            print(f"...Copying {store_file} -> {system_file}")
+            try:
+                os.makedirs(os.path.dirname(system_file), exist_ok=True)
+                copy_with_text_filter(store_file, system_file, apply_substitutions)
+            except PermissionError as e:
+                print(f"...Skipping due to permission error: {e}")
+                skipped.append((store_file, system_file))
         commands.append(install_meta.exec)
     for command in commands:
         os.system(command)
+    if skipped:
+        print("Please copy the following files which were skipped:")
+    for store_file, system_file in skipped:
+        print(f"   {store_file} -> {system_file}")
 
 
-def install_files():
+def install_files(args):
     skipped = []
     for folder in get_config_folders():
+        if args and not any(arg in folder for arg in args):
+            continue
         print(f"Installing files from {folder}...")
         install_meta = InstallMeta.from_folder(folder)
         for system_file in install_meta.files:
@@ -141,11 +159,13 @@ def install_files():
         print(f"   {store_file} -> {system_file}")
 
 
-def instruct():
+def instruct(args):
     packages = []
     files = {}
     commands = []
     for folder in get_config_folders():
+        if args and not any(arg in folder for arg in args):
+            continue
         install_meta = InstallMeta.from_folder(folder)
         packages.extend(install_meta.packages)
         for system_file in install_meta.files:
@@ -154,44 +174,69 @@ def instruct():
             copy_with_text_filter(repo_file, repo_file, apply_substitutions)
         if install_meta.exec:
             commands.append(install_meta.exec)
-    packages = " ".join(packages)
-    print(f"Install the following packages (some are AUR):\n  {packages}\n")
-    print(f"Copy the following files:")
-    for src, dest in files.items():
-        print(f"  {src} -> {dest}")
-    print("\nRun the following commands and restart:")
-    for command in commands:
-        print(f"  $ {command}")
+    if packages:
+        packages = " ".join(packages)
+        print(f"Install the following packages (some may be AUR):\n  {packages}\n")
+    if files:
+        print(f"Copy the following files:")
+        for src, dest in files.items():
+            print(f"  {src} -> {dest}")
+    if commands:
+        print("\nRun the following commands and restart:")
+        for command in commands:
+            print(f"  $ {command}")
+
+
+def usage():
+    print(f"usage: {sys.argv[0]} <command>")
+    print()
+    print(
+        textwrap.dedent(
+            """
+        commands:
+
+            help     - Display this information.
+
+            update   - Copies from system files to update the repository.
+
+            install  - Runs an automatic installation attempt which copies files,
+                       installs packages, and runs commands. I wouldn't recommend
+                       using this.
+
+            copy     - Copies files from the repository into the system, where
+                       permissions allow.
+
+            instruct - Displays which files should be copied where, which
+                       packages should be installed, and which commands should
+                       be run.
+
+        To use only specific packages, pass them as extra arguments (use a
+        unique substring of the directory name):
+
+            ./manage.py update 14 15
+
+        or
+
+            ./manage.py copy polybar zsh conky
+        """
+        )
+    )
 
 
 def main():
-    print(
-        "\n".join(
-            [
-                "",
-                "0) Quit",
-                "1) Update repository files",
-                "2) Install from repository",
-                "3) Display manual installation instructions",
-                "4) Copy the files needed for installation",
-                "Choice: ",
-            ]
-        ),
-        end="",
-    )
-    while not (action := input().strip()) in "1234":
-        if action == "0":
-            return
-        print("Enter a choice from 0-4: ", end="")
-    print()
-    if action == "1":
-        update()
-    if action == "2":
-        install()
-    if action == "3":
-        instruct()
-    if action == "4":
-        install_files()
+    args = sys.argv[1:]
+    if not args:
+        usage()
+    elif args[0] == "update":
+        update(args[1:])
+    elif args[0] == "install":
+        install(args[1:])
+    elif args[0] == "copy":
+        install_files(args[1:])
+    elif args[0] == "instruct":
+        instruct(args[1:])
+    else:
+        usage()
 
 
 if __name__ == "__main__":
