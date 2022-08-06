@@ -134,7 +134,7 @@ nnoremap <leader>v :Vista!!<CR>
 nnoremap <leader>t :NvimTreeToggle<CR>
 
 " get the syntax flags under the cursor
-nmap <leader>sp :call <SID>SynStack()<CR>
+nnoremap <leader>sp :call <SID>SynStack()<CR>
 function! <SID>SynStack()
     if !exists("*synstack")
         return
@@ -143,7 +143,7 @@ function! <SID>SynStack()
 endfunc
 
 " markdown preview mappings
-nmap <leader>mp <Plug>MarkdownPreviewToggle
+nnoremap <leader>mp <Plug>MarkdownPreviewToggle
 
 " LSP
 lua <<EOF
@@ -498,18 +498,18 @@ nnoremap <F4> zt5<C-y>
 " navigation:
 
 " gitgutter
-nmap ]h <Plug>(GitGutterNextHunk)
-nmap [h <Plug>(GitGutterPrevHunk)
+nnoremap ]h <Plug>(GitGutterNextHunk)
+nnoremap [h <Plug>(GitGutterPrevHunk)
 
 " move tab
 nnoremap <F8>  :tabp<CR>
 nnoremap <F9>  :tabn<CR>
 
 " remap snippet completion
-imap <expr> <C-L> vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<C-L>'
-smap <expr> <C-L> vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<C-L>'
-imap <expr> <C-K> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<C-K>'
-smap <expr> <C-K> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<C-K>'
+inoremap <expr> <C-L> vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<C-L>'
+snoremap <expr> <C-L> vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<C-L>'
+inoremap <expr> <C-K> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<C-K>'
+snoremap <expr> <C-K> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<C-K>'
 
 " sane buffers
 set hidden
@@ -550,6 +550,17 @@ set noshowmode
 
 " copypasting
 set clipboard+=unnamedplus
+
+" toggle conceallevel and use a nice concealcursor value
+set concealcursor=nc
+nnoremap <leader>c :call <SID>ToggleConceal()<CR>
+function! <SID>ToggleConceal()
+  if 2==&conceallevel
+    set conceallevel=0
+  else
+    set conceallevel=2
+  endif
+endfunction
 
 augroup vimtexgroup
   autocmd!
