@@ -7,7 +7,7 @@
 
     normal-foreground:           @fgcolor;
     urgent-foreground:           @fgcolor;
-    active-foreground:           @flcolor;
+    active-foreground:           @fgcolor;
 
     selected-normal-foreground:  @hlcolor;
     selected-urgent-foreground:  @hlcolor;
