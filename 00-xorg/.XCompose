@@ -9,6 +9,9 @@ include "%L"
 <Multi_key> <u> <greater> <slash>   : "⊋" U228B  # u > /   SUPERSET OF BUT NOT EQUAL TO
 <Multi_key> <slash> <u> <greater>   : "⊉" U2289  # / u >   NOT SUPERSET OF OR EQUAL TO
 
+<Multi_key> <c> <u> <p>             : "∪" U222A  # c u p   UNION
+<Multi_key> <c> <a> <p>             : "∩" U2229  # c a p   INTERSECTION
+
 <Multi_key> <dead_circumflex> <o>   : "°" degree # ^ o     DEGREE SIGN
 <Multi_key> <asciicircum> <o>       : "°" degree # ^ o     DEGREE SIGN
 <Multi_key> <o> <o>                 : "∘" U2218  # o o     FUNCTION COMPOSE CIRCLE
