@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 
 import os
+import shutil
+import subprocess
 import sys
 import textwrap
 
@@ -49,7 +51,7 @@ class InstallMeta:
             )
 
 
-def copy_with_text_filter(src, dst, textmap, *, checkdiff=False):
+def copy_with_text_filter(src, dst, textmap, *, backup=False):
     diff = False
 
     _, ext = os.path.splitext(src)
@@ -60,9 +62,10 @@ def copy_with_text_filter(src, dst, textmap, *, checkdiff=False):
 
     with open(src, read_flag) as f:
         content = filter(f.read())
-    if checkdiff:
-        with open(dst, read_flag) as f:
-            diff = f.read() != content
+    with open(dst, read_flag) as f:
+        diff = f.read() != content
+    if backup and diff:
+        shutil.copy(dst, src + ".backup")
     with open(dst, write_flag) as f:
         f.write(content)
 
@@ -85,9 +88,7 @@ def update(args):
             store_file = os.path.join(folder, basename)
             if store_file in store_files:
                 store_files.remove(store_file)
-                if copy_with_text_filter(
-                    system_file, store_file, templatize, checkdiff=True
-                ):
+                if copy_with_text_filter(system_file, store_file, templatize):
                     print(f"Updated: {store_file}")
                     updated = True
             else:
@@ -107,7 +108,6 @@ def install(args):
     print("An AUR helper is required, what command should be used? :", end="")
     pkg = input()
     commands = []
-    skipped = []
     for folder in get_config_folders():
         if args and not any(arg in folder for arg in args):
             continue
@@ -117,23 +117,10 @@ def install(args):
         if os.system(f"{pkg} -S {packages}") != 0:
             print("Couldn't install packages; aborting")
             return
-        for system_file in install_meta.files:
-            basename = os.path.basename(system_file)
-            store_file = os.path.join(folder, basename)
-            print(f"...Copying {store_file} -> {system_file}")
-            try:
-                os.makedirs(os.path.dirname(system_file), exist_ok=True)
-                copy_with_text_filter(store_file, system_file, apply_substitutions)
-            except PermissionError as e:
-                print(f"...Skipping due to permission error: {e}")
-                skipped.append((store_file, system_file))
         commands.append(install_meta.exec)
+    install_files(args)
     for command in commands:
-        os.system(command)
-    if skipped:
-        print("Please copy the following files which were skipped:")
-    for store_file, system_file in skipped:
-        print(f"   {store_file} -> {system_file}")
+        subprocess.run(command, stdout=subprocess.DEVNULL)
 
 
 def install_files(args):
@@ -149,14 +136,17 @@ def install_files(args):
             print(f"...Copying {store_file} -> {system_file}")
             try:
                 os.makedirs(os.path.dirname(system_file), exist_ok=True)
-                copy_with_text_filter(store_file, system_file, apply_substitutions)
+                copy_with_text_filter(
+                    store_file, system_file, apply_substitutions, backup=True
+                )
             except PermissionError as e:
                 print(f"...Skipping due to permission error: {e}")
                 skipped.append((store_file, system_file))
     if skipped:
+        print()
         print("Please copy the following files which were skipped:")
-    for store_file, system_file in skipped:
-        print(f"   {store_file} -> {system_file}")
+        for store_file, system_file in skipped:
+            print(f"   {store_file} -> {system_file}")
 
 
 def instruct(args):
