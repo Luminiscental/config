@@ -219,9 +219,6 @@ lua <<EOF
     }, {
       { name = 'buffer' },
     }),
-    experimental = {
-      ghost_text = true,
-    }
   })
 
   -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
@@ -356,8 +353,7 @@ lua <<EOF
       -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
       -- Using this option may slow down your editor, and you may see some duplicate highlights.
       -- Instead of true it can also be a list of languages
-      additional_vim_regex_highlighting = true,
-      indent = { enable = true, },
+      additional_vim_regex_highlighting = false,
     },
   }
 
