@@ -29,6 +29,7 @@ include "%L"
 <Multi_key> <i> <f> <f>             : "⇔" U21D4  # g i f f IF AND ONLY IF
 <Multi_key> <s> <q> <r> <t>         : "√" U221A  # s q r t SQUARE ROOT
 <Multi_key> <i> <n> <f>             : "∞" U221E  # i n f   INFINITY
+<Multi_key> <e> <s>                 : "∅" U2205  # e s     EMPTY SET
 
 <Multi_key> <b> <A>                 : "𝔸" U1D538 # g b A   BLACKBOARD BOLD CAPITAL LETTER A
 <Multi_key> <b> <N>                 : "ℕ" U2115  # g b N   BLACKBOARD BOLD CAPITAL LETTER N
