@@ -1,0 +1,36 @@
+#!/bin/sh
+
+if [ $# -gt 0 ]; then
+    mkdir "$1"
+    cd "$1"
+    echo "\documentclass[a4paper]{article}
+
+\usepackage[margin=1in]{geometry}
+
+\usepackage{mathtools}
+\usepackage{commath} % \dif, \dod, ...
+\usepackage{enumitem} % enumeration label options
+\usepackage{amsfonts} % \mathbb, ...
+\usepackage{amssymb} % \subsetneq, \nmid, ...
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+
+\title{}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\end{document}" > "$1.tex"
+
+    $EDITOR "$1.tex"
+
+else
+    echo "Usage: $ new-tex NAME"
+fi
