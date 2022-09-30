@@ -51,7 +51,7 @@ class InstallMeta:
             )
 
 
-def copy_with_text_filter(src, dst, textmap, *, backup=False, new=False):
+def copy_with_text_filter(src, dst, textmap, *, backup=False):
     diff = False
 
     _, ext = os.path.splitext(src)
@@ -62,9 +62,11 @@ def copy_with_text_filter(src, dst, textmap, *, backup=False, new=False):
 
     with open(src, read_flag) as f:
         content = filter(f.read())
-    if not new:
+    try:
         with open(dst, read_flag) as f:
             diff = f.read() != content
+    except FileNotFoundError:
+        pass
     if backup and diff:
         shutil.copy(dst, src + ".backup")
     with open(dst, write_flag) as f:
@@ -93,7 +95,7 @@ def update(args):
                     print(f"Updated: {store_file}")
                     updated = True
             else:
-                copy_with_text_filter(system_file, store_file, templatize, new=True)
+                copy_with_text_filter(system_file, store_file, templatize)
                 print(f"New: {store_file}")
                 updated = True
         for file in store_files:
