@@ -3,9 +3,9 @@
 if [ $# -gt 0 ]; then
     mkdir "$1"
     cd "$1"
-    echo "\documentclass[a4paper]{article}
+    echo "\documentclass{article}
 
-\usepackage[margin=1in]{geometry}
+\usepackage[paper=a4paper,margin=1in]{geometry}
 
 \usepackage{mathtools}
 \usepackage{commath} % \dif, \dod, ...
