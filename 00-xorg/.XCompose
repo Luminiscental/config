@@ -30,6 +30,9 @@ include "%L"
 <Multi_key> <s> <q> <r> <t>         : "√" U221A  # s q r t SQUARE ROOT
 <Multi_key> <i> <n> <f>             : "∞" U221E  # i n f   INFINITY
 <Multi_key> <e> <s>                 : "∅" U2205  # e s     EMPTY SET
+<Multi_key> <n> <o> <t>             : "¬" U00AC  # n o t   NOT SIGN
+<Multi_key> <c> <n> <j>             : "∧" U2227  # c n j   LOGICAL AND
+<Multi_key> <d> <s> <j>             : "∨" U2228  # d s j   LOGICAL OR
 
 <Multi_key> <b> <A>                 : "𝔸" U1D538 # g b A   BLACKBOARD BOLD CAPITAL LETTER A
 <Multi_key> <b> <N>                 : "ℕ" U2115  # g b N   BLACKBOARD BOLD CAPITAL LETTER N
