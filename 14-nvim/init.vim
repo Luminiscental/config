@@ -321,6 +321,11 @@ lua <<EOF
     capabilities = capabilities,
   }
 
+  lspconfig.hls.setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+  }
+
   lspconfig.clangd.setup {
     on_attach = on_attach,
     capabilities = capabilities,
@@ -494,7 +499,7 @@ EOF
 set completeopt=menuone,noinsert,noselect
 
 " format buffer
-nnoremap <F1> <cmd>lua vim.lsp.buf.formatting()<CR>
+nnoremap <F1> <cmd>lua vim.lsp.buf.format { async = true }<CR>
 " remove highlights
 nnoremap <F2> :noh<CR>
 " remove trailing whitespace
