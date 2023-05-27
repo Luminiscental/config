@@ -349,7 +349,7 @@ lua <<EOF
     sync_install = false,
 
     -- List of parsers to ignore installing
-    ignore_install = { "javascript", "pascal", "vala", "phpdoc" },
+    ignore_install = { "javascript", "pascal", "vala", "phpdoc", "erlang" },
 
     highlight = {
       -- `false` will disable the whole extension
@@ -590,3 +590,4 @@ set softtabstop=4
 set expandtab
 
 " vim:set ft=vim et sw=2:
+

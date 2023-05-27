@@ -154,6 +154,7 @@ bindsym $mod+mod1+m exec --no-startup-id "dunstctl close-all"
 # flameshot
 bindsym mod1+A exec --no-startup-id "flameshot gui"
 bindsym mod1+F exec --no-startup-id "flameshot full"
+bindsym Print exec --no-startup-id "flameshot full"
 
 # Lock screen
 bindsym $mod+p exec --no-startup-id betterlockscreen -l dimblur
