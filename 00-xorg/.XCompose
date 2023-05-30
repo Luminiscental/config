@@ -16,29 +16,34 @@ include "%L"
 <Multi_key> <asciicircum> <o>       : "°" degree # ^ o     DEGREE SIGN
 <Multi_key> <o> <o>                 : "∘" U2218  # o o     FUNCTION COMPOSE CIRCLE
 
-<Multi_key> <bar> <minus> <less>    : "↤" U21A6  # - <     LEFTWARDS ARROW FROM BAR
-<Multi_key> <minus> <less>          : "←" U2190  # - <     LEFTWARDS ARROW
-<Multi_key> <bar> <minus> <greater> : "↦" U21A6  # - >     RIGHTWARDS ARROW FROM BAR
 <Multi_key> <minus> <greater>       : "→" U2192  # - >     RIGHTWARDS ARROW
+<Multi_key> <less> <minus>          : "←" U2190  # < -     LEFTWARDS ARROW
+<Multi_key> <less> <minus> <bar>    : "↤" U21A6  # < - |   LEFTWARDS ARROW FROM BAR
+<Multi_key> <bar> <minus> <greater> : "↦" U21A6  # | - >   RIGHTWARDS ARROW FROM BAR
+<Multi_key> <equal> <bar> <greater> : "⇒" U21D2  # = | >   IMPLIES
+<Multi_key> <less> <bar> <equal>    : "⇐" U21D0  # < | =   IMPLIED BY
 
 <Multi_key> <f> <a>                 : "∀" U2200  # g f a   FOR ALL
 <Multi_key> <t> <e>                 : "∃" U2203  # g t e   THERE EXISTS
-<Multi_key> <d> <d>                 : "∂" U2202  # g d d   BOUNDARY DIFFERENTIAL
+<Multi_key> <d> <d>                 : "∂" U2202  # g d d   PARTIAL
 <Multi_key> <e> <o>                 : "∈" U2208  # g e o   ELEMENT OF
 <Multi_key> <slash> <e> <o>         : "∉" U2209  # g / e o NOT ELEMENT OF
 <Multi_key> <i> <f> <f>             : "⇔" U21D4  # g i f f IF AND ONLY IF
-<Multi_key> <s> <q> <r> <t>         : "√" U221A  # s q r t SQUARE ROOT
-<Multi_key> <i> <n> <f>             : "∞" U221E  # i n f   INFINITY
-<Multi_key> <e> <s>                 : "∅" U2205  # e s     EMPTY SET
 <Multi_key> <n> <o> <t>             : "¬" U00AC  # n o t   NOT SIGN
 <Multi_key> <c> <n> <j>             : "∧" U2227  # c n j   LOGICAL AND
 <Multi_key> <d> <s> <j>             : "∨" U2228  # d s j   LOGICAL OR
+<Multi_key> <e> <s>                 : "∅" U2205  # e s     EMPTY SET
+<Multi_key> <i> <n> <f>             : "∞" U221E  # i n f   INFINITY
+<Multi_key> <s> <q> <r> <t>         : "√" U221A  # s q r t SQUARE ROOT
 
-<Multi_key> <b> <A>                 : "𝔸" U1D538 # g b A   BLACKBOARD BOLD CAPITAL LETTER A
-<Multi_key> <b> <N>                 : "ℕ" U2115  # g b N   BLACKBOARD BOLD CAPITAL LETTER N
-<Multi_key> <b> <C>                 : "ℂ" U2102  # g b C   BLACKBOARD BOLD CAPITAL LETTER C
-<Multi_key> <b> <R>                 : "ℝ" U211D  # g b R   BLACKBOARD BOLD CAPITAL LETTER R
-<Multi_key> <b> <Z>                 : "ℤ" U2124  # g b Z   BLACKBOARD BOLD CAPITAL LETTER Z
+<Multi_key> <b> <N>                 : "ℕ" U2115  # g b N   DOUBLE-STRUCK CAPITAL LETTER N
+<Multi_key> <b> <Z>                 : "ℤ" U2124  # g b Z   DOUBLE-STRUCK CAPITAL LETTER Z
+<Multi_key> <b> <Q>                 : "ℚ" U211A  # g b Q   DOUBLE-STRUCK CAPITAL LETTER Q
+<Multi_key> <b> <R>                 : "ℝ" U211D  # g b R   DOUBLE-STRUCK CAPITAL LETTER R
+<Multi_key> <b> <C>                 : "ℂ" U2102  # g b C   DOUBLE-STRUCK CAPITAL LETTER C
+<Multi_key> <b> <F>                 : "𝔽" U1D53D # g b F   MATHEMATICAL DOUBLE-STRUCK CAPITAL LETTER F
+<Multi_key> <b> <A>                 : "𝔸" U1D538 # g b A   MATHEMATICAL DOUBLE-STRUCK CAPITAL LETTER A
+<Multi_key> <b> <P>                 : "ℙ" U2119  # g b P   DOUBLE-STRUCK CAPITAL LETTER P
 
 <Multi_key> <g> <a>                 : "α" U03B1  # g a     GREEK SMALL LETTER ALPHA
 <Multi_key> <g> <b>                 : "β" U03B2  # g b     GREEK SMALL LETTER BETA
