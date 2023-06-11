@@ -1,3 +1,3 @@
-packages: polybar polybar-spotify playerctl
-files: $$[<HOME>]$$/.config/polybar/config.ini $$[<HOME>]$$/.local/bin/polybar-wrapper
-exec: chmod +x $$[<HOME>]$$/.local/bin/polybar-wrapper
+packages: polybar playerctl
+files: $$[<HOME>]$$/.config/polybar/config.ini $$[<HOME>]$$/.local/bin/polybar-wrapper $$[<HOME>]$$/.local/bin/polybar-spotify
+exec: chmod +x $$[<HOME>]$$/.local/bin/polybar-wrapper $$[<HOME>]$$/.local/bin/polybar-spotify
