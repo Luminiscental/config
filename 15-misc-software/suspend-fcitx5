@@ -1,0 +1,13 @@
+#!/bin/sh
+
+function trap_ctrlc() {
+    fcitx5 -d -r
+}
+
+trap trap_ctrlc 2
+
+pkill fcitx5
+
+mkfifo dummy_fifo
+read < dummy_fifo & PID=$!
+wait

@@ -222,6 +222,8 @@ for_window [class="ksnip"] floating enable, border normal 0
 for_window [class="Conky"] floating enable, border none
 for_window [class="Wine"] floating enable, border none
 for_window [class="Microsoft Teams - Preview"] floating enable, border none
+for_window [class="Minecraft Launcher"] floating enable, border none
+for_window [class="fcitx5-config-qt"] floating enable, border none
 no_focus [window_role="popup"]
 
 # vim: ft=i3config
