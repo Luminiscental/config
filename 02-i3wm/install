@@ -1,2 +1,0 @@
-packages: i3-wm
-files: $$[<HOME>]$$/.config/i3/config

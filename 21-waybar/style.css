@@ -1,0 +1,88 @@
+* {
+    /* `otf-font-awesome` is required to be installed for icons */
+    font-family: SauceCodePro Nerd Font, Noto Sans CJK JP;
+    font-size: 9pt;
+}
+
+window#waybar {
+    background-color: #1e272b;
+    color: #ead49b;
+}
+
+button {
+    border: none;
+    border-radius: 0;
+}
+
+#workspaces button {
+    padding: 0 8px;
+    background-color: transparent;
+    color: #ead49b;
+    border-bottom: 4px solid transparent;
+}
+
+button:hover {
+    box-shadow: none;
+    text-shadow: none;
+    background: none;
+    transition: none;
+}
+
+#workspaces button.focused {
+    border-bottom: 4px solid #78824b;
+}
+
+#workspaces button.urgent {
+    border-bottom: 4px solid #666666;
+}
+
+#workspaces {
+    margin: 0 4px;
+}
+
+#clock {
+    border-bottom: 4px solid #d99f57;
+}
+
+/* If workspaces is the leftmost module, omit left margin */
+.modules-left > widget:first-child > #workspaces {
+    margin-left: 0;
+}
+
+/* If workspaces is the rightmost module, omit right margin */
+.modules-right > widget:last-child > #workspaces {
+    margin-right: 0;
+}
+
+#mode {
+    padding: 0 10px;
+    margin: 0 4px;
+    background-color: #78824b;
+    color: #ead49b;
+}
+
+#clock {
+    background-color: #1e272b;
+    color: #ead49b;
+}
+
+#tray {
+    padding: 0 60px;
+}
+
+#custom-spotify {
+    padding: 0 20px;
+    background-color: #1e272b;
+    color: #9d6a47;
+}
+
+#pulseaudio {
+    padding: 0 20px;
+    color: #9d6a47;
+}
+
+#custom-power {
+    padding: 0 20px;
+    background-color: #1e272b;
+    color: #ff6200;
+}

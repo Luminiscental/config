@@ -1,0 +1,2 @@
+packages: gammastep
+files: $$[<HOME>]$$/.config/gammastep/config.ini

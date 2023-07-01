@@ -1,0 +1,2 @@
+packages: polkit wayland wlroots xorg-xwayland-osu sway swaybg swaylock-effects
+files: $$[<HOME>]$$/.config/sway/config /etc/libinput/local-overrides.quirks $$[<HOME>]$$/Documents/wallpapers/samantha-gades.jpg

@@ -1,3 +1,0 @@
-packages: betterlockscreen
-files: $$[<HOME>]$$/Documents/wallpapers/samantha-gades.jpg
-exec: betterlockscreen -u $$[<HOME>]$$/Documents/wallpapers/samantha-gades.jpg

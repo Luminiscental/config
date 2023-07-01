@@ -1,0 +1,2 @@
+packages: fuzzel
+files: $$[<HOME>]$$/.config/fuzzel/fuzzel.ini

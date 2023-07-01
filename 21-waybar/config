@@ -1,0 +1,37 @@
+{
+    "position": "top",
+    "height": 40,
+    "spacing": 4,
+    "modules-left": ["sway/workspaces", "sway/scratchpad", "sway/mode"],
+    "modules-center": ["clock", "tray"],
+    "modules-right": ["custom/spotify", "pulseaudio", "custom/power"],
+    "sway/scratchpad": {
+        "format": "{icon} {count}",
+        "show-empty": false,
+        "format-icons": ["", ""],
+        "tooltip": true,
+        "tooltip-format": "{app}: {title}"
+    },
+    "clock": {
+        "timezone": "Europe/London",
+        "format": "{:%a %b %d, %I:%M %p}",
+        "format-alt": "{:%d/%m/%Y %H:%M}"
+    },
+    "tray": {
+        "spacing": 10
+    },
+    "custom/spotify": {
+        "exec": "/usr/bin/python3 $HOME/.config/waybar/mediaplayer.py 2> /dev/null",
+        "exec-if": "pgrep spotify",
+        "format": "{}",
+        "return-type": "json",
+        "on-click": "playerctl -p spotify play-pause",
+        "on-scroll-up": "playerctl -p spotify next",
+        "on-scroll-down": "playerctl -p spotify previous"
+    },
+    "custom/power": {
+        "format": "",
+        "on-click": "swaymsg 'mode \"exit: [p]ower off, [r]eboot, [l]ogout\"'"
+    }
+}
+// vim: ft=json

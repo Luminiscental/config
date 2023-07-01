@@ -1,0 +1,3 @@
+packages: i3-wm betterlockscreen
+files: $$[<HOME>]$$/.config/i3/config
+exec: betterlockscreen -u $$[<HOME>]$$/Documents/wallpapers/samantha-gades.jpg
