@@ -269,7 +269,7 @@ lua <<EOF
     vim.keymap.set('n', '<leader>ln', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
     vim.keymap.set('n', '<leader>la', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
     vim.keymap.set('n', '<leader>lr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-    vim.keymap.set('n', '<leader>ll', '<cmd>lua vim.diagnostic.show()<CR>', opts)
+    vim.keymap.set('n', '<leader>le', '<cmd>lua vim.diagnostic.show()<CR>', opts)
     vim.keymap.set('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
     vim.keymap.set('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
     vim.keymap.set('n', '<leader>lL', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)

@@ -6,7 +6,7 @@ import re
 import sys
 
 
-BLACKLIST = ["acpitz", "iwlwifi", "ath10k", "ucsi", "BAT0"]
+BLACKLIST = ["acpitz", "iwlwifi", "ath10k", "ucsi", "BAT0", "nct6798-isa-0290"]
 
 
 def get_paragraphs(lines):
