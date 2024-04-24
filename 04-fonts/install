@@ -1,2 +1,2 @@
 packages: nerd-fonts-complete noto-fonts noto-fonts-extra noto-fonts-cjk
-files: $$[<HOME>]$$/.config/fontconfig/conf.d/80-defaults.conf $$[<HOME>]$$/.config/fontconfig/conf.d/100-bitmap.conf
+files: $$[<HOME>]$$/.config/fontconfig/fonts.conf

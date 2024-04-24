@@ -60,15 +60,22 @@ def copy_with_text_filter(src, dst, textmap, *, backup=False):
     write_flag = "wb" if binary else "w"
     filter = (lambda b: b) if binary else textmap
 
-    with open(src, read_flag) as f:
-        content = filter(f.read())
+    try:
+        with open(src, read_flag) as f:
+            content = filter(f.read())
+    except FileNotFoundError:
+        print(f"File {src} no longer exists! Please update the install file referencing it")
+        return diff
+
     try:
         with open(dst, read_flag) as f:
             diff = f.read() != content
     except FileNotFoundError:
         pass
+
     if backup and diff:
         shutil.copy(dst, src + ".backup")
+
     with open(dst, write_flag) as f:
         f.write(content)
 

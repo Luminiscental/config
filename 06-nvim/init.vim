@@ -1,8 +1,6 @@
 
 let mapleader = '\'
 
-let g:cursorhold_updatetime = 100
-
 " vista.vim
 let g:vista_sidebar_width=50
 
@@ -70,17 +68,17 @@ call plug#begin()
   Plug 'tpope/vim-fugitive'
   Plug 'lewis6991/gitsigns.nvim'
   Plug 'onsails/lspkind-nvim'
-  Plug 'SmiteshP/nvim-gps'
+  Plug 'SmiteshP/nvim-navic'
   Plug 'nvim-lualine/lualine.nvim'
   Plug 'kyazdani42/nvim-web-devicons'
   Plug 'arkav/lualine-lsp-progress'
   Plug 'Luminiscental/autumn256.vim'
-  Plug 'antoinemadec/FixCursorHold.nvim'
   Plug 'gelguy/wilder.nvim', { 'do': function('UpdateRemotePlugins') }
   Plug 'kyazdani42/nvim-web-devicons'
   Plug 'kyazdani42/nvim-tree.lua'
   Plug 'kevinhwang91/nvim-bqf'
   Plug 'Julian/lean.nvim'
+  Plug 'mbbill/undotree'
 
 call plug#end()
 
@@ -239,7 +237,9 @@ lua <<EOF
     })
   })
 
+  local navic = require'nvim-navic'
   local on_attach = function(client, bufnr)
+    navic.attach(client, bufnr)
     if client.server_capabilities.documentHighlightProvider then
         vim.api.nvim_create_augroup("lsp_document_highlight", { clear = true })
         vim.api.nvim_clear_autocmds { buffer = bufnr, group = "lsp_document_highlight" }
@@ -343,13 +343,52 @@ lua <<EOF
   }
 
   require'nvim-treesitter.configs'.setup {
-    ensure_installed = "all",
+    ensure_installed = {
+      "asm",
+      "bash",
+      "bibtex",
+      "c",
+      "c_sharp",
+      "cmake",
+      "comment",
+      "cpp",
+      "css",
+      "csv",
+      "diff",
+      "git_config",
+      "git_rebase",
+      "gitattributes",
+      "gitcommit",
+      "gitignore",
+      "haskell",
+      "html",
+      "http",
+      "java",
+      "json",
+      "julia",
+      "llvm",
+      "lua",
+      "make",
+      "markdown",
+      "matlab",
+      "python",
+      "r",
+      "rust",
+      "sql",
+      "toml",
+      "typescript",
+      "vim",
+      "vimdoc",
+      "xcompose",
+      "xml",
+      "yaml",
+    },
 
     -- Install languages synchronously (only applied to `ensure_installed`)
     sync_install = false,
 
     -- List of parsers to ignore installing
-    ignore_install = { "javascript", "pascal", "vala", "phpdoc", "erlang" },
+    ignore_install = {},
 
     highlight = {
       -- `false` will disable the whole extension
@@ -379,10 +418,6 @@ lua <<EOF
   -- git signs
   require'gitsigns'.setup {
     on_attach = function(bufnr)
-      if vim.api.nvim_buf_line_count(bufnr) > 10000 then
-        return false
-      end
-
       local gs = package.loaded.gitsigns
 
       local function map(mode, l, r, opts)
@@ -454,9 +489,6 @@ lua <<EOF
     },
   }
 
-  local gps = require'nvim-gps'
-  gps.setup {}
-
   require'lualine'.setup {
     options = {
       icons_enabled = true,
@@ -470,7 +502,7 @@ lua <<EOF
       lualine_a = {'mode'},
       lualine_b = {'filename', 'diff', 'diagnostics'},
       lualine_c = {
-        { gps.get_location, cond = gps.is_available },
+        { navic.get_location, cond = navic.is_available },
         'lsp_progress'
       },
       lualine_x = {'encoding', 'fileformat', 'filetype'},
@@ -569,6 +601,9 @@ set noshowmode
 " copypasting
 set clipboard+=unnamedplus
 
+" for responsive hover actions
+set updatetime=100
+
 " toggle conceallevel and use a nice concealcursor value
 set concealcursor=nc
 nnoremap <leader>c :call <SID>ToggleConceal()<CR>
@@ -596,4 +631,3 @@ set softtabstop=4
 set expandtab
 
 " vim:set ft=vim et sw=2:
-

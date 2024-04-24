@@ -207,6 +207,7 @@ assign [class="osu!.exe"] 4
 for_window [class="spotify"] move to workspace $ws5 
 
 # Start programs
+exec --no-startup-id dunst
 exec --no-startup-id fcitx5 -d -r
 exec --no-startup-id xsetwacom --set "Wacom One by Wacom S Pen stylus" Rotate Half
 exec --no-startup-id flameshot

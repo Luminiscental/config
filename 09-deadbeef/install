@@ -1,0 +1,2 @@
+packages: deadbeef deadbeef-plugin-headerbar-gtk3-git deadbeef-plugin-musical-spectrum-gtk3-git
+files: $$[<HOME>]$$/.config/deadbeef/config

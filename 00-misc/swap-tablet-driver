@@ -13,4 +13,4 @@ function trap_ctrlc() {
 trap trap_ctrlc 2
 
 sudo rmmod wacom
-otd
+otd-daemon
