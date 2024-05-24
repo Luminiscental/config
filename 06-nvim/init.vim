@@ -583,12 +583,6 @@ set signcolumn=yes:3
 " use 2 lines for commands
 set cmdheight=2
 
-" add more keywords
-augroup vimrc_todo
-    au!
-    au Syntax * syn keyword Note NOTE containedin=.*Comment.* contained
-augroup END
-
 " use autumn256 colorscheme
 colorscheme autumn256
 

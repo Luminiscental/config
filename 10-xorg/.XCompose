@@ -35,6 +35,7 @@ include "%L"
 <Multi_key> <e> <s>                 : "∅" U2205  # e s     EMPTY SET
 <Multi_key> <i> <n> <f>             : "∞" U221E  # i n f   INFINITY
 <Multi_key> <s> <q> <r> <t>         : "√" U221A  # s q r t SQUARE ROOT
+<Multi_key> <x> <x>                 : "×" U00D7  # x       MULTIPLICATION SIGN
 
 <Multi_key> <b> <N>                 : "ℕ" U2115  # g b N   DOUBLE-STRUCK CAPITAL LETTER N
 <Multi_key> <b> <Z>                 : "ℤ" U2124  # g b Z   DOUBLE-STRUCK CAPITAL LETTER Z

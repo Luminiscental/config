@@ -1,0 +1,11 @@
+#!/bin/sh
+
+if [ $# -gt 0 ]; then
+    mkdir "$1"
+    cp ~/Documents/maths/latex-template/* "$1"
+    cp ~/Documents/maths/latex-template/.gitignore "$1"
+    cd "$1"
+    $EDITOR main.tex
+else
+    echo "Usage: new-tex NAME"
+fi

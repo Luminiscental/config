@@ -1,0 +1,60 @@
+%% packages
+
+% typesetting
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{microtype}
+\usepackage{parskip}
+
+% mathematics
+\usepackage{mathtools}
+\usepackage{derivative}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{tikz-cd}
+
+% references
+\usepackage{hyperref}
+\usepackage[capitalise,nameinlink]{cleveref}
+
+% bibliography
+\usepackage{biblatex}
+
+%% commands
+
+% theorems
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+\newtheorem{example}{Example}
+
+% operators
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\Proj}{Proj}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Ext}{Ext}
+\DeclareMathOperator{\shHom}{\mathcal{H}\kern -1pt \textit{om}}
+\DeclareMathOperator{\shExt}{\mathcal{E}\kern -1pt \textit{xt}}
+
+% macros
+\newcommand{\cat}[1]{\mathsf{#1}} % category name
+
+% names
+\newcommand{\id}{\mathrm{id}}
+
+% letters
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\A}{\mathbb{A}}
+\renewcommand{\P}{\mathbb{P}}
+\renewcommand{\O}{\mathcal{O}}
