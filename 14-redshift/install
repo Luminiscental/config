@@ -1,2 +1,3 @@
 packages: redshift
 files: $$[<HOME>]$$/.config/redshift/redshift.conf
+exec: systemctl --user enable redshift.service
