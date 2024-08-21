@@ -204,7 +204,7 @@ assign [class="firefox"] 3
 assign [class="krita"] 4
 assign [class="REAPER"] 4
 assign [class="osu!.exe"] 4
-for_window [class="spotify"] move to workspace $ws5 
+assign [class="Deadbeef"] 5
 
 # Start programs
 exec --no-startup-id dunst
