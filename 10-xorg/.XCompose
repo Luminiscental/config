@@ -15,7 +15,7 @@ include "%L"
 <Multi_key> <dead_circumflex> <o>   : "°" degree # ^ o     DEGREE SIGN
 <Multi_key> <asciicircum> <o>       : "°" degree # ^ o     DEGREE SIGN
 <Multi_key> <o> <o>                 : "∘" U2218  # o o     FUNCTION COMPOSE CIRCLE
-<Multi_key> <c> <dot>               : "⋅" U22C5  # c .     DOT OPERATOR
+<Multi_key> <c> <period>            : "⋅" U22C5  # c .     DOT OPERATOR
 
 <Multi_key> <minus> <greater>       : "→" U2192  # - >     RIGHTWARDS ARROW
 <Multi_key> <less> <minus>          : "←" U2190  # < -     LEFTWARDS ARROW
