@@ -1,7 +1,19 @@
 
-output * max_render_time 2
-for_window [class="osu!.exe"] max_render_time 2
-output * bg ~/Documents/wallpapers/samantha-gades.jpg fill
+include /etc/sway/config.d/*
+
+# flameshot fixes
+exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
+exec hash dbus-update-activation-environment 2>/dev/null && dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
+
+output * {
+    max_render_time 3
+    adaptive_sync on
+    #allow_tearing yes
+    bg ~/Documents/wallpapers/samantha-gades.jpg fill
+}
+
+for_window [class="osu!.exe"] max_render_time 3
+#for_window [class="osu!.exe"] allow_tearing yes
 
 input "type:keyboard" {
     xkb_layout gb
@@ -128,23 +140,9 @@ mode "resize" {
 }
 bindsym $mod+Shift+r mode "resize"
 
-mode "exit: [p]ower off, [r]eboot, [l]ogout" {
-    bindsym {
-        p exec systemctl poweroff
-        r exec systemctl reboot
-        l exec swaymsg exit
-
-        Return mode "default"
-        Escape mode "default"
-        $mod+x mode "default"
-    }
-}
-bindsym $mod+x mode "exit: [p]ower off, [r]eboot, [l]ogout"
-
 bar {
     swaybar_command waybar
 }
-
 
 # mod1 is Alt
 bindsym $mod+d exec --no-startup-id "discord"
@@ -162,8 +160,9 @@ assign [class="firefox"] 3
 assign [class="krita"] 4
 assign [class="REAPER"] 4
 assign [class="osu!.exe"] 4
-for_window [class="spotify"] move to workspace $ws5 
+assign [app_id="deadbeef"] 5
 
+exec --no-startup-id dunst
 exec --no-startup-id fcitx5 -d -r
 exec --no-startup-id flameshot
 exec --no-startup-id swaybg -i ~/Documents/wallpapers/samantha-gades.jpg
@@ -178,6 +177,8 @@ for_window [class="Minecraft Launcher"] floating enable
 for_window [class="fcitx5-config-qt"] floating enable
 for_window [class="osu!.exe"] floating enable
 
+for_window [app_id="flameshot"] border pixel 0, floating enable, fullscreen disable, move absolute position 0 0
+
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="bubble"] floating enable
 for_window [window_role="task_dialog"] floating enable
@@ -185,6 +186,6 @@ for_window [window_role="Preferences"] floating enable
 for_window [window_type="dialog"] floating enable
 for_window [window_type="menu"] floating enable
 for_window [title="Open With"] floating enable
+for_window [instance="Msgcompose"] floating enable
 
-include /etc/sway/config.d/*
 # vim: ft=swayconfig

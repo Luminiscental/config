@@ -1,2 +1,2 @@
-packages: polkit wayland wlroots xorg-xwayland-osu sway swaybg swaylock-effects
+packages: polkit wayland wlroots sway swaybg swaylock-effects
 files: $$[<HOME>]$$/.config/sway/config /etc/libinput/local-overrides.quirks

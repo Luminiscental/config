@@ -2,9 +2,9 @@
     "position": "top",
     "height": 40,
     "spacing": 4,
-    "modules-left": ["sway/workspaces", "sway/scratchpad", "sway/mode"],
+    "modules-left": ["sway/workspaces", "sway/scratchpad", "sway/mode", "sway/window"],
     "modules-center": ["clock", "tray"],
-    "modules-right": ["custom/spotify", "pulseaudio", "custom/power"],
+    "modules-right": ["custom/music", "pulseaudio", "group/powermenu"],
     "sway/scratchpad": {
         "format": "{icon} {count}",
         "show-empty": false,
@@ -12,26 +12,86 @@
         "tooltip": true,
         "tooltip-format": "{app}: {title}"
     },
+    "sway/window": {
+        //"max-length": 30,
+    },
     "clock": {
         "timezone": "Europe/London",
         "format": "{:%a %b %d, %I:%M %p}",
-        "format-alt": "{:%d/%m/%Y %H:%M}"
+        "format-alt": "{:%d/%m/%Y %H:%M}",
+        "tooltip": false,
     },
     "tray": {
         "spacing": 10
     },
-    "custom/spotify": {
-        "exec": "/usr/bin/python3 $HOME/.config/waybar/mediaplayer.py 2> /dev/null",
-        "exec-if": "pgrep spotify",
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": "󰝟 ---",
+        "format-icons": {
+            "headphone": [
+                //"󰋋 󰕿",
+                "󰋋  󰖀",
+                "󰋋  󰕾"
+            ],
+            "hdmi": [
+                //"󰽟 󰕿",
+                "󰽟  󰖀",
+                "󰽟  󰕾"
+            ],
+            "default": [
+                //"󰕿",
+                "󰖀",
+                "󰕾"
+            ],
+        },
+        "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+    },
+    "custom/music": {
+        "exec": "/usr/bin/python3 $HOME/.config/waybar/mediaplayer.py --player=DeaDBeeF 2> /dev/null",
         "format": "{}",
         "return-type": "json",
-        "on-click": "playerctl -p spotify play-pause",
-        "on-scroll-up": "playerctl -p spotify next",
-        "on-scroll-down": "playerctl -p spotify previous"
+        "on-click": "playerctl play-pause",
+        "on-scroll-up": "playerctl next",
+        "on-scroll-down": "playerctl previous"
+    },
+    "group/powermenu": {
+        "orientation": "inherit",
+        "drawer": {
+            "click-to-reveal": true,
+            "transition-duration": 200,
+            "transition-left-to-right": false,
+        },
+        "modules": [
+            "custom/power",
+            "custom/shutdown",
+            "custom/separator",
+            "custom/reboot",
+            "custom/separator",
+            "custom/logout",
+        ],
+    },
+    "custom/separator": {
+        "format": " | ",
+        "tooltip": "false",
     },
     "custom/power": {
         "format": "",
-        "on-click": "swaymsg 'mode \"exit: [p]ower off, [r]eboot, [l]ogout\"'"
-    }
+        "tooltip": false,
+    },
+    "custom/shutdown": {
+        "format": "shutdown",
+        "tooltip": false,
+        "on-click": "systemctl poweroff",
+    },
+    "custom/reboot": {
+        "format": "reboot",
+        "tooltip": false,
+        "on-click": "systemctl reboot",
+    },
+    "custom/logout": {
+        "format": "logout",
+        "tooltip": false,
+        "on-click": "swaymsg exit",
+    },
 }
 // vim: ft=json

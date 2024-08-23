@@ -1,0 +1,16 @@
+#!/bin/sh
+
+function trap_ctrlc() {
+    sudo modprobe wacom
+    sleep 2
+    if [ -z "$WAYLAND_DISPLAY" ]; then
+        xsetwacom --set "Wacom One by Wacom S Pen stylus" Rotate half
+    else
+        swaymsg -- input "1386:890:Wacom_One_by_Wacom_S_Pen" left_handed enabled
+    fi
+}
+
+trap trap_ctrlc 2
+
+sudo rmmod wacom
+otd-daemon

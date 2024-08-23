@@ -1,5 +1,4 @@
 * {
-    /* `otf-font-awesome` is required to be installed for icons */
     font-family: SauceCodePro Nerd Font, Noto Sans CJK JP;
     font-size: 9pt;
 }
@@ -61,6 +60,11 @@ button:hover {
     color: #ead49b;
 }
 
+#window {
+    padding: 0 40px;
+    color: #78824b;
+}
+
 #clock {
     background-color: #1e272b;
     color: #ead49b;
@@ -70,8 +74,8 @@ button:hover {
     padding: 0 60px;
 }
 
-#custom-spotify {
-    padding: 0 20px;
+#custom-music {
+    padding: 0 40px;
     background-color: #1e272b;
     color: #9d6a47;
 }
