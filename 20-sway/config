@@ -71,10 +71,10 @@ set $up k
 set $right l
 
 set $term kitty
-set $menu dmenu_path | fuzzel | xargs swaymsg exec --
+set $menu rofi -x11 -show drun -show-icons -modi drun,window -terminal kitty
 
 bindsym $mod+Return exec $term
-bindsym $mod+r exec $menu
+bindsym $mod+r exec --no-startup-id $menu
 
 bindsym $mod+Shift+q kill
 bindsym $mod+Ctrl+c reload
@@ -179,13 +179,8 @@ for_window [class="osu!.exe"] floating enable
 
 for_window [app_id="flameshot"] border pixel 0, floating enable, fullscreen disable, move absolute position 0 0
 
-for_window [window_role="pop-up"] floating enable
-for_window [window_role="bubble"] floating enable
-for_window [window_role="task_dialog"] floating enable
-for_window [window_role="Preferences"] floating enable
-for_window [window_type="dialog"] floating enable
-for_window [window_type="menu"] floating enable
 for_window [title="Open With"] floating enable
+for_window [title="Open Files"] floating enable
 for_window [instance="Msgcompose"] floating enable
 
 # vim: ft=swayconfig

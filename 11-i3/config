@@ -78,7 +78,7 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # use rofi for dmenu
-bindsym $mod+r exec --no-startup-id "rofi -show drun -show-icons -modi drun,window -terminal termite"
+bindsym $mod+r exec --no-startup-id "rofi -x11 -show drun -show-icons -modi drun,window -terminal kitty"
 
 # split in horizontal orientation
 bindsym $mod+Shift+v split h

@@ -1,2 +1,2 @@
-packages: rofi
+packages: rofi-wayland
 files: $$[<HOME>]$$/.config/rofi/config.rasi
