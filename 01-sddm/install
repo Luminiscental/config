@@ -1,3 +1,0 @@
-packages: sddm sddm-sugar-dark
-files: /etc/sddm.conf.d/theme.conf /usr/share/sddm/themes/sugar-dark/theme.conf.user /usr/share/sddm/themes/sugar-dark/kory-pence.jpg
-exec: systemctl enable sddm.service
