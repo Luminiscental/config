@@ -6,14 +6,16 @@ exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
 exec hash dbus-update-activation-environment 2>/dev/null && dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
 
 output * {
-    max_render_time 3
+    max_render_time 2
     adaptive_sync on
-    #allow_tearing yes
+    allow_tearing yes
+
     bg ~/Documents/wallpapers/samantha-gades.jpg fill
 }
 
-for_window [class="osu!.exe"] max_render_time 3
-#for_window [class="osu!.exe"] allow_tearing yes
+for_window [class="osu!.exe"] max_render_time 2
+for_window [class="osu!.exe"] allow_tearing yes
+#for_window [app_id="osu!"] allow_tearing yes # needed on wayland driver
 
 input "type:keyboard" {
     xkb_layout gb
@@ -156,10 +158,10 @@ bindsym $mod+p exec --no-startup-id swaylock --image ~/Documents/wallpapers/sama
 focus_follows_mouse no
 
 assign [class="discord"] 2
-assign [class="firefox"] 3
-assign [class="krita"] 4
-assign [class="REAPER"] 4
-assign [class="osu!.exe"] 4
+assign [app_id="firefox"] 3
+assign [app_id="krita"] 4
+assign [app_id="REAPER"] 4
+assign [app_id="osu!"] 4
 assign [app_id="deadbeef"] 5
 
 exec --no-startup-id dunst
@@ -167,15 +169,12 @@ exec --no-startup-id fcitx5 -d -r
 exec --no-startup-id flameshot
 exec --no-startup-id swaybg -i ~/Documents/wallpapers/samantha-gades.jpg
 exec --no-startup-id gammastep
+exec --no-startup-id launch-system-panels
 
 for_window [title="IntelliJ IDEA Help"] floating enable
-for_window [class="Steam"] floating enable
-for_window [title="OpenTabletDriver.UX.Gtk"] floating enable
-for_window [class="Wine"] floating enable
-for_window [class="Microsoft Teams - Preview"] floating enable
-for_window [class="Minecraft Launcher"] floating enable
-for_window [class="fcitx5-config-qt"] floating enable
+for_window [class="steam"] floating enable
 for_window [class="osu!.exe"] floating enable
+for_window [app_id="osu!"] floating enable
 
 for_window [app_id="flameshot"] border pixel 0, floating enable, fullscreen disable, move absolute position 0 0
 

@@ -1,0 +1,24 @@
+#!/bin/sh
+
+# wait until waybar is launched
+until pgrep -u $UID -x waybar >/dev/null; do sleep 1; done
+
+# kill old instances
+killall -s 2 -q nwg-wrapper
+while pgrep -u $UID -x nwg-wrapper >/dev/null; do sleep 1; done
+
+# launch new instances
+nwg-wrapper \
+    -a start \
+    -p left  \
+    -ml 30 -mt 30 \
+    -c ~/.local/share/system-panels/style.css \
+    -s ~/.local/share/system-panels/system.sh -r 2000 &
+nwg-wrapper \
+    -a start \
+    -p right \
+    -mr 30 -mt 30 \
+    -c ~/.local/share/system-panels/style.css \
+    -s ~/.local/share/system-panels/todo.sh -r 2000 &
+
+echo "Panels launched..."

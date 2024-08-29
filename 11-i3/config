@@ -211,10 +211,10 @@ exec --no-startup-id dunst
 exec --no-startup-id fcitx5 -d -r
 exec --no-startup-id xsetwacom --set "Wacom One by Wacom S Pen stylus" Rotate Half
 exec --no-startup-id flameshot
-exec --no-startup-id polybar-wrapper
+exec --no-startup-id launch-polybar
 exec --no-startup-id betterlockscreen -w
-exec --no-startup-id conky -dq -c ~/Documents/conky/system.conf
-exec --no-startup-id conky -dq -c ~/Documents/conky/todo.conf
+exec --no-startup-id conky -dq -c ~/.local/share/conky/system.conf
+exec --no-startup-id conky -dq -c ~/.local/share/conky/todo.conf
 
 # Fixes for i3
 for_window [title="IntelliJ IDEA Help"] floating enable

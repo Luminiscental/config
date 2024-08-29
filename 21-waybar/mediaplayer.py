@@ -5,6 +5,7 @@ import sys
 import signal
 import gi
 import json
+import html
 gi.require_version('Playerctl', '2.0')
 from gi.repository import Playerctl, GLib
 
@@ -14,7 +15,7 @@ logger = logging.getLogger(__name__)
 def write_output(text, player):
     logger.info('Writing output')
 
-    output = {'text': text,
+    output = {'text': html.escape(text),
               'class': 'custom-' + player.props.player_name,
               'alt': player.props.player_name}
 
