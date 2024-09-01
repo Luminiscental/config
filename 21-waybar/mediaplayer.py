@@ -6,6 +6,7 @@ import signal
 import gi
 import json
 import html
+import textwrap
 gi.require_version('Playerctl', '2.0')
 from gi.repository import Playerctl, GLib
 
@@ -37,8 +38,8 @@ def on_metadata(player, metadata, manager):
             ':ad:' in player.props.metadata['mpris:trackid']:
         track_info = 'AD PLAYING'
     elif player.get_artist() and player.get_title():
-        track_info = '{artist} - {title}'.format(artist=player.get_artist(),
-                                                 title=player.get_title())
+        track_info = '{artist} - {title}'.format(artist=textwrap.shorten(player.get_artist(), width=40, placeholder='...'),
+                                                 title=textwrap.shorten(player.get_title(), width=40, placeholder='...'))
     else:
         track_info = player.get_title()
 
