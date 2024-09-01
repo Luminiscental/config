@@ -157,7 +157,7 @@ bindsym mod1+F exec --no-startup-id "flameshot full"
 bindsym Print exec --no-startup-id "flameshot full"
 
 # Lock screen
-bindsym $mod+p exec --no-startup-id betterlockscreen -l dimblur
+bindsym $mod+p exec --no-startup-id lock-screen
 
 # Window Switcher
 bindsym $mod+Tab exec --no-startup-id rofi -show window
@@ -213,8 +213,7 @@ exec --no-startup-id xsetwacom --set "Wacom One by Wacom S Pen stylus" Rotate Ha
 exec --no-startup-id flameshot
 exec --no-startup-id launch-polybar
 exec --no-startup-id betterlockscreen -w
-exec --no-startup-id conky -dq -c ~/.local/share/conky/system.conf
-exec --no-startup-id conky -dq -c ~/.local/share/conky/todo.conf
+exec --no-startup-id launch-system-panels
 
 # Fixes for i3
 for_window [title="IntelliJ IDEA Help"] floating enable

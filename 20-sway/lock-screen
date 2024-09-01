@@ -1,0 +1,43 @@
+#!/bin/sh
+
+if [ -z "$WAYLAND_DISPLAY" ]; then
+    betterlockscreen -l dimblur
+else
+    swaylock \
+        --image ~/Documents/wallpapers/samantha-gades.jpg --effect-blur 5x5 \
+        --clock --indicator \
+        --ring-color 685742 \
+        --key-hl-color 9d6a47
+
+    # betterlockscreen attempt:
+    #swaylock \
+    #    --image ~/Documents/wallpapers/samantha-gades.jpg --effect-blur 5x5 \
+    #    --indicator --indicator-x-position 310 --indicator-y-position 80 \
+    #    --indicator-radius 25 \
+    #    --indicator-thickness 5 \
+    #    --inside-color 00000000 \
+    #    --ring-color ffffffff \
+    #    --separator-color 00000000 \
+    #    --inside-ver-color 00000000 \
+    #    --inside-wrong-color d23c3dff \
+    #    --ring-ver-color ffffffff \
+    #    --ring-wrong-color ffffffff \
+    #    --line-uses-inside \
+    #    --key-hl-color d23c3dff \
+    #    --bs-hl-color d23c3dff \
+    #    --clock \
+    #    --timestr "%H:%M:%S" \
+    #    --datestr "" \
+    #    --font sans-serif \
+    #    --font-size 32 \
+    #    --text-color ffffffff \
+    #    --text-ver "Verifying..." \
+    #    --text-ver-color ffffffff \
+    #    --text-wrong "Failure!" \
+    #    --text-wrong-color d23c3dff \
+    #    --text-clear "" \
+    #    --ring-clear-color d23c3dff \
+    #    --inside-clear-color d23c3dff
+
+fi
+

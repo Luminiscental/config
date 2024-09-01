@@ -15,7 +15,7 @@ output * {
 
 for_window [class="osu!.exe"] max_render_time 2
 for_window [class="osu!.exe"] allow_tearing yes
-#for_window [app_id="osu!"] allow_tearing yes # needed on wayland driver
+for_window [app_id="osu!"] allow_tearing yes
 
 input "type:keyboard" {
     xkb_layout gb
@@ -79,6 +79,8 @@ bindsym $mod+Return exec $term
 bindsym $mod+r exec --no-startup-id $menu
 
 bindsym $mod+Shift+q kill
+
+# TODO: this breaks nwg-wrapper instances
 bindsym $mod+Ctrl+c reload
 
 floating_modifier $mod normal
@@ -153,7 +155,7 @@ bindsym $mod+mod1+m exec --no-startup-id "dunstctl close-all"
 bindsym mod1+A exec --no-startup-id "flameshot gui"
 bindsym mod1+F exec --no-startup-id "flameshot full"
 bindsym Print exec --no-startup-id "flameshot full"
-bindsym $mod+p exec --no-startup-id swaylock --image ~/Documents/wallpapers/samantha-gades.jpg --clock --indicator --effect-blur 5x5 --ring-color 685742 --key-hl-color 9d6a47
+bindsym $mod+p exec --no-startup-id lock-screen
 
 focus_follows_mouse no
 
