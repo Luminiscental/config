@@ -592,6 +592,9 @@ set colorcolumn=80
 " lualine shows the mode too so don't bother
 set noshowmode
 
+" disable mouse to stop eating inputs from terminal
+set mouse=
+
 " copypasting
 set clipboard+=unnamedplus
 
