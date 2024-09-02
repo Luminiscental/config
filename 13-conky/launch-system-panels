@@ -1,7 +1,18 @@
 #!/bin/sh
 
-conky -dq -c ~/.local/share/conky/system.conf
-conky -dq -c ~/.local/share/conky/todo.conf
+killall -q conky
+while pgrep -u $UID -x conky >/dev/null; do sleep 1; done
+
+if [ -z $WAYLAND_DISPLAY ]; then
+    #ARGS="--own_window_type='override'"
+    conky -dq -c ~/.local/share/conky/system-i3.conf
+    conky -dq -c ~/.local/share/conky/todo-i3.conf
+else
+    #ARGS="--out_to_x=false --out_to_wayland=true"
+    conky -dq -c ~/.local/share/conky/system-sway.conf
+    conky -dq -c ~/.local/share/conky/todo-sway.conf
+fi
+
 
 # # conservative sleeping to make sure things are fine on startup
 # sleep 2

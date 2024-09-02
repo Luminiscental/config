@@ -6,16 +6,16 @@ exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
 exec hash dbus-update-activation-environment 2>/dev/null && dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
 
 output * {
-    max_render_time 2
+    max_render_time 4
     adaptive_sync on
-    allow_tearing yes
+    #allow_tearing yes
 
     bg ~/Documents/wallpapers/samantha-gades.jpg fill
 }
 
-for_window [class="osu!.exe"] max_render_time 2
-for_window [class="osu!.exe"] allow_tearing yes
-for_window [app_id="osu!"] allow_tearing yes
+for_window [class="osu!.exe"] max_render_time 4
+#for_window [class="osu!.exe"] allow_tearing yes
+#for_window [app_id="osu!"] allow_tearing yes
 
 input "type:keyboard" {
     xkb_layout gb
@@ -57,11 +57,11 @@ set   $color14    #c9a554
 set   $color15    #ead49b
 
 client.background       $background
-client.focused          $foreground $background $foreground $color4 $color4	
-client.unfocused        $foreground $background $foreground $color2 $color2
-client.focused_inactive $foreground $background $foreground $color2 $color2
-client.urgent           $foreground $background $foreground $color2 $color2
-client.placeholder      $foreground $background $foreground $color2 $color2
+client.focused          $foreground $background $foreground $color2 $color2
+client.unfocused        $foreground $background $foreground $color4 $color4
+client.focused_inactive $foreground $background $foreground $color4 $color4
+client.urgent           $foreground $background $foreground $color4 $color4
+client.placeholder      $foreground $background $foreground $color4 $color4
 
 font pango:Noto Sans 11
 
@@ -160,7 +160,7 @@ bindsym $mod+p exec --no-startup-id lock-screen
 focus_follows_mouse no
 
 assign [class="discord"] 2
-assign [app_id="firefox"] 3
+assign [class="firefox"] 3
 assign [app_id="krita"] 4
 assign [app_id="REAPER"] 4
 assign [app_id="osu!"] 4
