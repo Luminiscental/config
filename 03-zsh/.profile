@@ -16,23 +16,3 @@ export NETWORK_INTERFACE=enp8s0
 # Use nvim by default
 export VISUAL=nvim
 export EDITOR="$VISUAL"
-
-# X11
-
-#if [ -z "$DISPLAY" ] && [ "$XDG_VTNR" = 1 ]; then
-#    exec startx
-#fi
-
-# Wayland
-
-if [ -z "$WAYLAND_DISPLAY" ] && [ "$XDG_VTNR" -eq 1 ]; then
-
-    # flameshot fixes
-    export SDL_VIDEODRIVER=wayland
-    export _JAVA_AWT_WM_NONREPARENTING=1
-    export QT_QPA_PLATFORM=wayland
-    export XDG_CURRENT_DESKTOP=sway
-    export XDG_SESSION_DESKTOP=sway
-
-    exec sway
-fi

@@ -1,0 +1,3 @@
+packages: ly
+files: /etc/ly/config.ini /etc/ly/wsetup.sh /etc/ly/xsetup.sh
+exec: sudo systemctl enable ly.service
