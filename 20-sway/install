@@ -1,3 +1,2 @@
-packages: polkit wayland wlroots sway swaybg swaylock-effects xdg-desktop-portal xdg-desktop-portal-gtk xdg-desktop-portal-wlr
-files: $$[<HOME>]$$/.config/sway/config /etc/libinput/local-overrides.quirks $$[<HOME>]$$/.local/bin/lock-screen
-exec: chmod +x $$[<HOME>]$$/.local/bin/lock-screen
+packages: polkit wayland wlroots sway swaybg swaylock-effects swayidle xdg-desktop-portal xdg-desktop-portal-gtk xdg-desktop-portal-wlr
+files: $$[<HOME>]$$/.config/sway/config /etc/libinput/local-overrides.quirks

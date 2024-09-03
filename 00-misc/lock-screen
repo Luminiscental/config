@@ -1,13 +1,35 @@
 #!/bin/sh
 
+DO_SUSPEND=0
+
+case "$1" in
+    '')
+        ;;
+
+    '--suspend')
+        DO_SUSPEND=1
+        ;;
+
+    *)
+        >&2 echo "unrecognized option: $1"
+        >&2 echo
+        >&2 echo "usage: $0 [--suspend]"
+        exit 1
+        ;;
+esac
+
 if [ -z "$WAYLAND_DISPLAY" ]; then
     betterlockscreen -l dimblur
 else
-    swaylock \
+    swaylock -f \
         --image ~/Documents/wallpapers/samantha-gades.jpg --effect-blur 5x5 \
         --clock --indicator \
         --ring-color 685742 \
         --key-hl-color 9d6a47
+
+    if [ "$DO_SUSPEND" -eq "0" ]; then
+        swayidle timeout 60 'systemctl suspend'
+    fi
 
     # betterlockscreen attempt:
     #swaylock \
@@ -41,3 +63,6 @@ else
 
 fi
 
+if [ "$DO_SUSPEND" -ne "0" ]; then
+    systemctl suspend
+fi

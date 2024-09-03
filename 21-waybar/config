@@ -69,6 +69,8 @@
             "custom/reboot",
             "custom/separator",
             "custom/logout",
+            "custom/separator",
+            "custom/suspend",
         ],
     },
     "custom/separator": {
@@ -93,6 +95,11 @@
         "format": "logout",
         "tooltip": false,
         "on-click": "swaymsg exit",
+    },
+    "custom/suspend": {
+        "format": "suspend",
+        "tooltip": false,
+        "on-click": "lock-screen --suspend",
     },
 }
 // vim: ft=json
