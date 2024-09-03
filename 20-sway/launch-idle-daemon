@@ -1,0 +1,15 @@
+#!/bin/sh
+
+if [ -z $WAYLAND_DISPLAY ]; then
+    >&2 echo "no idle daemon for xorg!"
+else
+    killall -q swayidle
+    echo "waiting on old daemon to die"
+    while pgrep -u $UID -x swayidle >/dev/null; do sleep 1; done
+
+    echo "launching new daemon..."
+    swayidle -w \
+        timeout 60 'if pgrep -x swaylock; then swaymsg "output * power off" fi' \
+            resume 'swaymsg "output * power on"' \
+        timeout 300 'if pgrep -x swaylock; then systemctl suspend fi'
+fi

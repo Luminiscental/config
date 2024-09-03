@@ -25,11 +25,7 @@ else
         --image ~/Documents/wallpapers/samantha-gades.jpg --effect-blur 5x5 \
         --clock --indicator \
         --ring-color 685742 \
-        --key-hl-color 9d6a47
-
-    if [ "$DO_SUSPEND" -eq "0" ]; then
-        swayidle timeout 60 'systemctl suspend'
-    fi
+        --key-hl-color 9d6a47 &
 
     # betterlockscreen attempt:
     #swaylock \
