@@ -1,2 +1,2 @@
-packages: deadbeef deadbeef-plugin-headerbar-gtk3-git deadbeef-mpris2-plugin
+packages: deadbeef deadbeef-plugin-headerbar-gtk3-git deadbeef-mpris2-plugin deadbeef-plugin-discord-git
 files: $$[<HOME>]$$/.config/deadbeef/config
