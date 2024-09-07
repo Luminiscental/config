@@ -99,7 +99,7 @@
     "custom/suspend": {
         "format": "suspend",
         "tooltip": false,
-        "on-click": "lock-screen --suspend",
+        "on-click": "systemctl suspend",
     },
 }
 // vim: ft=json
