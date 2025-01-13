@@ -1,10 +1,21 @@
 cli_add_playlist_name Default
 deadbeef_version devel
+discord_presence.enable 1
+discord_presence.end_timestamp 0
+discord_presence.hide_on_pause 1
+discord_presence.icon_script %artist% '/' %album%
+discord_presence.lastfm_cover 1
+discord_presence.paused_icon 1
+discord_presence.playlist_on_state 0
+discord_presence.show_tracknum 1
+discord_presence.state_script %artist%
+discord_presence.title_script %title%$if(%ispaused%,' ('paused')')
 filechooser.lastdir file://$$[<HOME>]$$/Music
-gtkui.columns.playlist [{"title":"Album Art","id":"8","format":"","sort_format":"","size":"284","align":"0","color_override":"0","color":"#ffeeeeec"},{"title":"♫","id":"1","format":"%playstatus%","sort_format":"","size":"50","align":"0","color_override":"0","color":"#ff000000"},{"title":"Artist","id":"-1","format":"$if(%artist%,%artist%,Unknown Artist)","sort_format":"","size":"199","align":"0","color_override":"0","color":"#ff000000"},{"title":"Album","id":"-1","format":"%album%","sort_format":"","size":"252","align":"0","color_override":"0","color":"#ffeeeeec"},{"title":"Track No.","id":"-1","format":"%tracknumber%","sort_format":"","size":"82","align":"1","color_override":"0","color":"#ff000000"},{"title":"Title","id":"-1","format":"%title%","sort_format":"","size":"468","align":"0","color_override":"0","color":"#ff000000"},{"title":"Duration","id":"-1","format":"%length%","sort_format":"","size":"81","align":"0","color_override":"0","color":"#ff000000"}]
+gtkui.columns.playlist [{"title":"Album Art","id":"8","format":"","sort_format":"","size":"284","align":"0","color_override":"0","color":"#ffeeeeec"},{"title":"♫","id":"1","format":"%playstatus%","sort_format":"","size":"50","align":"0","color_override":"0","color":"#ff000000"},{"title":"Artist","id":"-1","format":"$if(%artist%,%artist%,Unknown Artist)","sort_format":"","size":"241","align":"0","color_override":"0","color":"#ff000000"},{"title":"Album","id":"-1","format":"%album%","sort_format":"","size":"252","align":"0","color_override":"0","color":"#ffeeeeec"},{"title":"Track No.","id":"-1","format":"%tracknumber%","sort_format":"","size":"82","align":"1","color_override":"0","color":"#ff000000"},{"title":"Title","id":"-1","format":"%title%","sort_format":"","size":"468","align":"0","color_override":"0","color":"#ff000000"},{"title":"Duration","id":"-1","format":"%length%","sort_format":"","size":"81","align":"0","color_override":"0","color":"#ff000000"}]
 gtkui.columns.search [{"title":"Artist / Album","id":"-1","format":"$if(%artist%,%artist%,Unknown Artist)[ - %album%]","sort_format":"","size":"150","align":"0","color_override":"0","color":"#ff000000"},{"title":"Track No","id":"-1","format":"%tracknumber%","sort_format":"","size":"50","align":"1","color_override":"0","color":"#ff000000"},{"title":"Title","id":"-1","format":"%title%","sort_format":"","size":"150","align":"0","color_override":"0","color":"#ff000000"},{"title":"Duration","id":"-1","format":"%length%","sort_format":"","size":"50","align":"0","color_override":"0","color":"#ff000000"}]
 gtkui.eq.visible 0
-gtkui.layout.1.9.0 {"type":"vbox","legacy_params":" expand=\"0 1\" fill=\"1 1\" homogeneous=0","children":[{"type":"hbox","legacy_params":" expand=\"0 1 0\" fill=\"1 1 1\" homogeneous=0","children":[{"type":"playtb"},{"type":"seekbar"},{"type":"volumebar","settings":{"scale":"db"}}]},{"type":"tabbed_playlist","legacy_params":" hideheaders=0 width=1878"}]}
+gtkui.layout.1.9.0 {"type":"vbox","legacy_params":" expand=\"0 1\" fill=\"1 1\" homogeneous=0","children":[{"type":"hbox","legacy_params":" expand=\"0 1 0\" fill=\"1 1 1\" homogeneous=0","children":[{"type":"playtb"},{"type":"seekbar"},{"type":"volumebar","settings":{"scale":"db"}}]},{"type":"tabbed_playlist","legacy_params":" hideheaders=0 width=1916"}]}
+gtkui.log.autoopen 0
 gtkui.playlist.group_by_tf %album artist% - ['['$year(%date%)']' ]%album%
 gtkui.search.group_by_tf 
 gtkui.show_menu 1
@@ -55,35 +66,38 @@ lastfm.scrobbler_url https://post.audioscrobbler.com
 lastfm.submit_tiny_tracks 0
 logwindow.geometry.h 200
 logwindow.geometry.w 400
-logwindow.geometry.x 424
-logwindow.geometry.y 462
-mainwin.geometry.h 952
-mainwin.geometry.w 1878
-mainwin.geometry.x 21
-mainwin.geometry.y 61
+logwindow.geometry.x 0
+logwindow.geometry.y 0
+mainwin.geometry.h 989
+mainwin.geometry.maximized 0
+mainwin.geometry.w 1916
+mainwin.geometry.x 20
+mainwin.geometry.y 20
+medialib.deadbeef.enabled 1
 network.proxy.port 8080
-output_plugin alsa
+output_plugin pipewire
+pipewire_soundcard alsa_output.pci-0000_00_1f.3.analog-stereo
 playback.loop 1
-playback.volume.normalized 0.7813708
+playback.volume.normalized 0.6626574
 playlist.current 0
-playlist.cursor.0 128
+playlist.cursor.0 137
 playlist.cursor.1 0
 playlist.cursor.2 0
-playlist.scroll.0 -128
+playlist.scroll.0 -137
 playlist.scroll.1 0
 playlist.scroll.2 0
 playlist.scroll.cursorfollowplayback 1
 playlist.tab.00000 Music
 prefwin.geometry.h 597
 prefwin.geometry.w 761
-prefwin.geometry.x 572
-prefwin.geometry.y 416
-replaygain.processing_flags 3
+prefwin.geometry.x 578
+prefwin.geometry.y 272
+replaygain.processing_flags 2
 replaygain.source_mode 2
 resume.paused 1
 resume.playlist 0
-resume.position 285.52850
-resume.track 128
+resume.position 198.33419
+resume.track 137
 streamer.bit_override 0
 streamer.samplerate 44100
 streamer.samplerate_mult_44 44100

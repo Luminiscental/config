@@ -1,9 +1,9 @@
 #!/bin/sh
 
 if [ -z "$WAYLAND_DISPLAY" ]; then
-    betterlockscreen -l dimblur
+    betterlockscreen -l dimblur &
 else
-    swaylock -d -f \
+    swaylock -f \
         --image ~/Documents/wallpapers/samantha-gades-blur.jpg \
         --indicator-idle-visible \
         --ring-color 685742 \

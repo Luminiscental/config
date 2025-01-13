@@ -9,8 +9,6 @@ else
 
     echo "launching new daemon..."
     swayidle -w \
-        timeout 60 'if pgrep swaylock; then swaymsg "output * power off"; fi' \
-            resume 'swaymsg "output * power on"' \
-        timeout 300 'if pgrep swaylock; then systemctl suspend; fi' \
+        timeout 600 'if pgrep swaylock; then systemctl suspend; fi' \
         before-sleep 'lock-screen'
 fi

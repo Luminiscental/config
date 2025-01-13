@@ -1,25 +1,28 @@
 
 include /etc/sway/config.d/*
 
-# flameshot fixes
-exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
-exec hash dbus-update-activation-environment 2>/dev/null && dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
-
 output * {
-    max_render_time 4
-    adaptive_sync on
-    #allow_tearing yes
+    max_render_time off
+    adaptive_sync off
+    allow_tearing yes
 
     bg ~/Documents/wallpapers/samantha-gades.jpg fill
 }
 
-for_window [class="osu!.exe"] max_render_time 4
-#for_window [class="osu!.exe"] allow_tearing yes
-#for_window [app_id="osu!"] allow_tearing yes
+for_window [class="osu!.exe"] max_render_time off
+for_window [class="osu!.exe"] allow_tearing yes
+for_window [class="osu!.exe"] mouse_warping none
+for_window [class="osu!.exe"] border pixel 0
+
+for_window [app_id="osu!"] max_render_time off
+for_window [app_id="osu!"] allow_tearing yes
+for_window [app_id="osu!"] mouse_warping none
+for_window [app_id="osu!"] border pixel 0
 
 input "type:keyboard" {
-    xkb_layout gb
-    xkb_model pc105
+    xkb_layout jp
+    xkb_model jis109
+    xkb_variant OADG109A
     xkb_options caps:escape,compose:rwin
 }
 
@@ -77,7 +80,7 @@ set $term kitty
 set $menu rofi -x11 -show drun -show-icons -modi drun,window -terminal kitty
 
 bindsym $mod+Return exec $term
-bindsym $mod+r exec --no-startup-id $menu
+bindsym $mod+r exec $menu
 
 bindsym $mod+Shift+q kill
 
@@ -150,13 +153,13 @@ bar {
 }
 
 # mod1 is Alt
-bindsym $mod+d exec --no-startup-id "discord"
-bindsym $mod+mod1+n exec --no-startup-id "dunstctl close"
-bindsym $mod+mod1+m exec --no-startup-id "dunstctl close-all"
-bindsym mod1+A exec --no-startup-id "flameshot gui"
-bindsym mod1+F exec --no-startup-id "flameshot full"
-bindsym Print exec --no-startup-id "flameshot full"
-bindsym $mod+p exec --no-startup-id lock-screen
+bindsym $mod+d exec "discord"
+bindsym $mod+mod1+n exec "dunstctl close"
+bindsym $mod+mod1+m exec "dunstctl close-all"
+bindsym mod1+A exec "flameshot gui"
+bindsym mod1+F exec "flameshot full"
+bindsym Print exec "flameshot full"
+bindsym $mod+p exec lock-screen
 
 focus_follows_mouse no
 
@@ -168,13 +171,13 @@ assign [app_id="REAPER"] 4
 assign [app_id="osu!"] 4
 assign [app_id="deadbeef"] 5
 
-exec --no-startup-id dunst
-exec --no-startup-id fcitx5 -d -r
-exec --no-startup-id flameshot
-exec --no-startup-id swaybg -i ~/Documents/wallpapers/samantha-gades.jpg
-exec --no-startup-id gammastep
-exec --no-startup-id launch-system-panels
-exec --no-startup-id launch-idle-daemon
+exec dunst
+exec fcitx5 -d -r
+exec flameshot
+exec swaybg -i ~/Documents/wallpapers/samantha-gades.jpg
+exec gammastep
+#exec launch-system-panels
+#exec launch-idle-daemon
 
 for_window [title="IntelliJ IDEA Help"] floating enable
 for_window [class="steam"] floating enable

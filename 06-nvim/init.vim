@@ -64,7 +64,7 @@ call plug#begin()
   Plug 'simrat39/rust-tools.nvim'
   Plug 'nvim-lua/plenary.nvim'
   Plug 'saecki/crates.nvim', { 'tag': 'v0.1.0' }
-  Plug 'ggandor/lightspeed.nvim'
+  Plug 'ggandor/leap.nvim'
   Plug 'tpope/vim-fugitive'
   Plug 'lewis6991/gitsigns.nvim'
   Plug 'onsails/lspkind-nvim'
@@ -79,6 +79,7 @@ call plug#begin()
   Plug 'kevinhwang91/nvim-bqf'
   Plug 'Julian/lean.nvim'
   Plug 'mbbill/undotree'
+  Plug 'vyfor/cord.nvim', { 'do': './build' }
 
 call plug#end()
 
@@ -388,7 +389,7 @@ lua <<EOF
     sync_install = false,
 
     -- List of parsers to ignore installing
-    ignore_install = {},
+    ignore_install = {'zig', 'earthfile', 'verilog', 'dart', 'hoon'},
 
     highlight = {
       -- `false` will disable the whole extension
@@ -447,11 +448,11 @@ lua <<EOF
       map('n', '<leader>hb', gs.toggle_current_line_blame)
     end,
     signs = {
-      add          = {hl = 'GitSignsAdd'   , text = '+', numhl='GitSignsAddNr'   , linehl='GitSignsAddLn'},
-      change       = {hl = 'GitSignsChange', text = '|', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn'},
-      delete       = {hl = 'GitSignsDelete', text = '-', numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn'},
-      topdelete    = {hl = 'GitSignsDelete', text = '‾', numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn'},
-      changedelete = {hl = 'GitSignsChange', text = '~', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn'},
+      add          = {text = '+'},
+      change       = {text = '|'},
+      delete       = {text = '-'},
+      topdelete    = {text = '‾'},
+      changedelete = {text = '~'},
     },
     signcolumn = true,  -- Toggle with `:Gitsigns toggle_signs`
     numhl      = false, -- Toggle with `:Gitsigns toggle_numhl`
@@ -469,9 +470,6 @@ lua <<EOF
       delay = 1000,
       ignore_whitespace = false,
     },
-    current_line_blame_formatter_opts = {
-      relative_time = false
-    },
     sign_priority = 6,
     update_debounce = 100,
     status_formatter = nil, -- Use default
@@ -483,9 +481,6 @@ lua <<EOF
       relative = 'cursor',
       row = 0,
       col = 1
-    },
-    yadm = {
-      enable = false
     },
   }
 
@@ -529,6 +524,10 @@ lua <<EOF
     lsp3 = { on_attach = on_attach },
     mappings = true,
   }
+
+  require'cord'.setup {}
+
+  require'leap'.create_default_mappings()
 EOF
 
 " menuone: popup even when there's only one match
