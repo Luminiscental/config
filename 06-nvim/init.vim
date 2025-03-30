@@ -77,9 +77,7 @@ call plug#begin()
   Plug 'kyazdani42/nvim-web-devicons'
   Plug 'kyazdani42/nvim-tree.lua'
   Plug 'kevinhwang91/nvim-bqf'
-  Plug 'Julian/lean.nvim'
   Plug 'mbbill/undotree'
-  Plug 'vyfor/cord.nvim', { 'do': './build' }
 
 call plug#end()
 
@@ -367,6 +365,7 @@ lua <<EOF
       "java",
       "json",
       "julia",
+      "latex",
       "llvm",
       "lua",
       "make",
@@ -517,15 +516,6 @@ lua <<EOF
   }
 
   require'nvim-tree'.setup {}
-
-  require'lean'.setup {
-    abbreviations = { builtin = true },
-    lsp = { on_attach = on_attach },
-    lsp3 = { on_attach = on_attach },
-    mappings = true,
-  }
-
-  require'cord'.setup {}
 
   require'leap'.create_default_mappings()
 EOF
