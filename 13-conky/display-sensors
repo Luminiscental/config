@@ -44,7 +44,7 @@ def main():
         [
             re.sub(parens, "", line).strip()
             for line in map(str.strip, raw.splitlines())
-            if line.split(":", 1)[0] not in ("Adapter", "Package id 0")
+            if line.split(":", 1)[0] not in ("Adapter", "Package id 0", "fan1", "PPT", "pwm1", "sclk", "mclk")
             and not parens.match(line)
         ]
     )

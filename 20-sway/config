@@ -156,6 +156,7 @@ bar {
 bindsym $mod+d exec "discord"
 bindsym $mod+mod1+n exec "dunstctl close"
 bindsym $mod+mod1+m exec "dunstctl close-all"
+bindsym $mod+mod1+p exec "dunstctl history-pop"
 bindsym mod1+A exec "flameshot gui"
 bindsym mod1+F exec "flameshot full"
 bindsym Print exec "flameshot full"
@@ -176,13 +177,14 @@ exec fcitx5 -d -r
 exec flameshot
 exec swaybg -i ~/Documents/wallpapers/samantha-gades.jpg
 exec gammastep
-#exec launch-system-panels
+exec launch-system-panels
 #exec launch-idle-daemon
 
 for_window [title="IntelliJ IDEA Help"] floating enable
 for_window [class="steam"] floating enable
 for_window [class="osu!.exe"] floating enable
 for_window [app_id="osu!"] floating enable
+for_window [class="zoom"] floating enable
 
 for_window [title="flameshot"] border pixel 0, floating enable, fullscreen disable, move absolute position 0 0
 for_window [app_id="flameshot"] floating enable
