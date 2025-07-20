@@ -16,6 +16,8 @@ include "%L"
 <Multi_key> <asciicircum> <o>       : "°" degree # ^ o     DEGREE SIGN
 <Multi_key> <o> <o>                 : "∘" U2218  # o o     FUNCTION COMPOSE CIRCLE
 <Multi_key> <c> <period>            : "⋅" U22C5  # c .     DOT OPERATOR
+<Multi_key> <o> <plus>              : "⊕" U2295  # o +     CIRCLED PLUS
+<Multi_key> <o> <x>                 : "⊗" U2297  # o x     CIRCLED TIMES
 
 <Multi_key> <minus> <greater>       : "→" U2192  # - >     RIGHTWARDS ARROW
 <Multi_key> <less> <minus>          : "←" U2190  # < -     LEFTWARDS ARROW
@@ -37,6 +39,7 @@ include "%L"
 <Multi_key> <i> <n> <f>             : "∞" U221E  # i n f   INFINITY
 <Multi_key> <s> <q> <r> <t>         : "√" U221A  # s q r t SQUARE ROOT
 <Multi_key> <x> <x>                 : "×" U00D7  # x       MULTIPLICATION SIGN
+<Multi_key> <n> <a> <b>             : "∇" U2207  # n a b   NABLA
 
 <Multi_key> <b> <N>                 : "ℕ" U2115  # g b N   DOUBLE-STRUCK CAPITAL LETTER N
 <Multi_key> <b> <Z>                 : "ℤ" U2124  # g b Z   DOUBLE-STRUCK CAPITAL LETTER Z
