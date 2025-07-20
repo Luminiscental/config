@@ -1,2 +1,2 @@
-packages: neovim python python-pynvim xclip xsel wl-clipboard mupdf zathura zathura-pdf-mupdf texlive-most
+packages: neovim python python-pynvim xclip xsel wl-clipboard mupdf zathura zathura-pdf-mupdf texlive-most texlab
 files: $$[<HOME>]$$/.config/nvim/init.vim $$[<HOME>]$$/.config/nvim/autoload/plug.vim $$[<HOME>]$$/.vsnip/tex.json $$[<HOME>]$$/.config/zathura/zathurarc
