@@ -8,6 +8,24 @@
     ],
     "description": "Equation environment template."
   },
+  "Theorem": {
+    "prefix": ["thm"],
+    "body": [
+      "\\begin{${1:theorem}}",
+      "\t$0",
+      "\\end{${1:theorem}}"
+    ],
+    "description": "Theorem environment template."
+  },
+  "Remark": {
+    "prefix": ["rmk"],
+    "body": [
+      "\\begin{${1:remark}}",
+      "\t$0",
+      "\\end{${1:remark}}"
+    ],
+    "description": "Remark environment template."
+  },
   "Align": {
     "prefix": ["algn"],
     "body": [

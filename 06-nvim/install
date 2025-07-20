@@ -1,2 +1,2 @@
-packages: neovim python python-pynvim xclip xsel wl-clipboard mupdf zathura zathura-pdf-mupdf texlive-most rustup rust-analyzer
-files: $$[<HOME>]$$/.config/nvim/init.vim $$[<HOME>]$$/.config/nvim/lua/lsp_autofix.lua $$[<HOME>]$$/.config/nvim/lua/ts_fix.lua $$[<HOME>]$$/.config/nvim/autoload/plug.vim $$[<HOME>]$$/.vsnip/tex.json
+packages: neovim python python-pynvim xclip xsel wl-clipboard mupdf zathura zathura-pdf-mupdf texlive-most
+files: $$[<HOME>]$$/.config/nvim/init.vim $$[<HOME>]$$/.config/nvim/lua/lsp_autofix.lua $$[<HOME>]$$/.config/nvim/lua/ts_fix.lua $$[<HOME>]$$/.config/nvim/autoload/plug.vim $$[<HOME>]$$/.vsnip/tex.json $$[<HOME>]$$/.config/zathura/zathurarc

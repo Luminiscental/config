@@ -4,12 +4,6 @@ let mapleader = '\'
 " vista.vim
 let g:vista_sidebar_width=50
 
-" better python syntax
-let g:python_highlight_all = 1
-
-" horrendous ) overrides in insert mode begone
-let g:sexp_enable_insert_mode_mappings = 0
-
 " markdown preview config
 let g:mkdp_browser = 'firefox'
 
@@ -23,8 +17,6 @@ let g:ctrlp_custom_ignore = {
 
 let g:tex_flavor = 'latex'
 let g:vimtex_view_method = 'zathura'
-let g:vimtex_fold_enabled = 1 " nice tex folding
-let g:vimtex_fold_manual = 1 " not unbearably slow
 
 function! UpdateRemotePlugins(...)
   let &rtp=&rtp
@@ -35,51 +27,33 @@ call plug#begin()
 
   Plug 'https://tpope.io/vim/sensible.git'
   Plug 'ctrlpvim/ctrlp.vim'
-  Plug 'vim-python/python-syntax'
   Plug 'tpope/vim-surround'
-  Plug 'scrooloose/nerdtree'
   Plug 'machakann/vim-highlightedyank'
-  Plug 'cespare/vim-toml'
-  Plug 'rust-lang/rust.vim'
   Plug 'plasticboy/vim-markdown'
   Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
-  Plug 'neovimhaskell/haskell-vim'
   Plug 'lervag/vimtex'
   Plug 'cohama/lexima.vim'
-  Plug 'tikhomirov/vim-glsl'
   Plug 'tpope/vim-repeat'
-  Plug 'guns/vim-sexp'
-  Plug 'tpope/vim-sexp-mappings-for-regular-people'
-  Plug 'liuchengxu/vista.vim'
   Plug 'neovim/nvim-lspconfig'
-  Plug 'nvim-lua/lsp_extensions.nvim'
   Plug 'hrsh7th/cmp-nvim-lsp'
   Plug 'hrsh7th/cmp-buffer'
   Plug 'hrsh7th/cmp-path'
   Plug 'hrsh7th/nvim-cmp'
   Plug 'hrsh7th/vim-vsnip'
   Plug 'hrsh7th/cmp-vsnip'
-  Plug 'ray-x/lsp_signature.nvim'
   Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
-  Plug 'simrat39/rust-tools.nvim'
   Plug 'nvim-lua/plenary.nvim'
-  Plug 'saecki/crates.nvim', { 'tag': 'v0.1.0' }
   Plug 'ggandor/leap.nvim'
   Plug 'tpope/vim-fugitive'
   Plug 'lewis6991/gitsigns.nvim'
-  Plug 'onsails/lspkind-nvim'
   Plug 'SmiteshP/nvim-navic'
   Plug 'nvim-lualine/lualine.nvim'
   Plug 'kyazdani42/nvim-web-devicons'
   Plug 'arkav/lualine-lsp-progress'
   Plug 'Luminiscental/autumn256.vim'
-  Plug 'gelguy/wilder.nvim', { 'do': function('UpdateRemotePlugins') }
   Plug 'kyazdani42/nvim-web-devicons'
-  Plug 'kyazdani42/nvim-tree.lua'
   Plug 'kevinhwang91/nvim-bqf'
-  Plug 'Julian/lean.nvim'
   Plug 'mbbill/undotree'
-  Plug 'vyfor/cord.nvim', { 'do': './build' }
 
 call plug#end()
 
@@ -95,35 +69,6 @@ call lexima#add_rule({'char': '<BS>', 'at': '\$\%#\$', 'delete': 1, 'filetype': 
 call lexima#add_rule({'char': '{', 'at': '\\\%#', 'input': '{', 'input_after': '\}', 'mode': 'i', 'filetype': 'tex'})
 call lexima#add_rule({'char': '\', 'at': '\%#\\}', 'leave': 1, 'filetype': 'tex'})
 call lexima#add_rule({'char': '<BS>', 'at': '\\{\%#\\}', 'input': '<BS><DEL><DEL>', 'filetype': 'tex'})
-
-" wilder
-call wilder#setup({'modes': [':', '/', '?']})
-
-call wilder#set_option('pipeline', [
-      \   wilder#branch(
-      \     wilder#cmdline_pipeline({
-      \       'fuzzy': 1,
-      \       'set_pcre2_pattern': 1,
-      \     }),
-      \     wilder#python_search_pipeline({
-      \       'pattern': 'fuzzy',
-      \     }),
-      \   ),
-      \ ])
-
-let s:highlighters = [
-        \ wilder#pcre2_highlighter(),
-        \ wilder#basic_highlighter(),
-        \ ]
-
-call wilder#set_option('renderer', wilder#renderer_mux({
-      \ ':': wilder#popupmenu_renderer({
-      \   'highlighter': s:highlighters,
-      \ }),
-      \ '/': wilder#wildmenu_renderer({
-      \   'highlighter': s:highlighters,
-      \ }),
-      \ }))
 
 " workflow mappings
 nnoremap - dd
@@ -149,11 +94,9 @@ lua <<EOF
   -- Setup nvim-cmp.
   local cmp = require'cmp'
   local lspconfig = require'lspconfig'
-  local lspkind = require'lspkind'
-
-  require'ts_fix'
 
   local has_words_before = function()
+    unpack = unpack or table.unpack
     local line, col = unpack(vim.api.nvim_win_get_cursor(0))
     return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
   end
@@ -166,25 +109,17 @@ lua <<EOF
     snippet = {
       -- REQUIRED - you must specify a snippet engine
       expand = function(args)
-        vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
-        -- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
-        -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
-        -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+        vim.fn["vsnip#anonymous"](args.body)
       end,
-    },
-    formatting = {
-      format = lspkind.cmp_format {
-        with_text = false,
-        maxwidth = 50,
-        before = function (entry, vim_item)
-          return vim_item
-        end
-      }
     },
     mapping = {
       ["<Tab>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
-          cmp.select_next_item()
+          local entries = cmp.get_entries()
+          cmp.select_next_item({ behaviour = cmp.SelectBehavior.Select })
+          if #entries == 1 then
+            cmp.confirm()
+          end
         elseif vim.fn["vsnip#available"](1) == 1 then
           feedkey("<Plug>(vsnip-expand-or-jump)", "")
         elseif has_words_before() then
@@ -196,19 +131,12 @@ lua <<EOF
 
       ["<S-Tab>"] = cmp.mapping(function()
         if cmp.visible() then
-          cmp.select_prev_item()
+          cmp.select_prev_item({ behaviour = cmp.SelectBehavior.Select })
         elseif vim.fn["vsnip#jumpable"](-1) == 1 then
           feedkey("<Plug>(vsnip-jump-prev)", "")
         end
       end, { "i", "s" }),
-
-      ['<CR>'] = cmp.mapping(function(fallback)
-        if cmp.visible() then
-          cmp.confirm({select = true})
-        else
-          fallback()
-        end
-      end),
+      ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
     },
     sources = cmp.config.sources({
       { name = 'nvim_lsp' },
@@ -222,8 +150,9 @@ lua <<EOF
     }),
   })
 
-  -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
-  cmp.setup.cmdline('/', {
+  -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
+  cmp.setup.cmdline({ '/', '?' }, {
+    mapping = cmp.mapping.preset.cmdline(),
     sources = {
       { name = 'buffer' }
     }
@@ -231,125 +160,46 @@ lua <<EOF
 
   -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
   cmp.setup.cmdline(':', {
+    mapping = cmp.mapping.preset.cmdline(),
     sources = cmp.config.sources({
       { name = 'path' }
     }, {
       { name = 'cmdline' }
-    })
+    }),
+    matching = { disallow_symbol_nonprefix_matching = false }
   })
-
-  local navic = require'nvim-navic'
-  local on_attach = function(client, bufnr)
-    navic.attach(client, bufnr)
-    if client.server_capabilities.documentHighlightProvider then
-        vim.api.nvim_create_augroup("lsp_document_highlight", { clear = true })
-        vim.api.nvim_clear_autocmds { buffer = bufnr, group = "lsp_document_highlight" }
-        vim.api.nvim_create_autocmd("CursorHold", {
-            callback = vim.lsp.buf.document_highlight,
-            buffer = bufnr,
-            group = "lsp_document_highlight",
-            desc = "Document Highlight",
-        })
-        vim.api.nvim_create_autocmd("CursorMoved", {
-            callback = vim.lsp.buf.clear_references,
-            buffer = bufnr,
-            group = "lsp_document_highlight",
-            desc = "Clear All the References",
-        })
-    end
-
-    -- Mappings.
-    local opts = { noremap=true, silent=true, buffer=bufnr }
-    -- See `:help vim.lsp.*` for documentation on any of the below functions
-    vim.keymap.set('n', '<leader>lD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-    vim.keymap.set('n', '<leader>ld', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-    vim.keymap.set('n', '<leader>lh', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-    vim.keymap.set('n', '<leader>li', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-    vim.keymap.set('n', '<leader>ls', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-    vim.keymap.set('n', '<leader>lt', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-    vim.keymap.set('n', '<leader>ln', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-    vim.keymap.set('n', '<leader>la', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-    vim.keymap.set('n', '<leader>lr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-    vim.keymap.set('n', '<leader>le', '<cmd>lua vim.diagnostic.show()<CR>', opts)
-    vim.keymap.set('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
-    vim.keymap.set('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
-    vim.keymap.set('n', '<leader>lL', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
-
-    _G.lsp_autofix = require'lsp_autofix'
-    vim.keymap.set('n', '<leader>lf', '<cmd>lua lsp_autofix()<CR>', { noremap=true, buffer=bufnr })
-
-    -- Get signatures (and _only_ signatures) when in argument lists.
-    require "lsp_signature".on_attach({
-      doc_lines = 0,
-      handler_opts = {
-        border = "none"
-      },
-    })
-  end
 
   -- Setup lspconfig.
   local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-  -- rust-tools (calls lspconfig.rust_analyzer.setup)
-  require'rust-tools'.setup {
-    hover_with_actions = false,
-    server = {
-      on_attach = on_attach,
-      flags = {
-        debounce_text_changes = 150,
-      },
-      settings = {
-        ["rust-analyzer"] = {
-          cargo = {
-            allFeatures = true,
-          },
-          checkOnSave = {
-            command = "clippy",
-          },
-          completion = {
-  	        postfix = {
-  	          enable = true,
-  	        },
-          },
-        },
-      },
-      capabilities = capabilities,
-    },
-  }
+  local navic = require'nvim-navic'
 
-  lspconfig.pyright.setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-  }
+  vim.api.nvim_create_autocmd("LspAttach", {
+    group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+    callback = function(ev)
+      local client = assert(vim.lsp.get_client_by_id(ev.data.client_id))
+      navic.attach(client, ev.buf)
 
-  lspconfig.hls.setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-  }
+      -- Buffer local mappings.
+      -- See `:help vim.lsp.*` for documentation on any of the below functions
+      local opts = { buffer = ev.buf }
+      vim.keymap.set('n', '<leader>ld', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+      vim.keymap.set('n', '<leader>lh', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+      vim.keymap.set('n', '<leader>ln', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+      vim.keymap.set('n', '<leader>lr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+      vim.keymap.set('n', '<leader>le', '<cmd>lua vim.diagnostic.show()<CR>', opts)
+      vim.keymap.set('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+      vim.keymap.set('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+    end,
+  })
 
-  lspconfig.clangd.setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-  }
-
-  lspconfig.clojure_lsp.setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-  }
-
-  lspconfig.omnisharp.setup {
-    cmd = { "omnisharp", "--languageserver", "--hostPID", tostring(pid) },
-    on_attach = on_attach,
-    capabilities = capabilities,
-  }
+  lspconfig.texlab.setup {}
 
   require'nvim-treesitter.configs'.setup {
     ensure_installed = {
-      "asm",
       "bash",
       "bibtex",
       "c",
-      "c_sharp",
       "cmake",
       "comment",
       "cpp",
@@ -361,23 +211,15 @@ lua <<EOF
       "gitattributes",
       "gitcommit",
       "gitignore",
-      "haskell",
       "html",
       "http",
       "java",
       "json",
-      "julia",
-      "llvm",
+      "latex",
       "lua",
       "make",
       "markdown",
-      "matlab",
-      "python",
-      "r",
-      "rust",
-      "sql",
       "toml",
-      "typescript",
       "vim",
       "vimdoc",
       "xcompose",
@@ -395,26 +237,35 @@ lua <<EOF
       -- `false` will disable the whole extension
       enable = true,
 
-      disable = function(lang, bufnr)
-        return lang == 'latex' or vim.api.nvim_buf_line_count(bufnr) > 10000
-      end,
+      --disable = function(lang, bufnr)
+      --  return lang == 'latex' or vim.api.nvim_buf_line_count(bufnr) > 10000
+      --end,
 
       -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
       -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
       -- Using this option may slow down your editor, and you may see some duplicate highlights.
       -- Instead of true it can also be a list of languages
-      additional_vim_regex_highlighting = false,
+      additional_vim_regex_highlighting = true,
     },
   }
 
-  require'crates'.setup {}
-
   -- diagnostic signs
-  local signs = { Error = "󰅚 ", Warn = " ", Hint = "󰌶 ", Info = " " }
-  for type, icon in pairs(signs) do
-      local hl = "DiagnosticSign" .. type
-      vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-  end
+  vim.diagnostic.config({
+    signs = {
+      text = {
+        [vim.diagnostic.severity.ERROR] = '󰅚 ',
+        [vim.diagnostic.severity.WARN] = '',
+        [vim.diagnostic.severity.HINT] = '󰌶 ',
+        [vim.diagnostic.severity.INFO] = ' ',
+      },
+      numhl = {
+        [vim.diagnostic.severity.ERROR] = 'DiagnosticSignError',
+        [vim.diagnostic.severity.WARN] = 'DiagnosticSignWarn',
+        [vim.diagnostic.severity.HINT] = 'DiagnosticSignHint',
+        [vim.diagnostic.severity.INFO] = 'DiagnosticSignInfo',
+      },
+    },
+  })
 
   -- git signs
   require'gitsigns'.setup {
@@ -516,17 +367,6 @@ lua <<EOF
     extensions = {}
   }
 
-  require'nvim-tree'.setup {}
-
-  require'lean'.setup {
-    abbreviations = { builtin = true },
-    lsp = { on_attach = on_attach },
-    lsp3 = { on_attach = on_attach },
-    mappings = true,
-  }
-
-  require'cord'.setup {}
-
   require'leap'.create_default_mappings()
 EOF
 
@@ -596,26 +436,6 @@ set mouse=
 
 " copypasting
 set clipboard+=unnamedplus
-
-" for responsive hover actions
-set updatetime=100
-
-" toggle conceallevel and use a nice concealcursor value
-set concealcursor=nc
-nnoremap <leader>c :call <SID>ToggleConceal()<CR>
-function! <SID>ToggleConceal()
-  if 2==&conceallevel
-    set conceallevel=0
-  else
-    set conceallevel=2
-  endif
-endfunction
-
-augroup vimtexgroup
-  autocmd!
-  " enable conceal
-  autocmd FileType tex set conceallevel=2
-augroup end
 
 " don't fold stuff in markdown
 au FileType markdown setlocal nofoldenable
