@@ -43,7 +43,7 @@ call plug#begin()
   Plug 'hrsh7th/cmp-vsnip'
   Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
   Plug 'nvim-lua/plenary.nvim'
-  Plug 'ggandor/leap.nvim'
+  Plug 'https://codeberg.org/andyg/leap.nvim'
   Plug 'tpope/vim-fugitive'
   Plug 'lewis6991/gitsigns.nvim'
   Plug 'SmiteshP/nvim-navic'
@@ -93,7 +93,6 @@ nnoremap <leader>mp <Plug>MarkdownPreviewToggle
 lua <<EOF
   -- Setup nvim-cmp.
   local cmp = require'cmp'
-  local lspconfig = require'lspconfig'
 
   local has_words_before = function()
     unpack = unpack or table.unpack
@@ -193,61 +192,7 @@ lua <<EOF
     end,
   })
 
-  lspconfig.texlab.setup {}
-
-  require'nvim-treesitter.configs'.setup {
-    ensure_installed = {
-      "bash",
-      "bibtex",
-      "c",
-      "cmake",
-      "comment",
-      "cpp",
-      "css",
-      "csv",
-      "diff",
-      "git_config",
-      "git_rebase",
-      "gitattributes",
-      "gitcommit",
-      "gitignore",
-      "html",
-      "http",
-      "java",
-      "json",
-      "latex",
-      "lua",
-      "make",
-      "markdown",
-      "toml",
-      "vim",
-      "vimdoc",
-      "xcompose",
-      "xml",
-      "yaml",
-    },
-
-    -- Install languages synchronously (only applied to `ensure_installed`)
-    sync_install = false,
-
-    -- List of parsers to ignore installing
-    ignore_install = {'zig', 'earthfile', 'verilog', 'dart', 'hoon'},
-
-    highlight = {
-      -- `false` will disable the whole extension
-      enable = true,
-
-      --disable = function(lang, bufnr)
-      --  return lang == 'latex' or vim.api.nvim_buf_line_count(bufnr) > 10000
-      --end,
-
-      -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-      -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-      -- Using this option may slow down your editor, and you may see some duplicate highlights.
-      -- Instead of true it can also be a list of languages
-      additional_vim_regex_highlighting = true,
-    },
-  }
+  vim.lsp.enable('texlab')
 
   -- diagnostic signs
   vim.diagnostic.config({
@@ -367,7 +312,9 @@ lua <<EOF
     extensions = {}
   }
 
-  require'leap'.create_default_mappings()
+  --leap
+  vim.keymap.set({'n', 'x', 'o'}, 's', '<Plug>(leap)')
+  vim.keymap.set({'n', 'x', 'o'}, 'S', '<Plug>(leap-backward)')
 EOF
 
 " menuone: popup even when there's only one match
