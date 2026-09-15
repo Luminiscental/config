@@ -164,8 +164,7 @@ bindsym $mod+p exec lock-screen
 
 focus_follows_mouse no
 
-assign [class="discord"] 2
-assign [class="firefox"] 3
+assign [app_id="discord"] 2
 assign [app_id="firefox"] 3
 assign [app_id="krita"] 4
 assign [app_id="REAPER"] 4

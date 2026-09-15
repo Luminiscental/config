@@ -5,12 +5,16 @@
 \usepackage[T1]{fontenc}
 \usepackage{microtype}
 \usepackage{tikz-cd}
+\usepackage{booktabs}
+\usepackage{enumitem}
+%\usepackage{parskip}
 
 \usepackage[margin=1.4in]{geometry}
 
 % mathematics
 \usepackage{mathtools}
 \usepackage{amsthm}
+\usepackage{amssymb}
 \usepackage{mathrsfs}
 
 % references
@@ -28,58 +32,61 @@
 %% commands
 
 % theorems
-\newtheorem{theorem}{Theorem}[section]
-\newtheorem{proposition}[theorem]{Proposition}
-\newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{theorem}[equation]{Theorem}
+\newtheorem{proposition}[equation]{Proposition}
+\newtheorem{lemma}[equation]{Lemma}
+\newtheorem{corollary}[equation]{Corollary}
 
 \theoremstyle{definition}
-\newtheorem{definition}[theorem]{Definition}
+\newtheorem{definition}[equation]{Definition}
 
 \theoremstyle{remark}
-\newtheorem{remark}[theorem]{Remark}
-\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[equation]{Remark}
+\newtheorem{example}[equation]{Example}
 
 % references
 \numberwithin{equation}{section}
+\numberwithin{figure}{section}
 \crefname{section}{\S\kern -3pt}{\S\S}
+\crefname{equation}{}{}
 
 % typesetting
-\setcounter{tocdepth}{1}
-\renewcommand*{\bibfont}{\normalfont\small}
+\renewcommand*{\bibfont}{\normalfont\footnotesize}
+\let\oldtocsection=\tocsection
+\let\oldtocsubsection=\tocsubsection
+\let\oldtocsubsubsection=\tocsubsubsection
+\renewcommand{\tocsection}[3]{\hspace{0em}\oldtocsection{#1}{#2}{#3}}
+\renewcommand{\tocsubsection}[3]{\hspace{2.5em}{\oldtocsubsection{#1}{#2}{#3}}}
 
 % operators
 \DeclareMathOperator{\Spec}{Spec}
 \DeclareMathOperator{\Tot}{Tot}
-\DeclareMathOperator{\Hom}{Hom}
 \DeclareMathOperator{\cone}{cone}
+\DeclareMathOperator{\Hom}{Hom}
 \DeclareMathOperator{\Ext}{Ext}
+\DeclareMathOperator{\shHom}{\mathcal{H}\kern -1pt \textit{om}}
+\DeclareMathOperator{\shExt}{\mathcal{E}\kern -1pt \textit{xt}}
 \DeclareMathOperator{\End}{End}
 \DeclareMathOperator{\Crit}{Crit}
 \DeclareMathOperator{\RHom}{\dR Hom}
+\DeclareMathOperator{\RG}{\dR\Gamma}
 \DeclareMathOperator{\Perf}{\mathfrak{Perf}}
 \DeclareMathOperator{\Bl}{Bl}
 
 % macros
-\newcommand{\cat}[1]{\mathsf{#1}} % category name
 \newcommand{\lperp}[1]{\prescript{\perp}{}{#1}} % left orthogonal
+\newcommand{\todo}[1]{{\color{red}#1}}
 
 % names
 \newcommand{\id}{\mathrm{id}}
 \newcommand{\op}{\mathrm{op}}
 \newcommand{\pt}{\mathrm{pt}}
-\newcommand{\dR}{\mathbf{R}} % right derived prefix R
+\newcommand{\dR}{\mathrm{R}} % right derived prefix R
 
 % letters
-\newcommand{\tilW}{{\widetilde W}}
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\C}{\mathbb{C}}
 \newcommand{\A}{\mathbb{A}}
-\newcommand{\calA}{\mathcal{A}}
-\newcommand{\calI}{\mathcal{I}}
-\newcommand{\calL}{\mathcal{L}}
 \newcommand{\scrC}{\mathscr{C}}
-\newcommand{\scrF}{\mathscr{F}}
 \renewcommand{\P}{\mathbb{P}}
 \renewcommand{\O}{\mathcal{O}}
-\newcommand{\W}{\mathcal{W}}
